@@ -2,36 +2,63 @@
 
 ## Cursor Cloud specific instructions
 
-This is a **pnpm turborepo monorepo** for the VibeBetter (AEIP) platform.
+### Overview
 
-### Architecture
+VibeBetter (AEIP) is a pnpm monorepo with three main packages:
+- `apps/web` — Next.js 14+ frontend (port 3000)
+- `apps/server` — Hono + Node.js backend API (port 3001)
+- `packages/shared` — shared TypeScript types, Zod schemas, constants
+- `packages/db` — Prisma schema and database client
 
-| Package | Description | Dev command |
-|---|---|---|
-| `@vibebetter/shared` | Shared types, schemas, constants, utils | `pnpm --filter @vibebetter/shared lint` |
-| `@vibebetter/db` | Prisma ORM + schema | `pnpm --filter @vibebetter/db db:generate` |
-| `@vibebetter/server` | Hono + Node.js backend API | `pnpm --filter @vibebetter/server dev` |
-| `@vibebetter/web` | Next.js frontend | `pnpm --filter @vibebetter/web dev` |
+### Prerequisites
 
-### Services required
+Docker must be running to provide PostgreSQL and Redis.
 
-- **PostgreSQL** (port 5432) and **Redis** (port 6379) via `docker compose up -d` in the workspace root.
-- The server requires `DATABASE_URL`, `REDIS_URL`, `JWT_SECRET` environment variables. Copy `.env.example` to `.env` and adjust if needed.
-- Prisma client must be generated before the server can start: `pnpm --filter @vibebetter/db db:generate`.
-- To push schema to DB: `DATABASE_URL=postgresql://postgres:postgres@localhost:5432/vibebetter pnpm --filter @vibebetter/db db:push` (the db package does not read `.env` from root automatically; pass the env var explicitly or run from a shell where it's exported).
+```bash
+sudo dockerd &>/dev/null &
+sleep 3
+sudo chmod 666 /var/run/docker.sock
+docker compose up -d
+```
 
-### Key commands
+### Environment
 
-See `package.json` scripts. Quick reference:
-- **Lint (server):** `pnpm --filter @vibebetter/server lint` (runs `tsc --noEmit`)
-- **Test (server):** `pnpm --filter @vibebetter/server test` (runs `vitest run`)
-- **Build (server):** `pnpm --filter @vibebetter/server build` (runs `tsc`)
-- **Dev (server):** `pnpm --filter @vibebetter/server dev` (runs `tsx watch src/index.ts` on port 3001)
-- **Format:** `pnpm format` / `pnpm format:check`
+Copy `.env.example` to `.env` and to `apps/server/.env` and `apps/web/.env.local`:
+
+```bash
+cp .env.example .env
+cp .env apps/server/.env
+cp .env apps/web/.env.local
+```
+
+### Database
+
+```bash
+cd packages/db
+npx prisma generate
+npx prisma db push
+npx tsx seed/index.ts
+```
+
+Demo credentials: `demo@vibebetter.dev` / `password123`
+
+### Running
+
+See `package.json` root scripts. Key commands:
+- `pnpm dev` — starts both frontend and backend via Turborepo
+- `pnpm lint` — lint all packages
+- `pnpm test` — run all tests
+- `pnpm build` — build all packages
+- `pnpm format` — format all files with Prettier
+
+Individual packages:
+- `pnpm --filter @vibebetter/server dev` — backend only (port 3001)
+- `pnpm --filter @vibebetter/web dev` — frontend only (port 3000)
+- `pnpm --filter @vibebetter/server test` — backend tests (Vitest)
 
 ### Gotchas
 
-- The `@vibebetter/db` package has a pre-existing `tsc` error (missing `@types/node`). Its `lint` and `build` scripts fail, but the Prisma client generation and `db:push` work fine.
-- `pnpm install` requires `pnpm.onlyBuiltDependencies` in root `package.json` to avoid interactive `pnpm approve-builds` prompts. This is already configured.
-- Docker must be installed and running for Postgres/Redis. In Cursor Cloud VMs, use `fuse-overlayfs` storage driver and `iptables-legacy` (see Docker-in-Docker setup in environment docs).
-- The server needs env vars set in the shell (or `.env` file in the workspace root). The `env.ts` config validates them at startup with Zod.
+- The `.env` file must also be copied to `packages/db/.env` for Prisma CLI commands to work.
+- When using `prisma migrate reset` or `prisma db push --force-reset` in Cursor, the `PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION` env var is required.
+- The frontend API client paths must match the backend's route mounting structure: metrics are at `/api/v1/metrics/projects/:id/...`, collectors at `/api/v1/collectors/projects/:id/...`.
+- Docker in this VM requires `fuse-overlayfs` storage driver and `iptables-legacy`. See the Docker setup section above.

@@ -49,6 +49,8 @@ export interface MetricsOverviewResponse {
     totalPrs: number;
     aiPrs: number;
     psriScore: number | null;
+    tdiScore: number | null;
+    avgComplexity: number | null;
     totalFiles: number;
     hotspotFiles: number;
   };

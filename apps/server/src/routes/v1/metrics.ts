@@ -37,6 +37,7 @@ metrics.get('/projects/:id/overview', async (c) => {
           psriChange: null,
           psriDefect: null,
           avgComplexity: null,
+          tdiScore: null,
           totalFiles: 0,
           hotspotFiles: 0,
         },
@@ -54,6 +55,7 @@ metrics.get('/projects/:id/overview', async (c) => {
       psriChange: latest.psriChange,
       psriDefect: latest.psriDefect,
       avgComplexity: latest.avgComplexity,
+      tdiScore: latest.tdiScore,
       totalFiles: latest.totalFiles,
       hotspotFiles: latest.hotspotFiles,
     };

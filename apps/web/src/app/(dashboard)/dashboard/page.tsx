@@ -99,6 +99,46 @@ export default function DashboardOverviewPage() {
         </div>
       )}
 
+      {projectId && overview && !overviewLoading && (
+        <div className="rounded-xl border border-zinc-800 bg-gradient-to-r from-zinc-900 to-zinc-900/50 p-5">
+          <div className="flex items-start gap-3">
+            <div className={`mt-0.5 rounded-lg p-2 ${
+              (overview.psriScore ?? 0) > 0.6 ? 'bg-red-500/10 text-red-400' :
+              (overview.psriScore ?? 0) > 0.3 ? 'bg-amber-500/10 text-amber-400' :
+              'bg-emerald-500/10 text-emerald-400'
+            }`}>
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-sm font-semibold text-zinc-200">Health Assessment</h2>
+              <p className="mt-1 text-sm leading-relaxed text-zinc-400">
+                {overview.aiSuccessRate != null && overview.aiSuccessRate > 0.8
+                  ? `AI coding effectiveness is strong at ${(overview.aiSuccessRate * 100).toFixed(0)}%.`
+                  : overview.aiSuccessRate != null
+                    ? `AI coding success rate is ${(overview.aiSuccessRate * 100).toFixed(0)}% — room for improvement.`
+                    : 'AI success rate data not yet available.'
+                }
+                {' '}
+                {(overview.psriScore ?? 0) < 0.3
+                  ? `Structural risk is low (PSRI ${overview.psriScore?.toFixed(2)}).`
+                  : (overview.psriScore ?? 0) < 0.6
+                    ? `Structural risk is moderate (PSRI ${overview.psriScore?.toFixed(2)}) — monitor hotspot files.`
+                    : `Structural risk is elevated (PSRI ${overview.psriScore?.toFixed(2)}) — review recommended.`
+                }
+                {overview.tdiScore != null && overview.tdiScore > 0.5 &&
+                  ` Technical debt is accumulating (TDI ${overview.tdiScore.toFixed(2)}).`
+                }
+                {overview.hotspotFiles > 0 &&
+                  ` ${overview.hotspotFiles} hotspot file${overview.hotspotFiles > 1 ? 's' : ''} need attention.`
+                }
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {projectId && (
         <>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -158,10 +198,11 @@ export default function DashboardOverviewPage() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
             <QuickStat label="Total PRs" value={overview?.totalPrs ?? 0} />
             <QuickStat label="AI PRs" value={overview?.aiPrs ?? 0} />
-            <QuickStat label="Avg Complexity" value={latestSnapshot?.totalFiles ? '~' : 'N/A'} />
+            <QuickStat label="TDI" value={overview?.tdiScore != null ? overview.tdiScore.toFixed(2) : 'N/A'} />
+            <QuickStat label="Avg Complexity" value={overview?.avgComplexity != null ? overview.avgComplexity.toFixed(1) : 'N/A'} />
             <QuickStat label="Hotspot Count" value={overview?.hotspotFiles ?? 0} />
           </div>
 

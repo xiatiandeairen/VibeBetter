@@ -43,6 +43,7 @@ export interface MetricResult {
   psriChange: number | null;
   psriDefect: number | null;
   avgComplexity: number | null;
+  tdiScore: number | null;
   totalFiles: number;
   hotspotFiles: number;
 }

@@ -62,3 +62,5 @@ Individual packages:
 - When using `prisma migrate reset` or `prisma db push --force-reset` in Cursor, the `PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION` env var is required.
 - The frontend API client paths must match the backend's route mounting structure: metrics are at `/api/v1/metrics/projects/:id/...`, collectors at `/api/v1/collectors/projects/:id/...`.
 - Docker in this VM requires `fuse-overlayfs` storage driver and `iptables-legacy`. See the Docker setup section above.
+- Docker startup: `containerd` must be started **before** `dockerd`. Run `sudo containerd &>/tmp/containerd.log &` then `sleep 3` then `sudo dockerd &>/tmp/dockerd.log &` — otherwise dockerd fails with "timeout waiting for containerd to start".
+- If Next.js dev server fails with `EADDRINUSE`, check for stale processes: `netstat -tlnp | grep 3000` and kill the specific PID. Old Next.js processes can survive across sessions.

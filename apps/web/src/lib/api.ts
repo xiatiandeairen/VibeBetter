@@ -106,6 +106,61 @@ export interface UserResponse {
   data: { id: string; email: string; name: string; role: string };
 }
 
+export interface DecisionItem {
+  id: string;
+  level: string;
+  category: string;
+  title: string;
+  description: string;
+  priority: number;
+  status: string;
+  createdAt: string;
+}
+
+export interface DecisionsResponse {
+  success: boolean;
+  data: DecisionItem[];
+}
+
+export interface WeightConfigData {
+  structural: number;
+  change: number;
+  defect: number;
+  architecture: number;
+  runtime: number;
+  coverage: number;
+}
+
+export interface WeightsResponse {
+  success: boolean;
+  data: WeightConfigData;
+}
+
+export interface AiBehaviorStats {
+  totalGenerations: number;
+  totalAccepted: number;
+  acceptanceRate: number;
+  avgEditDistance: number;
+  toolUsage: Record<string, number>;
+}
+
+export interface AiBehaviorStatsResponse {
+  success: boolean;
+  data: AiBehaviorStats;
+}
+
+export interface UserBehaviorStats {
+  totalEvents: number;
+  uniqueFiles: number;
+  avgSessionDuration: number;
+  eventTypes: Record<string, number>;
+}
+
+export interface UserBehaviorStatsResponse {
+  success: boolean;
+  data: UserBehaviorStats;
+}
+
 export const api = {
   register(data: { name: string; email: string; password: string }) {
     return apiFetch<AuthResponse>('/api/v1/auth/register', {
@@ -179,6 +234,51 @@ export const api = {
     return apiFetch<{ success: boolean }>(
       `/api/v1/metrics/projects/${projectId}/compute`,
       { method: 'POST' },
+    );
+  },
+
+  getDecisions(projectId: string) {
+    return apiFetch<DecisionsResponse>(
+      `/api/v1/decisions/projects/${projectId}/decisions`,
+    );
+  },
+
+  generateDecisions(projectId: string) {
+    return apiFetch<DecisionsResponse>(
+      `/api/v1/decisions/projects/${projectId}/decisions/generate`,
+      { method: 'POST' },
+    );
+  },
+
+  updateDecisionStatus(decisionId: string, status: string) {
+    return apiFetch<{ success: boolean }>(
+      `/api/v1/decisions/decisions/${decisionId}/status`,
+      { method: 'PATCH', body: JSON.stringify({ status }) },
+    );
+  },
+
+  getWeights(projectId: string) {
+    return apiFetch<WeightsResponse>(
+      `/api/v1/weights/projects/${projectId}/weights`,
+    );
+  },
+
+  updateWeights(projectId: string, weights: WeightConfigData) {
+    return apiFetch<WeightsResponse>(
+      `/api/v1/weights/projects/${projectId}/weights`,
+      { method: 'PUT', body: JSON.stringify(weights) },
+    );
+  },
+
+  getAiBehaviorStats(projectId: string) {
+    return apiFetch<AiBehaviorStatsResponse>(
+      `/api/v1/behaviors/projects/${projectId}/ai-behaviors/stats`,
+    );
+  },
+
+  getUserBehaviorStats(projectId: string) {
+    return apiFetch<UserBehaviorStatsResponse>(
+      `/api/v1/behaviors/projects/${projectId}/user-behaviors/stats`,
     );
   },
 };

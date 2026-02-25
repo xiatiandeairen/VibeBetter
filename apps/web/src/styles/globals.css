@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --card: #18181b;
+    --card-hover: #1f1f23;
+    --sidebar: #09090b;
+    --border: #27272a;
+    --border-hover: #3f3f46;
+    --muted: #a1a1aa;
+    --muted-foreground: #71717a;
+    --accent: #6366f1;
+    --accent-secondary: #8b5cf6;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --ring: #6366f1;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
+
+  ::selection {
+    background: rgba(99, 102, 241, 0.3);
+    color: #fafafa;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(63, 63, 70, 0.4);
+  }
+
+  .glass-strong {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(63, 63, 70, 0.5);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.1));
+    z-index: -1;
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.15);
+  }
+
+  .glow-md {
+    box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.2);
+  }
+
+  .hero-glow {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      rgba(99, 102, 241, 0.12) 0%,
+      rgba(139, 92, 246, 0.06) 40%,
+      transparent 70%
+    );
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(
+        rgba(63, 63, 70, 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(63, 63, 70, 0.1) 1px,
+        transparent 1px
+      );
+    background-size: 40px 40px;
+  }
+
+  .card-base {
+    @apply rounded-xl border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm;
+  }
+
+  .card-interactive {
+    @apply card-base transition-all duration-200 hover:border-zinc-700 hover:bg-zinc-900;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulseSubtle 3s ease-in-out infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}

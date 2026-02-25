@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(VIEWER)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  projects       Project[]
+  projectMembers ProjectMember[]
+
+  @@map("users")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  repoUrl     String   @map("repo_url")
+  repoType    RepoType @default(GITHUB) @map("repo_type")
+  isActive    Boolean  @default(true) @map("is_active")
+  ownerId     String   @map("owner_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  owner            User              @relation(fields: [ownerId], references: [id])
+  members          ProjectMember[]
+  pullRequests     PullRequest[]
+  collectionJobs   CollectionJob[]
+  metricSnapshots  MetricSnapshot[]
+  fileMetrics      FileMetric[]
+
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        String @id @default(cuid())
+  projectId String @map("project_id")
+  userId    String @map("user_id")
+  role      Role   @default(VIEWER)
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@map("project_members")
+}
+
+model PullRequest {
+  id              String    @id @default(cuid())
+  projectId       String    @map("project_id")
+  externalId      String    @map("external_id")
+  number          Int
+  title           String
+  state           String
+  authorLogin     String    @map("author_login")
+  aiUsed          Boolean   @default(false) @map("ai_used")
+  aiCodeRatio     Float?    @map("ai_code_ratio")
+  additions       Int       @default(0)
+  deletions       Int       @default(0)
+  changedFiles    Int       @default(0) @map("changed_files")
+  commitCount     Int       @default(0) @map("commit_count")
+  reviewComments  Int       @default(0) @map("review_comments")
+  reviewRounds    Int       @default(0) @map("review_rounds")
+  mergedAt        DateTime? @map("merged_at")
+  closedAt        DateTime? @map("closed_at")
+  rollbackFlag    Boolean   @default(false) @map("rollback_flag")
+  majorRevision   Boolean   @default(false) @map("major_revision")
+  mergeTime       Int?      @map("merge_time")
+  conflictCount   Int       @default(0) @map("conflict_count")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, externalId])
+  @@index([projectId, createdAt])
+  @@map("pull_requests")
+}
+
+model FileMetric {
+  id                   String   @id @default(cuid())
+  projectId            String   @map("project_id")
+  filePath             String   @map("file_path")
+  cyclomaticComplexity Int      @default(0) @map("cyclomatic_complexity")
+  linesOfCode          Int      @default(0) @map("lines_of_code")
+  changeFrequency90d   Int      @default(0) @map("change_frequency_90d")
+  authorCount          Int      @default(0) @map("author_count")
+  aiCodeRatio          Float?   @map("ai_code_ratio")
+  lastModified         DateTime? @map("last_modified")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, filePath])
+  @@index([projectId, changeFrequency90d])
+  @@map("file_metrics")
+}
+
+model MetricSnapshot {
+  id              String   @id @default(cuid())
+  projectId       String   @map("project_id")
+  snapshotDate    DateTime @map("snapshot_date")
+  aiSuccessRate   Float?   @map("ai_success_rate")
+  aiStableRate    Float?   @map("ai_stable_rate")
+  totalPrs        Int      @default(0) @map("total_prs")
+  aiPrs           Int      @default(0) @map("ai_prs")
+  psriScore       Float?   @map("psri_score")
+  psriStructural  Float?   @map("psri_structural")
+  psriChange      Float?   @map("psri_change")
+  psriDefect      Float?   @map("psri_defect")
+  tdiScore        Float?   @map("tdi_score")
+  avgComplexity   Float?   @map("avg_complexity")
+  totalFiles      Int      @default(0) @map("total_files")
+  hotspotFiles    Int      @default(0) @map("hotspot_files")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, snapshotDate])
+  @@map("metric_snapshots")
+}
+
+model CollectionJob {
+  id          String          @id @default(cuid())
+  projectId   String          @map("project_id")
+  source      DataSourceType
+  status      JobStatus       @default(PENDING)
+  startedAt   DateTime?       @map("started_at")
+  completedAt DateTime?       @map("completed_at")
+  error       String?
+  itemsCount  Int             @default(0) @map("items_count")
+  createdAt   DateTime        @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, createdAt])
+  @@map("collection_jobs")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  VIEWER
+}
+
+enum RepoType {
+  GITHUB
+  GITLAB
+  LOCAL
+}
+
+enum DataSourceType {
+  GITHUB
+  GITLAB
+  LOCAL_GIT
+  JIRA
+  SONARQUBE
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+}

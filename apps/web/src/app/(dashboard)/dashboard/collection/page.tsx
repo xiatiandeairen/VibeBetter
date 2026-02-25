@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
@@ -33,7 +33,7 @@ export default function CollectionPage() {
     queryFn: () => api.getProjects(),
   });
 
-  const projects = projectsData?.data ?? [];
+  const projects = useMemo(() => projectsData?.data ?? [], [projectsData?.data]);
 
   useEffect(() => {
     if (!projectId && projects.length === 1 && projects[0]) {

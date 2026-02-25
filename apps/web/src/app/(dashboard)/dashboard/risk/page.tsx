@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { AreaChart } from '@/components/charts/area-chart';
@@ -27,7 +27,7 @@ export default function RiskTrendsPage() {
     queryFn: () => api.getProjects(),
   });
 
-  const projects = projectsData?.data ?? [];
+  const projects = useMemo(() => projectsData?.data ?? [], [projectsData?.data]);
 
   useEffect(() => {
     if (!projectId && projects.length === 1 && projects[0]) {

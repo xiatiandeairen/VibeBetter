@@ -52,7 +52,7 @@ export class GitHubCollector implements IDataCollector {
     const project = await prisma.project.findUniqueOrThrow({ where: { id: params.projectId } });
     const { owner, repo } = this.parseRepoUrl(project.repoUrl);
 
-    const prs = await this.fetchPullRequests(owner, repo);
+    const prs = await this.fetchAllPullRequests(owner, repo, params.since);
     const events: NormalizedEvent[] = [];
 
     for (const pr of prs) {
@@ -121,11 +121,72 @@ export class GitHubCollector implements IDataCollector {
     return { owner: match[1], repo: match[2] };
   }
 
-  private async fetchPullRequests(owner: string, repo: string): Promise<GitHubPR[]> {
-    const url = `${this.baseUrl}/repos/${owner}/${repo}/pulls?state=all&per_page=100`;
-    const res = await fetch(url, { headers: this.headers });
-    if (!res.ok) throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
-    return (await res.json()) as GitHubPR[];
+  private async fetchAllPullRequests(
+    owner: string,
+    repo: string,
+    since?: Date,
+  ): Promise<GitHubPR[]> {
+    const allPrs: GitHubPR[] = [];
+    let page = 1;
+    const perPage = 100;
+
+    while (true) {
+      let url = `${this.baseUrl}/repos/${owner}/${repo}/pulls?state=all&per_page=${perPage}&page=${page}&sort=updated&direction=desc`;
+      if (since) {
+        url += `&since=${since.toISOString()}`;
+      }
+
+      const res = await fetch(url, { headers: this.headers });
+
+      await this.checkRateLimit(res);
+
+      if (!res.ok) throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);
+
+      const prs = (await res.json()) as GitHubPR[];
+      if (prs.length === 0) break;
+
+      if (since) {
+        const filtered = prs.filter((pr) => new Date(pr.updated_at) >= since);
+        allPrs.push(...filtered);
+        if (filtered.length < prs.length) break;
+      } else {
+        allPrs.push(...prs);
+      }
+
+      const nextUrl = this.getNextPageUrl(res.headers.get('link'));
+      if (!nextUrl) break;
+
+      page++;
+    }
+
+    return allPrs;
+  }
+
+  private getNextPageUrl(linkHeader: string | null): string | null {
+    if (!linkHeader) return null;
+
+    const parts = linkHeader.split(',');
+    for (const part of parts) {
+      const match = part.match(/<([^>]+)>;\s*rel="next"/);
+      if (match?.[1]) return match[1];
+    }
+    return null;
+  }
+
+  private async checkRateLimit(res: Response): Promise<void> {
+    const remaining = res.headers.get('x-ratelimit-remaining');
+    const resetTime = res.headers.get('x-ratelimit-reset');
+
+    if (remaining !== null && parseInt(remaining, 10) <= 5 && resetTime) {
+      const resetMs = parseInt(resetTime, 10) * 1000;
+      const now = Date.now();
+      const waitMs = Math.max(resetMs - now + 1000, 0);
+
+      if (waitMs > 0 && waitMs < 300000) {
+        console.log(`GitHub rate limit low (${remaining} remaining). Pausing for ${Math.ceil(waitMs / 1000)}s`);
+        await new Promise((resolve) => setTimeout(resolve, waitMs));
+      }
+    }
   }
 
   private async fetchCommitMessages(
@@ -136,6 +197,9 @@ export class GitHubCollector implements IDataCollector {
     try {
       const url = `${this.baseUrl}/repos/${owner}/${repo}/pulls/${prNumber}/commits?per_page=100`;
       const res = await fetch(url, { headers: this.headers });
+
+      await this.checkRateLimit(res);
+
       if (!res.ok) return [];
       const commits = (await res.json()) as Array<{ commit: { message: string } }>;
       return commits.map((c) => c.commit.message);

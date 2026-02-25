@@ -46,3 +46,38 @@ export interface MetricResult {
   totalFiles: number;
   hotspotFiles: number;
 }
+
+export interface DecisionItem {
+  id: string;
+  level: string;
+  category: string;
+  title: string;
+  description: string;
+  priority: number;
+  status: string;
+  createdAt: string;
+}
+
+export interface WeightConfigData {
+  structural: number;
+  change: number;
+  defect: number;
+  architecture: number;
+  runtime: number;
+  coverage: number;
+}
+
+export interface UserBehaviorStats {
+  totalEvents: number;
+  uniqueFiles: number;
+  avgSessionDuration: number;
+  eventTypes: Record<string, number>;
+}
+
+export interface AiBehaviorStats {
+  totalGenerations: number;
+  totalAccepted: number;
+  acceptanceRate: number;
+  avgEditDistance: number;
+  toolUsage: Record<string, number>;
+}

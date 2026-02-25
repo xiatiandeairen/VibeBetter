@@ -10,10 +10,12 @@ export const AI_COMMIT_KEYWORDS = [
 ];
 
 export const PSRI_DEFAULT_WEIGHTS = {
-  structural: 0.25,
-  change: 0.25,
-  defect: 0.25,
-  coverage: 0.25,
+  structural: 0.2,
+  change: 0.2,
+  defect: 0.2,
+  architecture: 0.15,
+  runtime: 0.1,
+  coverage: 0.15,
 } as const;
 
 export const HOTSPOT_THRESHOLDS = {

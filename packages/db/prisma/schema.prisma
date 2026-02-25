@@ -39,6 +39,10 @@ model Project {
   collectionJobs   CollectionJob[]
   metricSnapshots  MetricSnapshot[]
   fileMetrics      FileMetric[]
+  userBehaviors    UserBehavior[]
+  aiBehaviors      AiBehavior[]
+  decisions        Decision[]
+  weightConfig     WeightConfig?
 
   @@map("projects")
 }
@@ -174,4 +178,78 @@ enum JobStatus {
   RUNNING
   COMPLETED
   FAILED
+}
+
+model UserBehavior {
+  id              String   @id @default(cuid())
+  projectId       String   @map("project_id")
+  userId          String?  @map("user_id")
+  eventType       String   @map("event_type")
+  filePath        String?  @map("file_path")
+  sessionDuration Int?     @map("session_duration")
+  timestamp       DateTime @default(now())
+  metadata        Json?
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, eventType])
+  @@map("user_behaviors")
+}
+
+model AiBehavior {
+  id              String   @id @default(cuid())
+  projectId       String   @map("project_id")
+  tool            String
+  action          String
+  filePath        String?  @map("file_path")
+  promptHash      String?  @map("prompt_hash")
+  generationCount Int      @default(0) @map("generation_count")
+  acceptedCount   Int      @default(0) @map("accepted_count")
+  rejectedCount   Int      @default(0) @map("rejected_count")
+  editDistance     Float?   @map("edit_distance")
+  timestamp       DateTime @default(now())
+  metadata        Json?
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, tool])
+  @@map("ai_behaviors")
+}
+
+model Decision {
+  id          String   @id @default(cuid())
+  projectId   String   @map("project_id")
+  level       String
+  category    String
+  title       String
+  description String
+  priority    Int      @default(0)
+  status      String   @default("PENDING")
+  metadata    Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, status])
+  @@map("decisions")
+}
+
+model WeightConfig {
+  id          String   @id @default(cuid())
+  projectId   String   @map("project_id")
+  structural  Float    @default(0.2)
+  change      Float    @default(0.2)
+  defect      Float    @default(0.2)
+  architecture Float   @default(0.15)
+  runtime     Float    @default(0.1)
+  coverage    Float    @default(0.15)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId])
+  @@map("weight_configs")
 }

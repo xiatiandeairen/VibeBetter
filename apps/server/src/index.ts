@@ -4,15 +4,21 @@ import { logger } from 'hono/logger';
 import { serve } from '@hono/node-server';
 import type { ApiResponse } from '@vibebetter/shared';
 import { env } from './config/env.js';
+import { onError } from './middleware/error-handler.js';
 import auth from './routes/v1/auth.js';
 import projects from './routes/v1/projects.js';
 import metrics from './routes/v1/metrics.js';
 import collectors from './routes/v1/collectors.js';
+import weights from './routes/v1/weights.js';
+import decisions from './routes/v1/decisions.js';
+import behaviors from './routes/v1/behaviors.js';
 
 const app = new Hono();
 
 app.use('*', cors({ origin: '*' }));
 app.use('*', logger());
+
+app.onError(onError);
 
 app.get('/health', (c) => {
   return c.json<ApiResponse<{ status: string; timestamp: string }>>({
@@ -26,6 +32,9 @@ app.route('/api/v1/auth', auth);
 app.route('/api/v1/projects', projects);
 app.route('/api/v1/metrics', metrics);
 app.route('/api/v1/collectors', collectors);
+app.route('/api/v1/weights', weights);
+app.route('/api/v1/decisions', decisions);
+app.route('/api/v1/behaviors', behaviors);
 
 serve({ fetch: app.fetch, port: env.PORT }, (info) => {
   console.log(`VibeBetter server running on http://localhost:${info.port}`);

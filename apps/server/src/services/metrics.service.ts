@@ -164,6 +164,7 @@ export class MetricsService {
       psriChange: psri.change,
       psriDefect: psri.defect,
       avgComplexity,
+      tdiScore: tdi,
       totalFiles,
       hotspotFiles,
     };

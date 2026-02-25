@@ -31,7 +31,7 @@ behaviors.post('/projects/:id/user-behaviors', async (c) => {
       eventType: parsed.data.eventType,
       filePath: parsed.data.filePath,
       sessionDuration: parsed.data.sessionDuration,
-      metadata: parsed.data.metadata ?? undefined,
+      metadata: parsed.data.metadata ? JSON.parse(JSON.stringify(parsed.data.metadata)) as Record<string, string> : undefined,
     },
   });
 
@@ -64,7 +64,7 @@ behaviors.post('/projects/:id/ai-behaviors', async (c) => {
       acceptedCount: parsed.data.acceptedCount,
       rejectedCount: parsed.data.rejectedCount,
       editDistance: parsed.data.editDistance,
-      metadata: parsed.data.metadata ?? undefined,
+      metadata: parsed.data.metadata ? JSON.parse(JSON.stringify(parsed.data.metadata)) as Record<string, string> : undefined,
     },
   });
 

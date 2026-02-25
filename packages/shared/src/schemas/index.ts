@@ -36,8 +36,39 @@ export const PaginationSchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).default(20),
 });
 
+export const WeightConfigSchema = z.object({
+  structural: z.number().min(0).max(1),
+  change: z.number().min(0).max(1),
+  defect: z.number().min(0).max(1),
+  architecture: z.number().min(0).max(1),
+  runtime: z.number().min(0).max(1),
+  coverage: z.number().min(0).max(1),
+});
+
+export const UserBehaviorSchema = z.object({
+  eventType: z.string().min(1),
+  filePath: z.string().optional(),
+  sessionDuration: z.number().int().optional(),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+export const AiBehaviorSchema = z.object({
+  tool: z.string().min(1),
+  action: z.string().min(1),
+  filePath: z.string().optional(),
+  promptHash: z.string().optional(),
+  generationCount: z.number().int().default(0),
+  acceptedCount: z.number().int().default(0),
+  rejectedCount: z.number().int().default(0),
+  editDistance: z.number().optional(),
+  metadata: z.record(z.unknown()).optional(),
+});
+
 export type RegisterInput = z.infer<typeof RegisterSchema>;
 export type LoginInput = z.infer<typeof LoginSchema>;
 export type CreateProjectInput = z.infer<typeof CreateProjectSchema>;
 export type UpdateProjectInput = z.infer<typeof UpdateProjectSchema>;
 export type MetricsQueryInput = z.infer<typeof MetricsQuerySchema>;
+export type WeightConfigInput = z.infer<typeof WeightConfigSchema>;
+export type UserBehaviorInput = z.infer<typeof UserBehaviorSchema>;
+export type AiBehaviorInput = z.infer<typeof AiBehaviorSchema>;

@@ -33,7 +33,7 @@ export class MetricsService {
   }> {
     const files = await prisma.fileMetric.findMany({
       where: { projectId },
-      select: { cyclomaticComplexity: true, changeFrequency90d: true },
+      select: { cyclomaticComplexity: true, changeFrequency90d: true, authorCount: true },
     });
 
     const prs = await prisma.pullRequest.findMany({
@@ -44,6 +44,9 @@ export class MetricsService {
     if (files.length === 0 && prs.length === 0) {
       return { score: null, structural: null, change: null, defect: null };
     }
+
+    const maxComplexity = 100;
+    const maxChangeFreq = 50;
 
     const avgComplexity =
       files.length > 0
@@ -56,25 +59,61 @@ export class MetricsService {
     const rollbackRate =
       prs.length > 0 ? prs.filter((pr) => pr.rollbackFlag).length / prs.length : 0;
 
-    const maxComplexity = 100;
-    const maxChangeFreq = 50;
-
     const structural = Math.min(avgComplexity / maxComplexity, 1);
     const change = Math.min(avgChangeFreq / maxChangeFreq, 1);
     const defect = rollbackRate;
 
+    const highAuthorThreshold = 5;
+    const filesWithManyAuthors = files.filter((f) => f.authorCount > highAuthorThreshold).length;
+    const architecture = files.length > 0 ? filesWithManyAuthors / files.length : 0;
+
+    const runtime = 0;
+
+    const coverage = 0.5;
+
+    const weights = await this.getWeights(projectId);
+
     const score =
-      PSRI_DEFAULT_WEIGHTS.structural * structural +
-      PSRI_DEFAULT_WEIGHTS.change * change +
-      PSRI_DEFAULT_WEIGHTS.defect * defect;
+      weights.structural * structural +
+      weights.change * change +
+      weights.defect * defect +
+      weights.architecture * architecture +
+      weights.runtime * runtime +
+      weights.coverage * coverage;
 
     return { score, structural, change, defect };
+  }
+
+  async computeTdi(projectId: string): Promise<number | null> {
+    const files = await prisma.fileMetric.findMany({
+      where: { projectId },
+      select: { cyclomaticComplexity: true, changeFrequency90d: true },
+    });
+
+    if (files.length === 0) return null;
+
+    const totalFiles = files.length;
+    const highComplexityCount = files.filter((f) => f.cyclomaticComplexity > 15).length;
+    const highComplexityRatio = highComplexityCount / totalFiles;
+
+    const duplicationRatio = 0;
+
+    const lowCoverageRatio = 0.5;
+
+    const changeFreqs = files.map((f) => f.changeFrequency90d);
+    const avgChangeFreq = changeFreqs.reduce((sum, v) => sum + v, 0) / totalFiles;
+    const maxChangeFreq = Math.max(...changeFreqs, 1);
+
+    const tdi = (highComplexityRatio + duplicationRatio + lowCoverageRatio) * (avgChangeFreq / maxChangeFreq);
+
+    return Math.min(tdi, 1);
   }
 
   async computeAndSaveSnapshot(projectId: string): Promise<MetricResult> {
     const aiSuccessRate = await this.computeAiSuccessRate(projectId);
     const aiStableRate = await this.computeAiStableRate(projectId);
     const psri = await this.computePsri(projectId);
+    const tdi = await this.computeTdi(projectId);
 
     const totalPrs = await prisma.pullRequest.count({ where: { projectId } });
     const aiPrs = await prisma.pullRequest.count({ where: { projectId, aiUsed: true } });
@@ -108,6 +147,7 @@ export class MetricsService {
         psriStructural: psri.structural,
         psriChange: psri.change,
         psriDefect: psri.defect,
+        tdiScore: tdi,
         avgComplexity,
         totalFiles,
         hotspotFiles,
@@ -142,6 +182,39 @@ export class MetricsService {
       }))
       .sort((a, b) => b.riskScore - a.riskScore)
       .slice(0, limit);
+  }
+
+  private async getWeights(projectId: string): Promise<{
+    structural: number;
+    change: number;
+    defect: number;
+    architecture: number;
+    runtime: number;
+    coverage: number;
+  }> {
+    const config = await prisma.weightConfig.findUnique({
+      where: { projectId },
+    });
+
+    if (config) {
+      return {
+        structural: config.structural,
+        change: config.change,
+        defect: config.defect,
+        architecture: config.architecture,
+        runtime: config.runtime,
+        coverage: config.coverage,
+      };
+    }
+
+    return {
+      structural: PSRI_DEFAULT_WEIGHTS.structural,
+      change: PSRI_DEFAULT_WEIGHTS.change,
+      defect: PSRI_DEFAULT_WEIGHTS.defect,
+      architecture: PSRI_DEFAULT_WEIGHTS.architecture,
+      runtime: PSRI_DEFAULT_WEIGHTS.runtime,
+      coverage: PSRI_DEFAULT_WEIGHTS.coverage,
+    };
   }
 }
 

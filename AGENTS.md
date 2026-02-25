@@ -2,18 +2,34 @@
 
 ## Cursor Cloud specific instructions
 
-This is currently a **greenfield repository** with no application code, dependencies, or services. The only file is `README.md`.
+### Overview
 
-### Current state (as of initial setup)
+VibeBetter (AEIP) is a pnpm monorepo with Turborepo orchestration. Key packages:
 
-- **No programming language or framework** has been chosen yet.
-- **No package manager lockfile** exists — when one is added, the update script should be updated accordingly.
-- **No lint, test, or build commands** are available.
-- **No services** need to be started.
+| Package | Path | Purpose |
+|---------|------|---------|
+| `@vibebetter/web` | `apps/web` | Next.js 15 frontend (port 3000) |
+| `@vibebetter/server` | `apps/server` | Hono backend (port 3001) |
+| `@vibebetter/shared` | `packages/shared` | Shared types, schemas, utils |
+| `@vibebetter/db` | `packages/db` | Prisma ORM + schema |
 
-### Future setup notes
+### Commands
 
-When application code is added to this repo, the following should be configured:
+Standard commands are in root `package.json` and each package's `package.json`. Key ones:
 
-1. Update the VM environment update script (via `SetupVmEnvironment`) to install the project's dependencies (e.g., `npm install`, `pip install -r requirements.txt`, etc.).
-2. Update this section with instructions on how to run, test, lint, and build the application.
+- **Install deps:** `pnpm install` (from workspace root)
+- **Dev (all):** `pnpm dev` (starts web + server via Turborepo)
+- **Build (all):** `pnpm build`
+- **Lint (all):** `pnpm lint`
+- **Test (all):** `pnpm test`
+- **Format:** `pnpm format` / `pnpm format:check`
+
+Per-package: `pnpm --filter @vibebetter/web dev`, `pnpm --filter @vibebetter/web build`, etc.
+
+### Gotchas
+
+- The shared package (`packages/shared/src/index.ts`) must use **extensionless** imports (e.g., `./types/index` not `./types/index.js`) for Next.js webpack compatibility via `transpilePackages`.
+- The web app requires `@eslint/eslintrc` for its flat ESLint config (`eslint.config.mjs`).
+- The backend server requires PostgreSQL and Redis (see `docker-compose.yml`). For the frontend dev server, no external services are needed.
+- Environment variables: copy `.env.example` to `.env` before running the backend.
+- The web frontend uses `echarts-for-react` for charts; ECharts options use `EChartsOption` type from `echarts`.

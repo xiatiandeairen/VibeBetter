@@ -59,9 +59,7 @@ export default function DashboardOverviewPage() {
 
       {!projectId && !projectsLoading && (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 py-20 dark:border-slate-600">
-          <p className="text-slate-500 dark:text-slate-400">
-            Select a project to view metrics
-          </p>
+          <p className="text-slate-500 dark:text-slate-400">Select a project to view metrics</p>
         </div>
       )}
 
@@ -119,9 +117,7 @@ export default function DashboardOverviewPage() {
             <LineChart
               title="PSRI Trend"
               xData={xDates}
-              series={[
-                { name: 'PSRI', data: snapshots.map((s) => s.psriScore ?? 0) },
-              ]}
+              series={[{ name: 'PSRI', data: snapshots.map((s) => s.psriScore ?? 0) }]}
               loading={snapshotsLoading}
             />
           </div>

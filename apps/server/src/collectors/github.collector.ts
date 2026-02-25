@@ -1,4 +1,9 @@
-import type { DataSourceType, HealthStatus, CollectParams, NormalizedEvent } from '@vibebetter/shared';
+import type {
+  DataSourceType,
+  HealthStatus,
+  CollectParams,
+  NormalizedEvent,
+} from '@vibebetter/shared';
 import { isAiPr } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import type { IDataCollector } from './base.js';
@@ -123,7 +128,11 @@ export class GitHubCollector implements IDataCollector {
     return (await res.json()) as GitHubPR[];
   }
 
-  private async fetchCommitMessages(owner: string, repo: string, prNumber: number): Promise<string[]> {
+  private async fetchCommitMessages(
+    owner: string,
+    repo: string,
+    prNumber: number,
+  ): Promise<string[]> {
     try {
       const url = `${this.baseUrl}/repos/${owner}/${repo}/pulls/${prNumber}/commits?per_page=100`;
       const res = await fetch(url, { headers: this.headers });

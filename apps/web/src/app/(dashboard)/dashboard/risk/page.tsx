@@ -51,9 +51,7 @@ export default function RiskTrendsPage() {
 
       {!projectId ? (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 py-20 dark:border-slate-600">
-          <p className="text-slate-500 dark:text-slate-400">
-            Select a project to view risk trends
-          </p>
+          <p className="text-slate-500 dark:text-slate-400">Select a project to view risk trends</p>
         </div>
       ) : (
         <>
@@ -70,9 +68,7 @@ export default function RiskTrendsPage() {
 
           <div className="rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
             <div className="border-b border-slate-200 px-6 py-4 dark:border-slate-700">
-              <h2 className="font-semibold text-slate-900 dark:text-white">
-                Top 10 Hotspot Files
-              </h2>
+              <h2 className="font-semibold text-slate-900 dark:text-white">Top 10 Hotspot Files</h2>
             </div>
             {topFilesLoading ? (
               <div className="flex justify-center py-8">

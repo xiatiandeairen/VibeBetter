@@ -12,7 +12,10 @@ declare module 'hono' {
 export async function authMiddleware(c: Context, next: Next): Promise<Response | void> {
   const header = c.req.header('Authorization');
   if (!header?.startsWith('Bearer ')) {
-    return c.json({ success: false, data: null, error: 'Missing or invalid Authorization header' }, 401);
+    return c.json(
+      { success: false, data: null, error: 'Missing or invalid Authorization header' },
+      401,
+    );
   }
 
   const token = header.slice(7);

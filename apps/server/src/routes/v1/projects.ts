@@ -101,7 +101,11 @@ projects.delete('/:id', async (c) => {
     }
 
     await prisma.project.delete({ where: { id } });
-    return c.json<ApiResponse<{ deleted: boolean }>>({ success: true, data: { deleted: true }, error: null });
+    return c.json<ApiResponse<{ deleted: boolean }>>({
+      success: true,
+      data: { deleted: true },
+      error: null,
+    });
   } catch (err) {
     console.error('Delete project error:', err);
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);

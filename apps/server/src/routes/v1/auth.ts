@@ -28,7 +28,10 @@ auth.post('/register', async (c) => {
 
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) {
-      return c.json<ApiResponse>({ success: false, data: null, error: 'Email already registered' }, 409);
+      return c.json<ApiResponse>(
+        { success: false, data: null, error: 'Email already registered' },
+        409,
+      );
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +42,12 @@ auth.post('/register', async (c) => {
     const tokenPayload: AuthTokenPayload = { userId: user.id, email: user.email, role: user.role };
     const token = signToken(tokenPayload);
 
-    return c.json<ApiResponse<{ token: string; user: { id: string; email: string; name: string; role: string } }>>(
+    return c.json<
+      ApiResponse<{
+        token: string;
+        user: { id: string; email: string; name: string; role: string };
+      }>
+    >(
       {
         success: true,
         data: { token, user: { id: user.id, email: user.email, name: user.name, role: user.role } },
@@ -79,7 +87,12 @@ auth.post('/login', async (c) => {
     const tokenPayload: AuthTokenPayload = { userId: user.id, email: user.email, role: user.role };
     const token = signToken(tokenPayload);
 
-    return c.json<ApiResponse<{ token: string; user: { id: string; email: string; name: string; role: string } }>>({
+    return c.json<
+      ApiResponse<{
+        token: string;
+        user: { id: string; email: string; name: string; role: string };
+      }>
+    >({
       success: true,
       data: { token, user: { id: user.id, email: user.email, name: user.name, role: user.role } },
       error: null,

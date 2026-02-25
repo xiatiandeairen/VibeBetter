@@ -147,11 +147,7 @@ export default function ProjectsPage() {
                 </p>
               )}
               <div className="flex justify-end gap-3">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={() => setShowModal(false)}
-                >
+                <Button type="button" variant="ghost" onClick={() => setShowModal(false)}>
                   Cancel
                 </Button>
                 <Button type="submit" loading={createMutation.isPending}>

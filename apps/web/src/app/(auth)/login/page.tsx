@@ -35,9 +35,7 @@ export default function LoginPage() {
       <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-700 dark:bg-slate-800">
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-            Sign in to VibeBetter
-          </p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Sign in to VibeBetter</p>
         </div>
 
         {error && (

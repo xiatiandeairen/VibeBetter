@@ -24,10 +24,13 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       router.replace('/login');
       return;
     }
-    api.getMe().then((res) => setUserName(res.data.name)).catch(() => {
-      localStorage.removeItem('token');
-      router.replace('/login');
-    });
+    api
+      .getMe()
+      .then((res) => setUserName(res.data.name))
+      .catch(() => {
+        localStorage.removeItem('token');
+        router.replace('/login');
+      });
   }, [router]);
 
   function handleLogout() {
@@ -83,7 +86,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700 lg:hidden"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
           <div className="hidden lg:block" />

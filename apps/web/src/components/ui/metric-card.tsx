@@ -36,9 +36,7 @@ export function MetricCard({ title, value, subtitle, trend, color = 'blue' }: Me
           <span className={`text-sm font-medium ${trendColors[trend]}`}>{trendIcons[trend]}</span>
         )}
       </div>
-      {subtitle && (
-        <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{subtitle}</p>
-      )}
+      {subtitle && <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{subtitle}</p>}
     </div>
   );
 }

@@ -1,4 +1,9 @@
-import type { DataSourceType, HealthStatus, CollectParams, NormalizedEvent } from '@vibebetter/shared';
+import type {
+  DataSourceType,
+  HealthStatus,
+  CollectParams,
+  NormalizedEvent,
+} from '@vibebetter/shared';
 
 export interface IDataCollector {
   readonly source: DataSourceType;

@@ -1,5 +1,10 @@
 import simpleGit from 'simple-git';
-import type { DataSourceType, HealthStatus, CollectParams, NormalizedEvent } from '@vibebetter/shared';
+import type {
+  DataSourceType,
+  HealthStatus,
+  CollectParams,
+  NormalizedEvent,
+} from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import type { IDataCollector } from './base.js';
 
@@ -27,7 +32,10 @@ export class LocalGitCollector implements IDataCollector {
       '--pretty': 'format:%H|%an|%aI',
     });
 
-    const fileStats = new Map<string, { changeCount: number; authors: Set<string>; lastModified: Date }>();
+    const fileStats = new Map<
+      string,
+      { changeCount: number; authors: Set<string>; lastModified: Date }
+    >();
 
     for (const commit of log.all) {
       const authorName = commit.author_name;

@@ -25,7 +25,12 @@ export class MetricsService {
 
   async computePsri(
     projectId: string,
-  ): Promise<{ score: number | null; structural: number | null; change: number | null; defect: number | null }> {
+  ): Promise<{
+    score: number | null;
+    structural: number | null;
+    change: number | null;
+    defect: number | null;
+  }> {
     const files = await prisma.fileMetric.findMany({
       where: { projectId },
       select: { cyclomaticComplexity: true, changeFrequency90d: true },
@@ -46,14 +51,10 @@ export class MetricsService {
         : 0;
 
     const avgChangeFreq =
-      files.length > 0
-        ? files.reduce((sum, f) => sum + f.changeFrequency90d, 0) / files.length
-        : 0;
+      files.length > 0 ? files.reduce((sum, f) => sum + f.changeFrequency90d, 0) / files.length : 0;
 
     const rollbackRate =
-      prs.length > 0
-        ? prs.filter((pr) => pr.rollbackFlag).length / prs.length
-        : 0;
+      prs.length > 0 ? prs.filter((pr) => pr.rollbackFlag).length / prs.length : 0;
 
     const maxComplexity = 100;
     const maxChangeFreq = 50;

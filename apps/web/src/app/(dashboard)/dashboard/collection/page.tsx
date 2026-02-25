@@ -72,10 +72,7 @@ export default function CollectionPage() {
       ) : (
         <>
           <div className="flex gap-3">
-            <Button
-              onClick={() => collectMutation.mutate()}
-              loading={collectMutation.isPending}
-            >
+            <Button onClick={() => collectMutation.mutate()} loading={collectMutation.isPending}>
               Trigger Collection
             </Button>
             <Button
@@ -161,14 +158,10 @@ export default function CollectionPage() {
                           {job.itemsCount}
                         </td>
                         <td className="px-6 py-3 text-slate-600 dark:text-slate-400">
-                          {job.startedAt
-                            ? new Date(job.startedAt).toLocaleString()
-                            : '-'}
+                          {job.startedAt ? new Date(job.startedAt).toLocaleString() : '-'}
                         </td>
                         <td className="px-6 py-3 text-slate-600 dark:text-slate-400">
-                          {job.completedAt
-                            ? new Date(job.completedAt).toLocaleString()
-                            : '-'}
+                          {job.completedAt ? new Date(job.completedAt).toLocaleString() : '-'}
                         </td>
                         <td className="max-w-[200px] truncate px-6 py-3 text-red-500">
                           {job.error ?? '-'}

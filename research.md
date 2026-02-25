@@ -52,19 +52,20 @@
 
 | 方案               | 优势                                           | 劣势                              | 适合度 |
 | ------------------ | ---------------------------------------------- | --------------------------------- | ------ |
-| **Python FastAPI** | 异步高性能；ML/数据生态完整；类型安全          | CPU 密集任务需配合 worker         | ★★★★★  |
-| Node.js (Express)  | 全栈统一语言；实时能力强                       | ML 生态弱；数据处理库不如 Python  | ★★★    |
+| **Node.js + TS**   | 全栈统一语言/类型；异步 I/O；实时能力强        | ML 生态需额外方案                 | ★★★★★  |
+| Python FastAPI     | ML/数据生态完整；类型安全                      | 前后端语言不统一；类型无法共享    | ★★★★   |
 | Go (Gin)           | 极致性能；并发模型优秀                         | ML 生态几乎为零；开发效率偏低     | ★★★    |
 | Java (Spring Boot) | 企业级成熟；类型安全                           | 开发效率偏低；ML 集成繁琐         | ★★★★   |
 
-**推荐：Python FastAPI**
+**确定选型：Node.js + TypeScript（Hono 框架）**
 
 理由：
 
-1. 数据采集/清洗/计算是核心工作，Python 在 pandas/numpy/networkx 生态中无可替代。
-2. ML 模型训练与推理（scikit-learn、XGBoost）天然支持。
-3. LLM 调用（需求复杂度解析）SDK 最完善。
-4. FastAPI 异步性能满足 PR 阶段 ≤30s 实时风险计算。
+1. 全栈 TypeScript 统一语言，前后端类型定义共享，减少接口对齐成本。
+2. 异步 I/O 天然适合数据采集（大量外部 API 调用）和实时 Webhook 处理。
+3. 图分析使用 graphology（TypeScript 原生图库），替代 NetworkX。
+4. ML 能力通过 Phase 2+ 引入 Python 微服务或 ONNX.js 解决。
+5. Hono 轻量高性能，中间件生态好，类型安全优于 Express。
 
 ---
 
@@ -91,7 +92,7 @@
 
 1. MVP 阶段数据量不大，PostgreSQL 足以处理时序查询（配合合理索引）。
 2. 避免引入多个数据库的运维负担。
-3. 依赖图分析 MVP 阶段使用 Python NetworkX 内存计算，不需要 Neo4j。
+3. 依赖图分析 MVP 阶段使用 graphology 内存计算，不需要 Neo4j。
 4. Phase 2+ 可按需引入 TimescaleDB 扩展或 ClickHouse。
 
 **演进路径：**
@@ -109,17 +110,18 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 
 | 方案          | 优势                          | 劣势                  | 适合度 |
 | ------------- | ----------------------------- | --------------------- | ------ |
-| **Celery + Redis** | Python 生态标准；简单易用    | 大规模吞吐受限        | ★★★★★  |
-| RQ (Redis Queue)   | 极简；轻量                   | 功能有限              | ★★★    |
-| Apache Kafka       | 工业级流处理；高吞吐         | 运维复杂；MVP 过重    | ★★★    |
+| **BullMQ + Redis** | Node.js 原生；功能丰富；延迟/重试/定时 | 依赖 Redis       | ★★★★★  |
+| Agenda             | MongoDB 后端；简单              | 性能有限              | ★★★    |
+| Apache Kafka       | 工业级流处理；高吞吐            | 运维复杂；MVP 过重    | ★★★    |
 
-**MVP 推荐：Celery + Redis**
+**确定选型：BullMQ + Redis**
 
 理由：
 
-1. 数据采集任务（Git 仓库扫描、SonarQube 拉取、CI 数据同步）天然适合异步任务队列。
-2. 批处理 ≤24h 的非功能需求，Celery 定时任务（Beat）可直接满足。
-3. Phase 2+ 若需事件流可引入 Kafka。
+1. Node.js 生态下最成熟的任务队列方案，TypeScript 原生支持。
+2. 支持延迟任务、重试策略、定时重复、优先级队列。
+3. 复用 Redis 作为 Broker，无需额外中间件。
+4. 批处理 ≤24h 需求通过 BullMQ Repeat 配置即可满足。
 
 ---
 
@@ -136,15 +138,15 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 
 ---
 
-### 1.7 ML / AI 组件
+### 1.7 ML / AI / 图分析组件
 
-| 组件                    | 用途                         | MVP 阶段 |
+| 组件                    | 用途                         | 阶段     |
 | ----------------------- | ---------------------------- | -------- |
-| **scikit-learn**        | 事故概率预测；分类/回归      | ✅ 使用   |
-| **XGBoost / LightGBM** | 高风险模块预测               | ✅ 使用   |
-| **NetworkX**            | 依赖图分析；中心度计算       | ✅ 使用   |
-| OpenAI API / Ollama     | 需求复杂度 LLM 解析         | ✅ 使用   |
-| PyTorch                 | 深度学习风险模型（时序预测） | ❌ Phase 2+ |
+| **graphology**          | 依赖图分析；中心度计算       | ✅ MVP    |
+| OpenAI API / Ollama     | 需求复杂度 LLM 解析         | ✅ MVP    |
+| ONNX Runtime (Node)     | 轻量 ML 模型推理             | Phase 2  |
+| Python ML 微服务        | scikit-learn/XGBoost 训练    | Phase 2  |
+| **simple-git**          | 本地 Git 仓库解析            | ✅ MVP    |
 
 ---
 
@@ -164,19 +166,19 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 ### 1.9 技术栈总览
 
 ```
-┌─────────────────────────────────────────────────┐
-│                    Frontend                      │
-│  Next.js · shadcn/ui · Tailwind · Apache ECharts │
-├─────────────────────────────────────────────────┤
-│                    Backend                       │
-│  Python FastAPI · Celery · Pydantic · SQLAlchemy │
-├─────────────────────────────────────────────────┤
-│                  Data / ML                       │
-│  pandas · NetworkX · scikit-learn · XGBoost      │
-├─────────────────────────────────────────────────┤
-│                Infrastructure                    │
-│  PostgreSQL · Redis · Docker · Nginx             │
-└─────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│                      Frontend                         │
+│  Next.js 14+ · shadcn/ui · Tailwind · Apache ECharts │
+├──────────────────────────────────────────────────────┤
+│                      Backend                          │
+│  Node.js · TypeScript · Hono · Prisma · BullMQ · Zod │
+├──────────────────────────────────────────────────────┤
+│                    Data / Graph                       │
+│  graphology · simple-git · OpenAI API                 │
+├──────────────────────────────────────────────────────┤
+│                  Infrastructure                       │
+│  PostgreSQL · Redis · Docker · pnpm monorepo          │
+└──────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -204,7 +206,7 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 │            Next.js Dashboard · REST API Clients           │
 ├──────────────────────────────────────────────────────────┤
 │                       API Gateway                         │
-│              FastAPI · Auth · Rate Limiting                │
+│               Hono · Auth · Rate Limiting                  │
 ├──────────────────────────────────────────────────────────┤
 │                    Application Layer                      │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌─────────────┐ │
@@ -219,7 +221,7 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 │  └──────────┘ └──────────┘ └──────────┘ └─────────────┘ │
 ├──────────────────────────────────────────────────────────┤
 │                   Infrastructure Layer                    │
-│  PostgreSQL · Redis · Celery Workers · External APIs      │
+│  PostgreSQL · Redis · BullMQ Workers · External APIs      │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -239,9 +241,9 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
                            │                  │
                            ▼                  ▼
                       ┌──────────┐       ┌──────────┐
-                      │  Celery  │       │ ML Model │
-                      │  Beat    │       │ Pipeline │
-                      │ (定时)    │       │          │
+                      │  BullMQ  │       │ ML Model │
+                      │  Repeat  │       │ Pipeline │
+                      │ (定时)    │       │ (Phase2) │
                       └──────────┘       └──────────┘
 ```
 
@@ -266,7 +268,7 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 ├── 插件化 Adapter 模式（每个数据源一个 Adapter）
 ├── 统一 RawEvent 数据模型
 ├── 幂等写入（基于 source_id + timestamp 去重）
-├── 失败重试 + 死信队列
+├── 失败重试 + 死信队列（BullMQ 内置支持）
 └── 采集进度检查点（支持断点续采）
 ```
 
@@ -289,7 +291,7 @@ Phase 3:    + ClickHouse（海量分析）/ Neo4j（复杂图查询）
 
 ```
 设计要点：
-├── NetworkX 内存图计算
+├── graphology 内存图计算
 ├── 中心度算法（PageRank / Betweenness）
 ├── 风险传播 BFS/DFS
 ├── 图快照持久化（支持历史对比）
@@ -381,44 +383,40 @@ src/
 ### 2.9 后端项目结构
 
 ```
-backend/
-├── app/
-│   ├── main.py             # FastAPI 入口
-│   ├── config.py           # 配置管理
-│   ├── dependencies.py     # 依赖注入
-│   ├── api/
+apps/server/
+├── src/
+│   ├── index.ts              # Hono 入口
+│   ├── config/               # 环境配置（Zod 校验）
+│   ├── middleware/            # 认证/日志/限流中间件
+│   ├── routes/
 │   │   └── v1/
-│   │       ├── projects.py
-│   │       ├── metrics.py
-│   │       ├── risk.py
-│   │       ├── decisions.py
-│   │       └── reports.py
-│   ├── domain/
-│   │   ├── project/
-│   │   ├── module/
-│   │   ├── risk/
-│   │   ├── metrics/
-│   │   └── decision/
+│   │       ├── projects.ts
+│   │       ├── metrics.ts
+│   │       ├── risk.ts
+│   │       ├── decisions.ts
+│   │       └── reports.ts
+│   ├── services/              # 业务逻辑层
+│   │   ├── project.service.ts
+│   │   ├── metrics.service.ts
+│   │   ├── risk.service.ts
+│   │   └── decision.service.ts
 │   ├── collectors/
-│   │   ├── base.py         # Adapter 基类
-│   │   ├── github.py
-│   │   ├── gitlab.py
-│   │   ├── jira.py
-│   │   └── sonarqube.py
+│   │   ├── base.ts            # IDataCollector 接口
+│   │   ├── registry.ts        # 采集器注册表
+│   │   ├── github.collector.ts
+│   │   ├── local-git.collector.ts
+│   │   └── jira.collector.ts
 │   ├── engines/
-│   │   ├── metrics.py      # 指标计算引擎
-│   │   ├── risk.py         # 风险分析引擎
-│   │   └── decision.py     # 决策建议引擎
-│   ├── ml/
-│   │   ├── training.py
-│   │   ├── prediction.py
-│   │   └── models/
-│   ├── models/             # SQLAlchemy 模型
-│   ├── schemas/            # Pydantic 模型
-│   └── tasks/              # Celery 任务
-├── migrations/             # Alembic 迁移
-├── tests/
-└── pyproject.toml
+│   │   ├── metrics.engine.ts  # 指标计算引擎
+│   │   ├── risk.engine.ts     # 风险分析引擎（graphology）
+│   │   └── decision.engine.ts # 决策建议引擎
+│   ├── jobs/                  # BullMQ 任务定义
+│   │   ├── collect.job.ts
+│   │   ├── compute.job.ts
+│   │   └── scheduler.ts
+│   └── utils/
+├── package.json
+└── tsconfig.json
 ```
 
 ---
@@ -441,7 +439,7 @@ MVP (4-6周)          Phase 1 (6-8周)         Phase 2 (8-10周)        Phase 3 
 
 #### 基础设施
 
-- [ ] 项目脚手架搭建（Next.js + FastAPI + PostgreSQL + Redis）
+- [ ] 项目脚手架搭建（Next.js + Node.js/Hono + PostgreSQL + Redis）
 - [ ] Docker Compose 本地开发环境
 - [ ] CI/CD 基础流水线（lint + test + build）
 - [ ] 基础认证（JWT 登录/注册）
@@ -450,8 +448,8 @@ MVP (4-6周)          Phase 1 (6-8周)         Phase 2 (8-10周)        Phase 3 
 
 - [ ] GitHub/GitLab PR 数据采集（commits, files, authors, reviews）
 - [ ] AI 行为标记（PR label / commit message 识别 `ai_used`）
-- [ ] 基础代码结构指标（文件级复杂度，通过 Lizard CLI）
-- [ ] Celery 定时采集任务（每日批处理）
+- [ ] 基础代码结构指标（文件级复杂度，本地 AST 分析）
+- [ ] BullMQ 定时采集任务（每日批处理）
 
 #### 指标计算
 
@@ -469,7 +467,7 @@ MVP (4-6周)          Phase 1 (6-8周)         Phase 2 (8-10周)        Phase 3 
 
 #### 质量保障
 
-- [ ] 后端 API 单元测试覆盖率 ≥ 60%
+- [ ] 后端 API 单元测试覆盖率 ≥ 60%（Vitest）
 - [ ] 前端组件基础测试
 - [ ] API 文档自动生成（Swagger UI）
 
@@ -497,7 +495,7 @@ MVP (4-6周)          Phase 1 (6-8周)         Phase 2 (8-10周)        Phase 3 
 
 - [ ] 完整 PSRI 计算（6 个维度，权重可配置）
 - [ ] TDI 技术债指数计算
-- [ ] 风险传播指数计算（NetworkX 依赖图）
+- [ ] 风险传播指数计算（graphology 依赖图）
 - [ ] 指标历史版本化存储
 
 #### 分析引擎

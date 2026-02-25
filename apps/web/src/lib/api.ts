@@ -145,35 +145,40 @@ export const api = {
   },
 
   getMetricsOverview(projectId: string) {
-    return apiFetch<MetricsOverviewResponse>(`/api/v1/projects/${projectId}/metrics/overview`);
+    return apiFetch<MetricsOverviewResponse>(
+      `/api/v1/metrics/projects/${projectId}/overview`,
+    );
   },
 
   getMetricSnapshots(projectId: string, limit = 30) {
     return apiFetch<MetricSnapshotsResponse>(
-      `/api/v1/projects/${projectId}/metrics/snapshots?limit=${limit}`,
+      `/api/v1/metrics/projects/${projectId}/snapshots?limit=${limit}`,
     );
   },
 
   getTopFiles(projectId: string, limit = 10) {
     return apiFetch<TopFilesResponse>(
-      `/api/v1/projects/${projectId}/metrics/top-files?limit=${limit}`,
+      `/api/v1/metrics/projects/${projectId}/files/top?limit=${limit}`,
     );
   },
 
   triggerCollection(projectId: string) {
     return apiFetch<{ success: boolean; data: CollectionJobItem }>(
-      `/api/v1/projects/${projectId}/collect`,
+      `/api/v1/collectors/projects/${projectId}/collect`,
       { method: 'POST' },
     );
   },
 
   getCollectionJobs(projectId: string) {
-    return apiFetch<CollectionJobsResponse>(`/api/v1/projects/${projectId}/collection-jobs`);
+    return apiFetch<CollectionJobsResponse>(
+      `/api/v1/collectors/projects/${projectId}/jobs`,
+    );
   },
 
   triggerCompute(projectId: string) {
-    return apiFetch<{ success: boolean }>(`/api/v1/projects/${projectId}/compute`, {
-      method: 'POST',
-    });
+    return apiFetch<{ success: boolean }>(
+      `/api/v1/metrics/projects/${projectId}/compute`,
+      { method: 'POST' },
+    );
   },
 };

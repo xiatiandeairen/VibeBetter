@@ -32,17 +32,19 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="w-full max-w-md">
-      <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-700 dark:bg-slate-800">
-        <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Create Account</h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-            Get started with VibeBetter
-          </p>
+    <div className="mx-auto w-full max-w-md animate-fade-in">
+      <div className="glass-strong rounded-2xl p-8 glow-sm">
+        <div className="mb-8 text-center">
+          <Link href="/" className="inline-block">
+            <h1 className="text-2xl font-bold tracking-tight">
+              <span className="gradient-text">VibeBetter</span>
+            </h1>
+          </Link>
+          <p className="mt-2 text-sm text-zinc-500">Create your account</p>
         </div>
 
         {error && (
-          <div className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+          <div className="mb-4 rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
@@ -78,9 +80,12 @@ export default function RegisterPage() {
           </Button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-6 text-center text-sm text-zinc-500">
           Already have an account?{' '}
-          <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link
+            href="/login"
+            className="font-medium text-indigo-400 transition-colors hover:text-indigo-300"
+          >
             Sign in
           </Link>
         </p>

@@ -3,18 +3,23 @@ import { Inter } from 'next/font/google';
 import { QueryProvider } from '@/lib/providers';
 import '@/styles/globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-  title: 'VibeBetter - AI Coding Insight',
+  title: 'VibeBetter - AI-Augmented Engineering Insight Platform',
   description:
-    'AI-Augmented Engineering Insight Platform for measuring AI coding effectiveness and structural risk.',
+    'Measure AI coding effectiveness, track structural risk, and make data-driven engineering decisions.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="dark">
+      <body
+        className={`${inter.variable} font-sans antialiased bg-[#09090b] text-zinc-100`}
+      >
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

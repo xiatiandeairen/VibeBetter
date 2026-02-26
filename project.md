@@ -156,6 +156,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v1.6.0  | Phase 104   | ✅ 完成    | Notify: 指标告警通知                                                 |
 | v1.7.0  | Phase 105   | ✅ 完成    | Migration Helper: 安全迁移助手                                       |
 | v1.8.0  | Phase 106   | ✅ 完成    | Compliance: 合规阈值检查                                             |
+| v1.9.0  | Phase 107   | ✅ 完成    | API Versioning: 版本协商/废弃通知类型                                |
+| v1.10.0 | Phase 108   | ✅ 完成    | Flow: 数据流可视化                                                   |
+| v1.11.0 | Phase 109   | ✅ 完成    | Tutorial: CLI 新手教程                                               |
+| v1.12.0 | Phase 110   | ✅ 完成    | Query Timer: 慢查询检测装饰器                                        |
+| v1.13.0 | Phase 111   | ✅ 完成    | GitLab CI: .gitlab-ci.yml 生成                                       |
+| v1.14.0 | Phase 112   | ✅ 完成    | Tenant: 多租户 SaaS 类型                                             |
+| v1.15.0 | Phase 113   | ✅ 完成    | Modules: 模块风险评分                                                |
+| v1.16.0 | Phase 114   | ✅ 完成    | Pin: 文件书签追踪                                                    |
+| v1.17.0 | Phase 115   | ✅ 完成    | Feature Toggle: 环境变量功能开关                                     |
+| v1.18.0 | Phase 116   | ✅ 完成    | Pre-Merge: 合并前综合检查                                            |
+| v1.19.0 | Phase 117   | ✅ 完成    | Data Retention: 数据保留策略类型                                     |
+| v1.20.0 | Phase 118   | ✅ 完成    | Timeline: ASCII 指标时间线图表                                       |
+| v1.21.0 | Phase 119   | ✅ 完成    | Focus: 文件/目录过滤仪表盘                                          |
+| v1.22.0 | Phase 120   | ✅ 完成    | Idempotency: POST 请求幂等键处理                                     |
+| v1.23.0 | Phase 121   | ✅ 完成    | Bitbucket: Bitbucket 集成输出                                        |
+| v1.24.0 | Phase 122   | ✅ 完成    | SLA: SLA/SLO/SLI 可靠性定义                                         |
+| v1.25.0 | Phase 123   | ✅ 完成    | Contributors: 贡献者 AI 使用统计                                     |
+| v1.26.0 | Phase 124   | ✅ 完成    | Preferences: 用户偏好管理                                            |
+| v1.27.0 | Phase 125   | ✅ 完成    | Cache Strategy: 缓存键构建器                                         |
+| v1.28.0 | Phase 126   | ✅ 完成    | Azure: Azure DevOps 集成                                             |
 
 ## 当前综合评分
 
@@ -296,6 +316,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-107 | 2026-02-26 | v1.6.0  | Notify 告警通知 |
 | Iteration-108 | 2026-02-26 | v1.7.0  | Migration Helper 迁移助手 |
 | Iteration-109 | 2026-02-26 | v1.8.0  | Compliance 合规检查 |
+| Iteration-110 | 2026-02-26 | v1.9.0  | API Versioning 版本协商类型 |
+| Iteration-111 | 2026-02-26 | v1.10.0 | Flow 数据流可视化 |
+| Iteration-112 | 2026-02-26 | v1.11.0 | Tutorial CLI 教程 |
+| Iteration-113 | 2026-02-26 | v1.12.0 | Query Timer 慢查询检测 |
+| Iteration-114 | 2026-02-26 | v1.13.0 | GitLab CI 配置生成 |
+| Iteration-115 | 2026-02-26 | v1.14.0 | Tenant 多租户类型 |
+| Iteration-116 | 2026-02-26 | v1.15.0 | Modules 模块风险 |
+| Iteration-117 | 2026-02-26 | v1.16.0 | Pin 文件书签 |
+| Iteration-118 | 2026-02-26 | v1.17.0 | Feature Toggle 功能开关 |
+| Iteration-119 | 2026-02-26 | v1.18.0 | Pre-Merge 合并前检查 |
+| Iteration-120 | 2026-02-26 | v1.19.0 | Data Retention 数据保留 |
+| Iteration-121 | 2026-02-26 | v1.20.0 | Timeline 时间线图表 |
+| Iteration-122 | 2026-02-26 | v1.21.0 | Focus 过滤仪表盘 |
+| Iteration-123 | 2026-02-26 | v1.22.0 | Idempotency 幂等键 |
+| Iteration-124 | 2026-02-26 | v1.23.0 | Bitbucket 集成 |
+| Iteration-125 | 2026-02-26 | v1.24.0 | SLA 可靠性定义 |
+| Iteration-126 | 2026-02-26 | v1.25.0 | Contributors 贡献者统计 |
+| Iteration-127 | 2026-02-26 | v1.26.0 | Preferences 用户偏好 |
+| Iteration-128 | 2026-02-26 | v1.27.0 | Cache Strategy 缓存策略 |
+| Iteration-129 | 2026-02-26 | v1.28.0 | Azure DevOps 集成 |
 
 ## 协作工作流
 

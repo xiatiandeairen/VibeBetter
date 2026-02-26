@@ -63,12 +63,24 @@ import { retroCommand } from './commands/retro.js';
 import { benchmarkCommand } from './commands/benchmark.js';
 import { notifyCommand } from './commands/notify.js';
 import { complianceCommand } from './commands/compliance.js';
+import { flowCommand } from './commands/flow.js';
+import { tutorialCommand } from './commands/tutorial.js';
+import { gitlabCiCommand } from './commands/gitlab-ci.js';
+import { modulesCommand } from './commands/modules.js';
+import { pinCommand } from './commands/pin.js';
+import { preMergeCommand } from './commands/pre-merge.js';
+import { timelineCommand } from './commands/timeline.js';
+import { focusCommand } from './commands/focus.js';
+import { bitbucketCommand } from './commands/bitbucket.js';
+import { contributorsCommand } from './commands/contributors.js';
+import { preferencesCommand } from './commands/preferences.js';
+import { azureCommand } from './commands/azure.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('1.8.0');
+  .version('1.28.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -133,5 +145,17 @@ program.addCommand(retroCommand);
 program.addCommand(benchmarkCommand);
 program.addCommand(notifyCommand);
 program.addCommand(complianceCommand);
+program.addCommand(flowCommand);
+program.addCommand(tutorialCommand);
+program.addCommand(gitlabCiCommand);
+program.addCommand(modulesCommand);
+program.addCommand(pinCommand);
+program.addCommand(preMergeCommand);
+program.addCommand(timelineCommand);
+program.addCommand(focusCommand);
+program.addCommand(bitbucketCommand);
+program.addCommand(contributorsCommand);
+program.addCommand(preferencesCommand);
+program.addCommand(azureCommand);
 
 program.parse();

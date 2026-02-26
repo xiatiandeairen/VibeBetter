@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v1.28.0] — 2026-02-26
+- `vibe azure` command — format output for Azure DevOps integration
+
+## [v1.27.0] — 2026-02-26
+- `apps/server/src/utils/cache-strategy.ts` — cache key builder with namespace, versioning, and TTL strategy
+
+## [v1.26.0] — 2026-02-26
+- `vibe preferences` command — user preference management (theme, defaults, format)
+
+## [v1.25.0] — 2026-02-26
+- `vibe contributors` command — show contributor statistics and AI usage per author
+
+## [v1.24.0] — 2026-02-26
+- `packages/shared/src/types/sla.ts` — SLA, SLO, SLI definitions for platform reliability
+
+## [v1.23.0] — 2026-02-26
+- `vibe bitbucket` command — format output for Bitbucket integration
+
+## [v1.22.0] — 2026-02-26
+- `apps/server/src/utils/idempotency.ts` — idempotency key handler for POST requests
+
+## [v1.21.0] — 2026-02-26
+- `vibe focus` command — filter dashboard to specific file/directory
+
+## [v1.20.0] — 2026-02-26
+- `vibe timeline` command — show project metric timeline as ASCII chart
+
+## [v1.19.0] — 2026-02-26
+- `packages/shared/src/types/data-retention.ts` — RetentionPolicy, DataClassification interfaces
+
+## [v1.18.0] — 2026-02-26
+- `vibe pre-merge` command — run comprehensive pre-merge checks
+
+## [v1.17.0] — 2026-02-26
+- `apps/server/src/utils/feature-toggle.ts` — simple feature flag checker using env vars
+
+## [v1.16.0] — 2026-02-26
+- `vibe pin` command — pin/bookmark important files for tracking
+
+## [v1.15.0] — 2026-02-26
+- `vibe modules` command — list project modules with per-module risk scores
+
+## [v1.14.0] — 2026-02-26
+- `packages/shared/src/types/tenant.ts` — Tenant, TenantSettings, TenantQuota interfaces for multi-tenant SaaS
+
+## [v1.13.0] — 2026-02-26
+- `vibe gitlab-ci` command — generate .gitlab-ci.yml with VibeBetter integration
+
+## [v1.12.0] — 2026-02-26
+- `apps/server/src/utils/query-timer.ts` — decorator/wrapper to log slow database queries (>100ms)
+
+## [v1.11.0] — 2026-02-26
+- `vibe tutorial` command — built-in tutorial for new CLI users
+
+## [v1.10.0] — 2026-02-26
+- `vibe flow` command — visualize data flow: collect → compute → decide
+
+## [v1.9.0] — 2026-02-26
+- `packages/shared/src/types/api-versioning.ts` — ApiVersion, DeprecationNotice interfaces
+
 ## [v1.8.0] — 2026-02-26
 - `vibe compliance` command — check if metrics meet compliance thresholds
 

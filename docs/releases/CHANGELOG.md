@@ -4,6 +4,36 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.7.0] — 2026-02-26
+
+### Highlights
+- **Quality Engineering** — 测试 45→133 (+196%)，消除 25+ 处代码重复，建立 AI 代码审查规范
+- **Quality Dashboard** — 新增 /dashboard/quality 质量度量页面
+- **requireProject Middleware** — 消除 25+ 处路由层项目权限检查重复
+- **metrics.ts Refactor** — 360 行拆分为 3 个聚焦子模块
+- **Frontend Tests** — 26 个前端组件测试 (Button/Input/MetricCard/Skeleton)
+- **PR Template + AI Quality Checklist** — 规范化代码审查流程
+
+### Added
+- Quality Dashboard page (`/dashboard/quality`) with test health, complexity distribution, hotspot risk matrix, AI quality summary
+- Quality nav item in sidebar (shield-check icon after Attribution)
+- `requireProject()` middleware (`apps/server/src/middleware/require-project.ts`)
+- Backend service tests: AuthService (11), ProjectService (15), DecisionService (10), AttributionService (6), MetricsService (21)
+- API contract tests (20) + integration tests (16)
+- Frontend component tests: Button, Input, MetricCard, Skeleton (26 total)
+- Shared package tests (8)
+- Coverage scripts (`test:coverage`) for server, web, shared
+- PR template (`.github/PULL_REQUEST_TEMPLATE.md`) with AI quality checklist
+- AI code quality review checklist (10 checkpoints)
+
+### Changed
+- `metrics.ts` (360 lines) split into `metrics/overview.ts`, `metrics/files.ts`, `metrics/export.ts`
+- All `:id` routes use `requireProject()` middleware instead of inline ownership checks
+- Test count: 45 → 133 (+196%)
+- Test files: 3 → 12 (+300%)
+
+---
+
 ## [v0.6.0] — 2026-02-26
 
 ### Highlights

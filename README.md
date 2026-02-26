@@ -271,7 +271,7 @@ If you ran the seed script:
 - [x] **v0.4.0** — Webhook + OAuth + Drill-down + Compare + Security + 45 tests
 - [x] **v0.5.0** — AI Attribution + Organization + Benchmarks + CI + Docs restructure
 - [x] **v0.6.0** — Onboarding + OpenAPI + API Key + Redis Cache + Insight Templates + VS Code
-- [ ] **v0.7.0** — Product differentiation + Sentry + E2E + i18n
+- [x] **v0.7.0** — Quality Engineering: 133 tests, requireProject middleware, Quality Dashboard
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

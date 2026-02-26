@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.10.0] — 2026-02-26
+
+### Highlights
+- **Team Comparison View** — Cross-project performance comparison for enterprise ROI
+- Dashboard page (`/dashboard/teams`) with project metrics table
+- Health badges based on PSRI thresholds (green/yellow/red)
+- "Export Team Report" JSON download
+- Teams sidebar navigation item
+
+### Added
+- `apps/web/src/app/(dashboard)/dashboard/teams/page.tsx` — Team comparison page
+- Teams nav item in sidebar with users-group icon
+- v0.10.0 release archive (4 standard files)
+
+---
+
 ## [v0.9.0] — 2026-02-26
 
 ### Highlights

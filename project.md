@@ -57,6 +57,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.7.0 | Phase 5      | ✅ 完成    | 质量工程: 测试 +196% + 重构 + Quality Dashboard         |
 | v0.8.0 | Phase 6      | ✅ 完成    | CLI 场景化落地: vibe check/risk/decisions/report/sync    |
 | v0.9.0 | Phase 7      | ✅ 完成    | 本地离线分析: vibe analyze (无需后端)                     |
+| v0.10.0 | Phase 8     | ✅ 完成    | 团队对比视图: 跨项目 AI ROI 比较                          |
 
 ## 当前综合评分
 
@@ -98,6 +99,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-008 | 2026-02-26 | v0.7.0 | 质量工程: 测试 133 + requireProject + metrics 拆分 + Quality Dashboard |
 | Iteration-009 | 2026-02-26 | v0.8.0 | CLI: vibe 命令行工具 8 个命令 + 端到端验证 |
 | Iteration-010 | 2026-02-26 | v0.9.0 | 本地离线分析: vibe analyze 命令 |
+| Iteration-011 | 2026-02-26 | v0.10.0 | 团队对比视图 + JSON 导出 |
 
 ## 协作工作流
 

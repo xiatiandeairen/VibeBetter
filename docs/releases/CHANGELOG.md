@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.21.0] — 2026-02-26
+
+### Highlights
+- **PR Risk Summary** — `vibe pr` analyzes risk for current branch before opening a PR
+- `--markdown` flag outputs a table suitable for pasting into PR descriptions
+- Compares diff against base branch (default: main) and cross-references API risk data
+
+### Added
+- `packages/cli/src/commands/pr-risk.ts` — PR risk analysis command
+- v0.21.0 release archive (4 standard files)
+
+### Changed
+- CLI commands: 11 → 12
+- CLI version bumped to 0.21.0
+
+---
+
 ## [v0.20.0] — 2026-02-26
 
 ### Highlights

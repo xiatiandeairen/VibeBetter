@@ -1,0 +1,23 @@
+{
+  "name": "@vibebetter/cli",
+  "version": "0.8.0",
+  "description": "VibeBetter CLI — AI Coding Insight in your terminal",
+  "bin": { "vibe": "./dist/index.js" },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "picocolors": "^1.1.1",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.9"
+  }
+}

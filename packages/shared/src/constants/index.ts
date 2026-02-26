@@ -32,3 +32,5 @@ export { INDUSTRY_BENCHMARKS, getBenchmarkLevel } from './benchmarks';
 export { BRANDING } from './branding';
 export { PRICING_TIERS } from './pricing';
 export type { PricingTier } from './pricing';
+export { INTEGRATIONS, getIntegration, getIntegrationsByCategory } from './integrations';
+export type { Integration } from './integrations';

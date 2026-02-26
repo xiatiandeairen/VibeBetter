@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, type FormEvent } from 'react';
+import { Suspense, useState, useEffect, useCallback, type FormEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { api, apiFetch } from '@/lib/api';
@@ -17,7 +17,7 @@ interface OAuthStatus {
   };
 }
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
@@ -49,9 +49,7 @@ export default function LoginPage() {
       .then((res) => {
         setGithubOAuth(res.data.github);
       })
-      .catch(() => {
-        // OAuth status endpoint unavailable — leave disabled
-      });
+      .catch(() => {});
   }, []);
 
   async function handleSubmit(e: FormEvent) {
@@ -149,5 +147,23 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="mx-auto w-full max-w-md animate-fade-in">
+          <div className="glass-strong rounded-2xl p-8 glow-sm">
+            <div className="flex justify-center py-12">
+              <div className="h-6 w-6 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }

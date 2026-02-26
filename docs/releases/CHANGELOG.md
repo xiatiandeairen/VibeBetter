@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.25.0] — 2026-02-26
+
+### Highlights
+- **Auto-detect Project** — `vibe init --auto` reads git remote to auto-fill project ID
+- Extracts owner/repo slug from origin remote URL
+- `--project` becomes optional when using `--auto`
+
+### Changed
+- `packages/cli/src/commands/init.ts` — Added `--auto` flag with git remote detection
+- v0.25.0 release archive (4 standard files)
+
+---
+
 ## [v0.24.0] — 2026-02-26
 
 ### Highlights

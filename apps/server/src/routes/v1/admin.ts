@@ -57,4 +57,37 @@ admin.get('/stats', async (c) => {
   }
 });
 
+admin.get('/projects/stats', async (c) => {
+  try {
+    const user = c.get('user');
+    if (user.role !== 'admin') {
+      return c.json<ApiResponse>({ success: false, data: null, error: 'Admin access required' }, 403);
+    }
+
+    const projects = await prisma.project.findMany({
+      select: {
+        id: true,
+        name: true,
+        _count: { select: { pullRequests: true } },
+      },
+      orderBy: { name: 'asc' },
+    });
+
+    const stats = projects.map((p) => ({
+      projectId: p.id,
+      name: p.name,
+      prCount: p._count.pullRequests,
+    }));
+
+    return c.json<ApiResponse>({
+      success: true,
+      data: { projects: stats, total: stats.length },
+      error: null,
+    });
+  } catch (err) {
+    logger.error({ err }, 'Admin project stats error');
+    return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
+  }
+});
+
 export default admin;

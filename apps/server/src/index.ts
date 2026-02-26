@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { requestLogger } from './middleware/request-logger.js';
+import { requestIdMiddleware } from './middleware/request-id.js';
 import { serve } from '@hono/node-server';
 import type { ApiResponse } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
@@ -33,6 +34,7 @@ app.use(
     credentials: true,
   }),
 );
+app.use('*', requestIdMiddleware);
 app.use('*', requestLogger);
 
 app.onError(onError);

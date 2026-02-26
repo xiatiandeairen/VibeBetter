@@ -83,12 +83,20 @@ import { shortcutsCommand } from './commands/shortcuts.js';
 import { datadogCommand } from './commands/datadog.js';
 import { resetCommand } from './commands/reset.js';
 import { prometheusCommand } from './commands/prometheus.js';
+import { improveCommand } from './commands/improve.js';
+import { terraformCommand } from './commands/terraform.js';
+import { compareBranchesCommand } from './commands/compare-branches.js';
+import { emailReportCommand } from './commands/email-report.js';
+import { cleanCommand } from './commands/clean.js';
+import { csvCommand } from './commands/csv.js';
+import { undoCommand } from './commands/undo.js';
+import { opentelemetryCommand } from './commands/opentelemetry.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('1.48.0');
+  .version('1.68.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -173,5 +181,13 @@ program.addCommand(shortcutsCommand);
 program.addCommand(datadogCommand);
 program.addCommand(resetCommand);
 program.addCommand(prometheusCommand);
+program.addCommand(improveCommand);
+program.addCommand(terraformCommand);
+program.addCommand(compareBranchesCommand);
+program.addCommand(emailReportCommand);
+program.addCommand(cleanCommand);
+program.addCommand(csvCommand);
+program.addCommand(undoCommand);
+program.addCommand(opentelemetryCommand);
 
 program.parse();

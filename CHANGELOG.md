@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v1.68.0] — 2026-02-26
+- `vibe opentelemetry` command — export metrics as OpenTelemetry spans
+
+## [v1.67.0] — 2026-02-26
+- `apps/server/src/utils/structured-error.ts` — extended error types with error codes, docs links, and recovery suggestions
+
+## [v1.66.0] — 2026-02-26
+- `vibe undo` command — revert last vibe action (e.g., undo decision acceptance)
+
+## [v1.65.0] — 2026-02-26
+- `/dashboard/ai-compare` page — side-by-side AI vs Human code quality comparison
+
+## [v1.64.0] — 2026-02-26
+- `packages/shared/src/types/api-key-scope.ts` — ApiKeyScope, ScopedPermission interfaces for fine-grained API keys
+
+## [v1.63.0] — 2026-02-26
+- `vibe csv` command — export any metric table as CSV
+
+## [v1.62.0] — 2026-02-26
+- `apps/server/src/utils/timeout.ts` — request timeout wrapper for long-running operations
+
+## [v1.61.0] — 2026-02-26
+- `vibe clean` command — clean up old metric snapshots and collection jobs
+
+## [v1.60.0] — 2026-02-26
+- `/dashboard/activity` page — activity feed showing recent PRs, decisions, collections
+
+## [v1.59.0] — 2026-02-26
+- `packages/shared/src/types/rbac.ts` — DetailedPermission, RoleBinding, PermissionCheck interfaces
+
+## [v1.58.0] — 2026-02-26
+- `vibe email-report` command — generate HTML email body for metric reports
+
+## [v1.57.0] — 2026-02-26
+- `apps/server/src/utils/connection-pool.ts` — connection pool manager for external service connections
+
+## [v1.56.0] — 2026-02-26
+- `vibe compare-branches` command — compare metrics between git branches
+
+## [v1.55.0] — 2026-02-26
+- `/dashboard/trends-detail` page — detailed trend analysis with zoom and annotations
+
+## [v1.54.0] — 2026-02-26
+- `packages/shared/src/types/analytics-event.ts` — AnalyticsEvent, EventSchema, EventProcessor interfaces
+
+## [v1.53.0] — 2026-02-26
+- `vibe terraform` command — generate Terraform config for VibeBetter infrastructure
+
+## [v1.52.0] — 2026-02-26
+- `apps/server/src/utils/batch-processor.ts` — generic batch processing utility with progress callbacks
+
+## [v1.51.0] — 2026-02-26
+- `vibe improve` command — suggest specific code improvements for high-risk files
+
+## [v1.50.0] — 2026-02-26
+- `/dashboard/modules` page — group files by directory, show per-module risk aggregation
+
+## [v1.49.0] — 2026-02-26
+- `packages/shared/src/types/migration.ts` — DataMigration, MigrationStep, MigrationStatus interfaces
+
 ## [v1.48.0] — 2026-02-26
 - `vibe prometheus` command — expose metrics in Prometheus format
 

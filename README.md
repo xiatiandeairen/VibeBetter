@@ -279,6 +279,7 @@ If you ran the seed script:
 - [x] **v0.12.0** — Error Recovery & Resilience (retry logic, ErrorBoundary)
 - [x] **v0.13.0** — Actionable Fix Suggestions: `vibe fix` command
 - [x] **v0.14.0** — Admin Usage Analytics endpoint (`GET /api/v1/admin/stats`)
+- [x] **v0.15.0** — Customizable Decision Rule types (DecisionRule interface + DEFAULT_RULES)
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

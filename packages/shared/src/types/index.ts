@@ -85,3 +85,4 @@ export interface AiBehaviorStats {
 
 export * from './dashboard';
 export * from './insight';
+export * from './rules';

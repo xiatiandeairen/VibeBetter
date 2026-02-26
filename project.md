@@ -62,6 +62,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.12.0 | Phase 10    | ✅ 完成    | 错误恢复: CLI 重试 + ErrorBoundary                       |
 | v0.13.0 | Phase 11    | ✅ 完成    | 修复建议: vibe fix 可操作建议                             |
 | v0.14.0 | Phase 12    | ✅ 完成    | Admin 统计: 平台使用分析端点                              |
+| v0.15.0 | Phase 13    | ✅ 完成    | 自定义决策规则: DecisionRule 类型定义                      |
 
 ## 当前综合评分
 
@@ -108,6 +109,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-013 | 2026-02-26 | v0.12.0 | CLI 重试逻辑 + React ErrorBoundary |
 | Iteration-014 | 2026-02-26 | v0.13.0 | vibe fix 可操作修复建议 |
 | Iteration-015 | 2026-02-26 | v0.14.0 | Admin 使用统计端点 |
+| Iteration-016 | 2026-02-26 | v0.15.0 | 自定义决策规则类型定义 |
 
 ## 协作工作流
 

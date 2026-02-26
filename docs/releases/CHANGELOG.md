@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.15.0] — 2026-02-26
+
+### Highlights
+- **Customizable Decision Rules** — Type-safe rule definitions for metric-driven decisions
+- `DecisionRule` interface with condition (metric/operator/value) and action (level/category/title/description)
+- 4 built-in `DEFAULT_RULES`: AI Success, PSRI High Risk, TDI Critical, Hotspot Warning
+
+### Added
+- `packages/shared/src/types/rules.ts` — DecisionRule interface + DEFAULT_RULES
+- v0.15.0 release archive (4 standard files)
+
+### Changed
+- Shared types index exports rules module
+
+---
+
 ## [v0.14.0] — 2026-02-26
 
 ### Highlights

@@ -13,6 +13,8 @@ import collectors from './routes/v1/collectors.js';
 import weights from './routes/v1/weights.js';
 import decisions from './routes/v1/decisions.js';
 import behaviors from './routes/v1/behaviors.js';
+import webhooks from './routes/v1/webhooks.js';
+import oauth from './routes/v1/oauth.js';
 
 const app = new Hono();
 
@@ -39,6 +41,8 @@ app.get('/health', (c) => {
   });
 });
 
+app.route('/api/v1/webhooks', webhooks);
+app.route('/api/v1/oauth', oauth);
 app.route('/api/v1/auth', auth);
 app.route('/api/v1/projects', projects);
 app.route('/api/v1/metrics', metrics);

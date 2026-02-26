@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.8.0] — 2026-02-26
+
+### Highlights
+- **`vibe` CLI tool** — 8 commands for AI Coding workflow integration
+- `vibe check` — Pre-commit risk analysis with `--strict` mode
+- `vibe report` — Markdown/JSON/text health report generation
+- `vibe decisions` — Terminal decision management with `--generate`
+- `vibe insights` — AI effectiveness summary (success rate, tool usage)
+- `vibe risk` — Project/file-level PSRI query
+- `vibe sync` — Trigger collection + computation
+- API Key authentication for CLI
+- End-to-end verified on VibeBetter's own repository
+
+### Added
+- `packages/cli/` package with Commander.js + picocolors + simple-git
+- 8 CLI commands (init, status, check, risk, decisions, insights, report, sync)
+- `~/.vibebetter/config.json` configuration management
+- 5 CLI tests
+- v0.8.0 release archive (4 standard files)
+
+---
+
 ## [v0.7.0] — 2026-02-26
 
 ### Highlights

@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v0.88.0] — 2026-02-26
+- `vibe markdown-report` command — generate full analysis as standalone markdown file
+
+## [v0.87.0] — 2026-02-26
+- `apps/server/src/utils/env-check.ts` — startup validation for all required env vars
+
+## [v0.86.0] — 2026-02-26
+- `vibe quick` command — ultra-short one-line project status
+
+## [v0.85.0] — 2026-02-26
+- `vibe forecast` command — predict next week's metrics based on trends
+
+## [v0.84.0] — 2026-02-26
+- `packages/shared/src/types/api-analytics.ts` — ApiUsage, RateLimitConfig, QuotaUsage interfaces
+
+## [v0.83.0] — 2026-02-26
+- `vibe docker` command — generate Docker setup for VibeBetter server
+
+## [v0.82.0] — 2026-02-26
+- `apps/server/src/utils/retry.ts` — generic retry utility with exponential backoff
+
+## [v0.81.0] — 2026-02-26
+- `vibe setup-hooks` command — one-command setup for pre-commit + pre-push hooks
+
+## [v0.80.0] — 2026-02-26
+- `vibe leaderboard` command — team leaderboard by AI effectiveness
+
+## [v0.79.0] — 2026-02-26
+- `packages/shared/src/types/export.ts` — ExportFormat, ExportConfig, ExportJob interfaces
+
+## [v0.78.0] — 2026-02-26
+- `vibe github-action` command — generate GitHub Action workflow YAML for VibeBetter
+
+## [v0.77.0] — 2026-02-26
+- `apps/server/src/utils/circuit-breaker.ts` — simple circuit breaker for external API calls
+
+## [v0.76.0] — 2026-02-26
+- `vibe suggest` command — AI-powered suggestions based on current metrics
+
+## [v0.75.0] — 2026-02-26
+- `vibe scorecard` command — project scorecard with letter grades per dimension
+
+## [v0.74.0] — 2026-02-26
+- `packages/shared/src/types/notification.ts` — NotificationChannel, NotificationRule, NotificationLog interfaces
+
+## [v0.73.0] — 2026-02-26
+- `vibe gitlab` command — format metrics for GitLab CI integration
+
+## [v0.72.0] — 2026-02-26
+- `apps/server/src/utils/response-time.ts` — middleware for response time percentile tracking
+
+## [v0.71.0] — 2026-02-26
+- `vibe ignore` command — manage files to exclude from analysis
+
+## [v0.70.0] — 2026-02-26
+- `vibe profile` command — show developer's personal AI coding stats
+
+## [v0.69.0] — 2026-02-26
+- `packages/shared/src/types/webhook-config.ts` — WebhookEndpoint, WebhookEvent, WebhookDelivery interfaces
+
 ## [v0.68.0] — 2026-02-26
 - `vibe jira` command — format risk report for Jira ticket creation
 

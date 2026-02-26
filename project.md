@@ -116,6 +116,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.66.0 | Phase 64    | ✅ 完成    | Why: 风险原因解释                                                    |
 | v0.67.0 | Phase 65    | ✅ 完成    | Pagination: 游标分页工具                                             |
 | v0.68.0 | Phase 66    | ✅ 完成    | Jira: 风险报告 Jira 集成                                            |
+| v0.69.0 | Phase 67    | ✅ 完成    | Webhook Config: 端点/事件/投递类型                                   |
+| v0.70.0 | Phase 68    | ✅ 完成    | Profile: 开发者 AI 编码统计                                          |
+| v0.71.0 | Phase 69    | ✅ 完成    | Ignore: 分析排除模式管理                                             |
+| v0.72.0 | Phase 70    | ✅ 完成    | Response Time: 响应时间百分位追踪                                    |
+| v0.73.0 | Phase 71    | ✅ 完成    | GitLab: GitLab CI 集成                                               |
+| v0.74.0 | Phase 72    | ✅ 完成    | Notification Types: 通知渠道/规则/日志                                |
+| v0.75.0 | Phase 73    | ✅ 完成    | Scorecard: 项目评分卡                                                |
+| v0.76.0 | Phase 74    | ✅ 完成    | Suggest: AI 驱动建议                                                 |
+| v0.77.0 | Phase 75    | ✅ 完成    | Circuit Breaker: 熔断器                                              |
+| v0.78.0 | Phase 76    | ✅ 完成    | GitHub Action: 工作流 YAML 生成                                      |
+| v0.79.0 | Phase 77    | ✅ 完成    | Export Types: 导出格式/配置/任务                                      |
+| v0.80.0 | Phase 78    | ✅ 完成    | Leaderboard: 团队 AI 效能排行                                        |
+| v0.81.0 | Phase 79    | ✅ 完成    | Setup Hooks: Git 钩子一键安装                                        |
+| v0.82.0 | Phase 80    | ✅ 完成    | Retry: 指数退避重试工具                                              |
+| v0.83.0 | Phase 81    | ✅ 完成    | Docker: Docker 配置生成                                              |
+| v0.84.0 | Phase 82    | ✅ 完成    | API Analytics: API 用量/限流/配额                                    |
+| v0.85.0 | Phase 83    | ✅ 完成    | Forecast: 指标趋势预测                                               |
+| v0.86.0 | Phase 84    | ✅ 完成    | Quick: 单行项目状态                                                  |
+| v0.87.0 | Phase 85    | ✅ 完成    | Env Check: 环境变量启动验证                                          |
+| v0.88.0 | Phase 86    | ✅ 完成    | Markdown Report: 完整 Markdown 报告                                  |
 
 ## 当前综合评分
 
@@ -216,6 +236,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-067 | 2026-02-26 | v0.66.0 | Why 风险原因解释 |
 | Iteration-068 | 2026-02-26 | v0.67.0 | Pagination 游标分页 |
 | Iteration-069 | 2026-02-26 | v0.68.0 | Jira 风险报告集成 |
+| Iteration-070 | 2026-02-26 | v0.69.0 | Webhook Config 类型 |
+| Iteration-071 | 2026-02-26 | v0.70.0 | Profile 开发者统计 |
+| Iteration-072 | 2026-02-26 | v0.71.0 | Ignore 排除模式 |
+| Iteration-073 | 2026-02-26 | v0.72.0 | Response Time 百分位 |
+| Iteration-074 | 2026-02-26 | v0.73.0 | GitLab CI 集成 |
+| Iteration-075 | 2026-02-26 | v0.74.0 | Notification 通知类型 |
+| Iteration-076 | 2026-02-26 | v0.75.0 | Scorecard 评分卡 |
+| Iteration-077 | 2026-02-26 | v0.76.0 | Suggest AI 建议 |
+| Iteration-078 | 2026-02-26 | v0.77.0 | Circuit Breaker 熔断器 |
+| Iteration-079 | 2026-02-26 | v0.78.0 | GitHub Action 生成 |
+| Iteration-080 | 2026-02-26 | v0.79.0 | Export 导出类型 |
+| Iteration-081 | 2026-02-26 | v0.80.0 | Leaderboard 排行榜 |
+| Iteration-082 | 2026-02-26 | v0.81.0 | Setup Hooks 钩子安装 |
+| Iteration-083 | 2026-02-26 | v0.82.0 | Retry 重试工具 |
+| Iteration-084 | 2026-02-26 | v0.83.0 | Docker 配置生成 |
+| Iteration-085 | 2026-02-26 | v0.84.0 | API Analytics 类型 |
+| Iteration-086 | 2026-02-26 | v0.85.0 | Forecast 趋势预测 |
+| Iteration-087 | 2026-02-26 | v0.86.0 | Quick 单行状态 |
+| Iteration-088 | 2026-02-26 | v0.87.0 | Env Check 环境验证 |
+| Iteration-089 | 2026-02-26 | v0.88.0 | Markdown Report 完整报告 |
 
 ## 协作工作流
 

@@ -39,12 +39,24 @@ import { gitStatsCommand } from './commands/git-stats.js';
 import { topCommand } from './commands/top.js';
 import { whyCommand } from './commands/why.js';
 import { jiraCommand } from './commands/jira.js';
+import { profileCommand } from './commands/profile.js';
+import { ignoreCommand } from './commands/ignore.js';
+import { gitlabCommand } from './commands/gitlab.js';
+import { scorecardCommand } from './commands/scorecard.js';
+import { suggestCommand } from './commands/suggest.js';
+import { githubActionCommand } from './commands/github-action.js';
+import { leaderboardCommand } from './commands/leaderboard.js';
+import { setupHooksCommand } from './commands/setup-hooks.js';
+import { dockerCommand } from './commands/docker.js';
+import { forecastCommand } from './commands/forecast.js';
+import { quickCommand } from './commands/quick.js';
+import { markdownReportCommand } from './commands/markdown-report.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.68.0');
+  .version('0.88.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -85,5 +97,17 @@ program.addCommand(gitStatsCommand);
 program.addCommand(topCommand);
 program.addCommand(whyCommand);
 program.addCommand(jiraCommand);
+program.addCommand(profileCommand);
+program.addCommand(ignoreCommand);
+program.addCommand(gitlabCommand);
+program.addCommand(scorecardCommand);
+program.addCommand(suggestCommand);
+program.addCommand(githubActionCommand);
+program.addCommand(leaderboardCommand);
+program.addCommand(setupHooksCommand);
+program.addCommand(dockerCommand);
+program.addCommand(forecastCommand);
+program.addCommand(quickCommand);
+program.addCommand(markdownReportCommand);
 
 program.parse();

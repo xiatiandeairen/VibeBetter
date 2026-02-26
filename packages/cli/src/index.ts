@@ -115,12 +115,24 @@ import { composeCommand } from './commands/compose.js';
 import { dashboardUrlCommand } from './commands/dashboard-url.js';
 import { offlineCommand } from './commands/offline.js';
 import { ansibleCommand } from './commands/ansible.js';
+import { aiScoreCommand } from './commands/ai-score.js';
+import { walkthroughCommand } from './commands/walkthrough.js';
+import { pulumiCommand } from './commands/pulumi.js';
+import { radarCommand } from './commands/radar.js';
+import { faqCommand } from './commands/faq.js';
+import { chromaticCommand } from './commands/chromatic.js';
+import { predictCommand } from './commands/predict.js';
+import { demoCommand } from './commands/demo.js';
+import { playwrightCommand } from './commands/playwright.js';
+import { releaseNotesCommand } from './commands/release-notes.js';
+import { celebrateCommand } from './commands/celebrate.js';
+import { ecosystemCommand } from './commands/ecosystem.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('2.8.0');
+  .version('2.28.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -237,5 +249,17 @@ program.addCommand(composeCommand);
 program.addCommand(dashboardUrlCommand);
 program.addCommand(offlineCommand);
 program.addCommand(ansibleCommand);
+program.addCommand(aiScoreCommand);
+program.addCommand(walkthroughCommand);
+program.addCommand(pulumiCommand);
+program.addCommand(radarCommand);
+program.addCommand(faqCommand);
+program.addCommand(chromaticCommand);
+program.addCommand(predictCommand);
+program.addCommand(demoCommand);
+program.addCommand(playwrightCommand);
+program.addCommand(releaseNotesCommand);
+program.addCommand(celebrateCommand);
+program.addCommand(ecosystemCommand);
 
 program.parse();

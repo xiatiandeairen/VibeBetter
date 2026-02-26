@@ -69,6 +69,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.19.0 | Phase 17    | ✅ 完成    | 指标告警: AlertConfig 模型 + CRUD API                       |
 | v0.20.0 | Phase 18    | ✅ 完成    | 结构化日志: 自定义请求日志中间件                             |
 | v0.21.0 | Phase 19    | ✅ 完成    | PR 风险摘要: vibe pr --markdown                              |
+| v0.22.0 | Phase 20    | ✅ 完成    | 透明速率限制头: X-RateLimit-*                                 |
 
 ## 当前综合评分
 
@@ -122,6 +123,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-020 | 2026-02-26 | v0.19.0 | 指标告警配置 API |
 | Iteration-021 | 2026-02-26 | v0.20.0 | 结构化请求日志中间件 |
 | Iteration-022 | 2026-02-26 | v0.21.0 | PR 风险摘要 (vibe pr) |
+| Iteration-023 | 2026-02-26 | v0.22.0 | 透明速率限制头 (X-RateLimit-*) |
 
 ## 协作工作流
 

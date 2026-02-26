@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.22.0] — 2026-02-26
+
+### Highlights
+- **Transparent Rate Limit Headers** — Standard `X-RateLimit-*` headers on all rate-limited responses
+- `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
+- Enterprise-friendly: API consumers can track their quota and auto-retry
+
+### Changed
+- `apps/server/src/middleware/rate-limit.ts` — Added 3 standard rate limit response headers
+- Headers present on both 2xx and 429 responses
+- v0.22.0 release archive (4 standard files)
+
+---
+
 ## [v0.21.0] — 2026-02-26
 
 ### Highlights

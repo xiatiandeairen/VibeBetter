@@ -5,7 +5,7 @@ import { header, success } from '../utils/display.js';
 
 export const reportCommand = new Command('report')
   .description('Generate AI Coding health report')
-  .option('--format <fmt>', 'Output format: text, markdown, json', 'markdown')
+  .option('--format <fmt>', 'Output format: text, markdown, json, html', 'markdown')
   .action(async (opts: { format: string }) => {
     const config = requireConfig();
     const client = new ApiClient(config);
@@ -23,6 +23,25 @@ export const reportCommand = new Command('report')
 
     if (opts.format === 'json') {
       console.log(JSON.stringify({ overview, topFiles, decisions, attribution }, null, 2));
+      return;
+    }
+
+    if (opts.format === 'html') {
+      const html = `<!DOCTYPE html>
+<html><head><title>AI Coding Health Report</title>
+<style>body{font-family:system-ui;max-width:800px;margin:0 auto;padding:2rem;background:#09090b;color:#e4e4e7}
+h1{color:#a78bfa}table{width:100%;border-collapse:collapse;margin:1rem 0}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid #27272a}
+th{color:#71717a;font-size:12px;text-transform:uppercase}
+.good{color:#4ade80}.warn{color:#fbbf24}.bad{color:#f87171}</style></head>
+<body><h1>AI Coding Health Report</h1><p>Generated: ${new Date().toISOString().split('T')[0]}</p>
+<table><tr><th>Metric</th><th>Value</th><th>Benchmark</th></tr>
+<tr><td>AI Success Rate</td><td>${pct(overview.aiSuccessRate)}</td><td>${bm('aiSuccessRate', overview.aiSuccessRate ?? 0)}</td></tr>
+<tr><td>AI Stable Rate</td><td>${pct(overview.aiStableRate)}</td><td>${bm('aiStableRate', overview.aiStableRate ?? 0)}</td></tr>
+<tr><td>PSRI Score</td><td>${overview.psriScore?.toFixed(3) ?? 'N/A'}</td><td>${bm('psriScore', overview.psriScore ?? 0)}</td></tr>
+<tr><td>TDI</td><td>${overview.tdiScore?.toFixed(3) ?? 'N/A'}</td><td>${bm('tdiScore', overview.tdiScore ?? 0)}</td></tr>
+</table></body></html>`;
+      console.log(html);
       return;
     }
 

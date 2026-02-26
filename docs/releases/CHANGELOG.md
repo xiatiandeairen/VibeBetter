@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.26.0] — 2026-02-26
+
+### Highlights
+- **HTML Report Export** — `vibe report --format html` generates a self-contained HTML report
+- Dark theme with inline CSS, ready for email/Confluence/PDF
+- Report formats: text, markdown, json, html (4 total)
+
+### Changed
+- `packages/cli/src/commands/report.ts` — Added HTML format with inline-styled dark theme
+- v0.26.0 release archive (4 standard files)
+
+---
+
 ## [v0.25.0] — 2026-02-26
 
 ### Highlights

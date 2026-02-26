@@ -73,6 +73,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.23.0 | Phase 21    | ✅ 完成    | 快照对比: vibe diff                                           |
 | v0.24.0 | Phase 22    | ✅ 完成    | 优雅关闭: SIGTERM/SIGINT 处理                                  |
 | v0.25.0 | Phase 23    | ✅ 完成    | 自动检测项目: vibe init --auto                                  |
+| v0.26.0 | Phase 24    | ✅ 完成    | HTML 报告导出: vibe report --format html                        |
 
 ## 当前综合评分
 
@@ -130,6 +131,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-024 | 2026-02-26 | v0.23.0 | 快照对比 (vibe diff) |
 | Iteration-025 | 2026-02-26 | v0.24.0 | 优雅关闭 (SIGTERM/SIGINT) |
 | Iteration-026 | 2026-02-26 | v0.25.0 | 自动检测项目 (vibe init --auto) |
+| Iteration-027 | 2026-02-26 | v0.26.0 | HTML 报告导出 (vibe report --format html) |
 
 ## 协作工作流
 

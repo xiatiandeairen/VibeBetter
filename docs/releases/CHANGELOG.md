@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.17.0] — 2026-02-26
+
+### Highlights
+- **Contextual Tips** — Random helpful tips after CLI commands
+- 8 tips covering check, report, analyze, decisions, sync, risk workflows
+- Integrated into `vibe check`, `vibe insights`, `vibe status`
+
+### Added
+- `packages/cli/src/utils/tips.ts` — Tip pool + showTip() utility
+- v0.17.0 release archive (4 standard files)
+
+### Changed
+- `check.ts`, `insights.ts`, `status.ts` — Call showTip() after execution
+
+---
+
 ## [v0.16.0] — 2026-02-26
 
 ### Highlights

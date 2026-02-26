@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { requireConfig } from '../config.js';
 import { ApiClient } from '../api-client.js';
 import { header, metric, percentStr, benchmarkColor } from '../utils/display.js';
+import { showTip } from '../utils/tips.js';
 import pc from 'picocolors';
 
 export const insightsCommand = new Command('insights')
@@ -35,4 +36,6 @@ export const insightsCommand = new Command('insights')
         }
       }
     }
+
+    showTip();
   });

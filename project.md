@@ -64,6 +64,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.14.0 | Phase 12    | ✅ 完成    | Admin 统计: 平台使用分析端点                              |
 | v0.15.0 | Phase 13    | ✅ 完成    | 自定义决策规则: DecisionRule 类型定义                      |
 | v0.16.0 | Phase 14    | ✅ 完成    | 健康检查增强: 数据库 + Redis 状态                          |
+| v0.17.0 | Phase 15    | ✅ 完成    | CLI 上下文提示: showTip() 3 个命令                         |
 
 ## 当前综合评分
 
@@ -112,6 +113,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-015 | 2026-02-26 | v0.14.0 | Admin 使用统计端点 |
 | Iteration-016 | 2026-02-26 | v0.15.0 | 自定义决策规则类型定义 |
 | Iteration-017 | 2026-02-26 | v0.16.0 | 健康检查增强 (DB + Redis) |
+| Iteration-018 | 2026-02-26 | v0.17.0 | CLI 上下文提示 (showTip) |
 
 ## 协作工作流
 

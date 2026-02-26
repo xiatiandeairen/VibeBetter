@@ -3,6 +3,7 @@ import { requireConfig } from '../config.js';
 import { ApiClient } from '../api-client.js';
 import { header, success, error, metric } from '../utils/display.js';
 import { getCurrentBranch } from '../utils/git.js';
+import { showTip } from '../utils/tips.js';
 
 export const statusCommand = new Command('status')
   .description('Show connection status and project info')
@@ -18,6 +19,7 @@ export const statusCommand = new Command('status')
       metric('Project ID', config.projectId);
       const branch = await getCurrentBranch().catch(() => 'unknown');
       metric('Git Branch', branch);
+      showTip();
     } catch (err) {
       error(`Status check failed: ${err instanceof Error ? err.message : 'Unknown'}`);
     }

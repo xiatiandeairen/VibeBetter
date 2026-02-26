@@ -3,6 +3,7 @@ import { requireConfig } from '../config.js';
 import { ApiClient } from '../api-client.js';
 import { header, success, warn, error, info, riskBadge } from '../utils/display.js';
 import { getModifiedFiles } from '../utils/git.js';
+import { showTip } from '../utils/tips.js';
 import pc from 'picocolors';
 
 export const checkCommand = new Command('check')
@@ -62,6 +63,7 @@ export const checkCommand = new Command('check')
         console.log();
         success('All changes look safe');
       }
+      showTip();
     } catch (err) {
       error(`Check failed: ${err instanceof Error ? err.message : 'Unknown'}`);
       process.exit(1);

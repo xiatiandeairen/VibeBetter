@@ -126,6 +126,29 @@ metrics.get('/projects/:id/files/top', async (c) => {
   }
 });
 
+metrics.get('/projects/:id/recent-prs', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
+    if (!project) {
+      return c.json<ApiResponse>({ success: false, data: null, error: 'Not found' }, 404);
+    }
+
+    const limit = parseInt(c.req.query('limit') ?? '5');
+    const prs = await prisma.pullRequest.findMany({
+      where: { projectId },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+      select: { id: true, number: true, title: true, aiUsed: true, state: true, createdAt: true },
+    });
+    return c.json({ success: true, data: prs, error: null });
+  } catch (err) {
+    console.error('Recent PRs error:', err);
+    return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
+  }
+});
+
 metrics.post('/projects/:id/compute', async (c) => {
   try {
     const projectId = c.req.param('id');

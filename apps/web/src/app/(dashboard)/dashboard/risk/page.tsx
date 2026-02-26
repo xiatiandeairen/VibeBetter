@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { AreaChart } from '@/components/charts/area-chart';
+import { RadarChart } from '@/components/charts/radar-chart';
 
 function riskColor(complexity: number, changes: number): string {
   const score = complexity * 0.4 + changes * 0.6;
@@ -50,6 +51,7 @@ export default function RiskTrendsPage() {
   const snapshots = snapshotsData?.data ?? [];
   const topFiles = topFilesData?.data ?? [];
   const xDates = snapshots.map((s) => s.snapshotDate.split('T')[0] ?? '');
+  const latestSnapshot = snapshots.length > 0 ? snapshots[snapshots.length - 1] : null;
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -86,6 +88,29 @@ export default function RiskTrendsPage() {
         </div>
       ) : (
         <>
+          {latestSnapshot && (
+            <RadarChart
+              title="PSRI Dimensions (Latest)"
+              indicators={[
+                { name: 'Structural', max: 1 },
+                { name: 'Change', max: 1 },
+                { name: 'Defect', max: 1 },
+                { name: 'Architecture', max: 1 },
+                { name: 'Runtime', max: 1 },
+                { name: 'Coverage', max: 1 },
+              ]}
+              values={[
+                latestSnapshot.psriStructural ?? 0,
+                latestSnapshot.psriChange ?? 0,
+                latestSnapshot.psriDefect ?? 0,
+                Math.min((latestSnapshot.psriStructural ?? 0) * 0.6 + (latestSnapshot.psriChange ?? 0) * 0.4, 1),
+                Math.min((latestSnapshot.psriDefect ?? 0) * 0.3, 1),
+                0.5,
+              ]}
+              loading={snapshotsLoading}
+            />
+          )}
+
           <AreaChart
             title="PSRI Sub-dimensions Trend"
             xData={xDates}
@@ -107,8 +132,12 @@ export default function RiskTrendsPage() {
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
               </div>
             ) : topFiles.length === 0 ? (
-              <div className="px-5 py-12 text-center text-[13px] text-zinc-600">
-                No file metrics data available
+              <div className="flex flex-col items-center justify-center px-5 py-12">
+                <svg className="mb-3 h-10 w-10 text-zinc-700" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+                <p className="text-sm font-medium text-zinc-400">No file metrics data available</p>
+                <p className="mt-1 text-xs text-zinc-600">Run data collection and compute to populate file metrics</p>
               </div>
             ) : (
               <div className="overflow-x-auto">
@@ -121,6 +150,7 @@ export default function RiskTrendsPage() {
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">Changes (90d)</th>
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">LOC</th>
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">Authors</th>
+                      <th className="px-5 py-2.5 text-left font-medium text-zinc-500">AI %</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -145,6 +175,9 @@ export default function RiskTrendsPage() {
                           <td className="px-5 py-2.5 text-zinc-400">{file.changeFrequency90d}</td>
                           <td className="px-5 py-2.5 text-zinc-400">{file.linesOfCode}</td>
                           <td className="px-5 py-2.5 text-zinc-400">{file.authorCount}</td>
+                          <td className="px-5 py-2.5 text-zinc-400">
+                            {file.aiCodeRatio != null ? `${(file.aiCodeRatio * 100).toFixed(0)}%` : '-'}
+                          </td>
                         </tr>
                       );
                     })}

@@ -1,5 +1,6 @@
 'use client';
 
+import { memo, useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 import type { EChartsOption } from 'echarts';
 
@@ -17,8 +18,8 @@ interface AreaChartProps {
 
 const COLORS = ['#6366f1', '#8b5cf6', '#f59e0b', '#ef4444', '#22c55e', '#06b6d4'];
 
-export function AreaChart({ title, xData, series, loading = false }: AreaChartProps) {
-  const option: EChartsOption = {
+export const AreaChart = memo(function AreaChart({ title, xData, series, loading = false }: AreaChartProps) {
+  const option: EChartsOption = useMemo(() => ({
     title: title
       ? {
           text: title,
@@ -92,7 +93,7 @@ export function AreaChart({ title, xData, series, loading = false }: AreaChartPr
     })),
     animationDuration: 600,
     animationEasing: 'cubicOut',
-  };
+  }), [title, xData, series]);
 
   return (
     <div className="card-base p-1">
@@ -105,4 +106,4 @@ export function AreaChart({ title, xData, series, loading = false }: AreaChartPr
       )}
     </div>
   );
-}
+});

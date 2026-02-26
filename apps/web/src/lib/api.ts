@@ -65,6 +65,7 @@ export interface MetricSnapshotItem {
   psriStructural: number | null;
   psriChange: number | null;
   psriDefect: number | null;
+  tdiScore: number | null;
   totalFiles: number;
 }
 
@@ -282,5 +283,19 @@ export const api = {
     return apiFetch<UserBehaviorStatsResponse>(
       `/api/v1/behaviors/projects/${projectId}/user-behaviors/stats`,
     );
+  },
+
+  getRecentPrs(projectId: string, limit = 5) {
+    return apiFetch<{
+      success: boolean;
+      data: Array<{
+        id: string;
+        number: number;
+        title: string;
+        aiUsed: boolean;
+        state: string;
+        createdAt: string;
+      }>;
+    }>(`/api/v1/metrics/projects/${projectId}/recent-prs?limit=${limit}`);
   },
 };

@@ -31,14 +31,29 @@ export class DecisionService {
         f.cyclomaticComplexity >= HOTSPOT_THRESHOLDS.minComplexity,
     ).length;
 
-    if (aiSuccessRate !== null && aiSuccessRate > 0.9 && psri.score !== null && psri.score < 0.3) {
+    const totalPrs = await prisma.pullRequest.count({ where: { projectId } });
+    const aiPrCount = await prisma.pullRequest.count({ where: { projectId, aiUsed: true } });
+    const aiPrRatio = totalPrs > 0 ? aiPrCount / totalPrs : 0;
+
+    if (aiSuccessRate !== null && aiSuccessRate > 0.8 && psri.score !== null && psri.score < 0.3) {
       candidates.push({
         level: 'INFO',
         category: 'AI_USAGE',
         title: 'Expand AI usage',
         description:
-          'AI success rate is above 90% and PSRI is below 0.3. Consider expanding AI-assisted coding to more modules.',
+          'AI coding is performing well. Consider expanding AI usage to more modules.',
         priority: 2,
+      });
+    }
+
+    if (aiSuccessRate !== null && aiSuccessRate > 0.9) {
+      candidates.push({
+        level: 'INFO',
+        category: 'AI_USAGE',
+        title: 'Excellent AI adoption',
+        description:
+          'Excellent AI adoption — team achieving >90% success rate.',
+        priority: 1,
       });
     }
 
@@ -64,13 +79,46 @@ export class DecisionService {
       });
     }
 
-    if (hotspotFiles > 10) {
+    if (hotspotFiles >= 3 && hotspotFiles <= 10) {
       candidates.push({
         level: 'WARNING',
         category: 'CODE_QUALITY',
-        title: 'Recommend code review sprint',
-        description: `${hotspotFiles} hotspot files detected (high complexity + high change frequency). Recommend a focused code review sprint.`,
+        title: 'Hotspot files need attention',
+        description:
+          '3-10 hotspot files detected. Prioritize code reviews for these files.',
         priority: 3,
+      });
+    }
+
+    if (hotspotFiles > 10) {
+      candidates.push({
+        level: 'CRITICAL',
+        category: 'CODE_QUALITY',
+        title: 'Recommend immediate code review sprint',
+        description: `Over 10 hotspot files. Recommend immediate code review sprint.`,
+        priority: 5,
+      });
+    }
+
+    if (aiPrRatio > 0.7) {
+      candidates.push({
+        level: 'INFO',
+        category: 'AI_USAGE',
+        title: 'High AI adoption rate',
+        description:
+          'High AI adoption rate. Monitor for quality trade-offs.',
+        priority: 2,
+      });
+    }
+
+    if (psri.change !== null && psri.change > 0.4) {
+      candidates.push({
+        level: 'WARNING',
+        category: 'RISK',
+        title: 'High change churn detected',
+        description:
+          'High change churn detected. Consider stabilization period.',
+        priority: 4,
       });
     }
 

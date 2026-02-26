@@ -65,3 +65,4 @@ Individual packages:
 - Docker in this VM requires `fuse-overlayfs` storage driver and `iptables-legacy`. See the Docker setup section above.
 - Docker startup: `containerd` must be started **before** `dockerd`. Run `sudo containerd &>/tmp/containerd.log &` then `sleep 3` then `sudo dockerd &>/tmp/dockerd.log &` — otherwise dockerd fails with "timeout waiting for containerd to start".
 - If Next.js dev server fails with `EADDRINUSE`, check for stale processes: `netstat -tlnp | grep 3000` and kill the specific PID. Old Next.js processes can survive across sessions.
+- When running the backend server standalone (not via `pnpm dev` from root), you must load the `.env` file manually, e.g.: `cd apps/server && env $(cat .env | xargs) npx tsx watch src/index.ts`. Turbo's `pnpm dev` from root handles env loading automatically via dotenv built into the turbo pipeline, but running `pnpm --filter @vibebetter/server dev` alone does not.

@@ -5,9 +5,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/toast';
 
 export default function ProjectsPage() {
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState('');
   const [repoUrl, setRepoUrl] = useState('');
@@ -27,6 +29,7 @@ export default function ProjectsPage() {
       setName('');
       setRepoUrl('');
       setDescription('');
+      addToast('Project created! First data collection started.', 'success');
     },
   });
 

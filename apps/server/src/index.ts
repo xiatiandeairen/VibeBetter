@@ -1,9 +1,10 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-import { logger } from 'hono/logger';
+import { logger as honoLogger } from 'hono/logger';
 import { serve } from '@hono/node-server';
 import type { ApiResponse } from '@vibebetter/shared';
 import { env } from './config/env.js';
+import { logger } from './utils/logger.js';
 import { onError } from './middleware/error-handler.js';
 import auth from './routes/v1/auth.js';
 import projects from './routes/v1/projects.js';
@@ -15,8 +16,18 @@ import behaviors from './routes/v1/behaviors.js';
 
 const app = new Hono();
 
-app.use('*', cors({ origin: '*' }));
-app.use('*', logger());
+app.use(
+  '*',
+  cors({
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      process.env.CORS_ORIGIN || '',
+    ].filter(Boolean),
+    credentials: true,
+  }),
+);
+app.use('*', honoLogger());
 
 app.onError(onError);
 
@@ -37,7 +48,7 @@ app.route('/api/v1/decisions', decisions);
 app.route('/api/v1/behaviors', behaviors);
 
 serve({ fetch: app.fetch, port: env.PORT }, (info) => {
-  console.log(`VibeBetter server running on http://localhost:${info.port}`);
+  logger.info(`VibeBetter server running on http://localhost:${info.port}`);
 });
 
 export default app;

@@ -4,6 +4,8 @@ import type { ApiResponse } from '@vibebetter/shared';
 import { authMiddleware } from '../../middleware/auth.js';
 import { projectService } from '../../services/project.service.js';
 import { AppError } from '../../middleware/error-handler.js';
+import { enqueueCollectionJob } from '../../jobs/scheduler.js';
+import { logger } from '../../utils/logger.js';
 
 const projects = new Hono();
 
@@ -24,6 +26,9 @@ projects.post('/', async (c) => {
   }
 
   const project = await projectService.create(userId, parsed.data);
+  enqueueCollectionJob(project.id).catch((err) => {
+    logger.error({ err }, 'Failed to enqueue first collection job');
+  });
   return c.json<ApiResponse<typeof project>>({ success: true, data: project, error: null }, 201);
 });
 

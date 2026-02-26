@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { api } from '@/lib/api';
+import { useAppStore } from '@/lib/store';
 
 const NAV_ITEMS = [
   {
@@ -61,6 +62,42 @@ const NAV_ITEMS = [
     ),
   },
   {
+    href: '/dashboard/prs',
+    label: 'Pull Requests',
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+      </svg>
+    ),
+  },
+  {
+    href: '/dashboard/files',
+    label: 'Files',
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+      </svg>
+    ),
+  },
+  {
+    href: '/dashboard/drilldown',
+    label: 'Drill-down',
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+      </svg>
+    ),
+  },
+  {
+    href: '/dashboard/compare',
+    label: 'Compare',
+    icon: (
+      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+      </svg>
+    ),
+  },
+  {
     href: '/dashboard/settings',
     label: 'Settings',
     icon: (
@@ -75,26 +112,34 @@ const NAV_ITEMS = [
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+  const userName = useAppStore((s) => s.userName);
+  const setUserName = useAppStore((s) => s.setUserName);
+  const token = useAppStore((s) => s.token);
+  const setToken = useAppStore((s) => s.setToken);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
+    const stored = token ?? localStorage.getItem('token');
+    if (!stored) {
       router.replace('/login');
       return;
     }
+    if (!token) setToken(stored);
     api
       .getMe()
       .then((res) => setUserName(res.data.name))
       .catch(() => {
         localStorage.removeItem('token');
+        setToken(null);
+        setUserName('');
         router.replace('/login');
       });
-  }, [router]);
+  }, [router, token, setToken, setUserName]);
 
   function handleLogout() {
     localStorage.removeItem('token');
+    setToken(null);
+    setUserName('');
     router.replace('/login');
   }
 

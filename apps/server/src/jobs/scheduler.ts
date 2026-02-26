@@ -5,6 +5,7 @@ import { collectorRegistry } from '../collectors/base.js';
 import { githubCollector } from '../collectors/github.collector.js';
 import { localGitCollector } from '../collectors/local-git.collector.js';
 import { env } from '../config/env.js';
+import { logger } from '../utils/logger.js';
 
 collectorRegistry.register(githubCollector);
 collectorRegistry.register(localGitCollector);
@@ -69,11 +70,11 @@ export const collectionWorker = new Worker<CollectionJobData>(
 );
 
 collectionWorker.on('completed', (job) => {
-  console.log(`Collection job ${job.id} completed for project ${job.data.projectId}`);
+  logger.info(`Collection job ${job.id} completed for project ${job.data.projectId}`);
 });
 
 collectionWorker.on('failed', (job, err) => {
-  console.error(`Collection job ${job?.id} failed:`, err.message);
+  logger.error(`Collection job ${job?.id} failed: ${err.message}`);
 });
 
 export async function enqueueCollectionJob(projectId: string) {

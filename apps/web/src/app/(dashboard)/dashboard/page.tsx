@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
+import { useAppStore } from '@/lib/store';
 import { MetricCard } from '@/components/ui/metric-card';
 import { MetricCardSkeleton } from '@/components/ui/skeleton';
 import { LineChart } from '@/components/charts/line-chart';
@@ -10,7 +11,8 @@ import { toPercent } from '@vibebetter/shared';
 
 export default function DashboardOverviewPage() {
   const queryClient = useQueryClient();
-  const [projectId, setProjectId] = useState('');
+  const projectId = useAppStore((s) => s.selectedProjectId);
+  const setProjectId = useAppStore((s) => s.setSelectedProjectId);
 
   const refreshMutation = useMutation({
     mutationFn: () => api.triggerCompute(projectId),
@@ -86,16 +88,36 @@ export default function DashboardOverviewPage() {
         </div>
         <div className="flex items-center gap-2">
           {projectId && (
-            <button
-              onClick={() => refreshMutation.mutate()}
-              disabled={refreshMutation.isPending}
-              className="rounded-lg border border-zinc-800 bg-zinc-900 p-2 text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-200 disabled:opacity-50"
-              title="Refresh metrics"
-            >
-              <svg className={`h-4 w-4 ${refreshMutation.isPending ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
-              </svg>
-            </button>
+            <>
+              <button
+                onClick={() => {
+                  const url = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}/api/v1/metrics/projects/${projectId}/export?format=csv`;
+                  const token = localStorage.getItem('token');
+                  fetch(url, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
+                    .then((res) => res.blob())
+                    .then((blob) => {
+                      const a = document.createElement('a');
+                      a.href = URL.createObjectURL(blob);
+                      a.download = 'metrics-export.csv';
+                      a.click();
+                      URL.revokeObjectURL(a.href);
+                    });
+                }}
+                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-[13px] text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-200"
+              >
+                Export CSV
+              </button>
+              <button
+                onClick={() => refreshMutation.mutate()}
+                disabled={refreshMutation.isPending}
+                className="rounded-lg border border-zinc-800 bg-zinc-900 p-2 text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-200 disabled:opacity-50"
+                title="Refresh metrics"
+              >
+                <svg className={`h-4 w-4 ${refreshMutation.isPending ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+                </svg>
+              </button>
+            </>
           )}
           <div className="relative">
             <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

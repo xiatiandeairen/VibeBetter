@@ -298,4 +298,39 @@ export const api = {
       }>;
     }>(`/api/v1/metrics/projects/${projectId}/recent-prs?limit=${limit}`);
   },
+
+  getAllPrs(projectId: string) {
+    return apiFetch<{
+      success: boolean;
+      data: Array<{
+        id: string;
+        number: number;
+        title: string;
+        authorLogin: string;
+        aiUsed: boolean;
+        state: string;
+        additions: number;
+        deletions: number;
+        changedFiles: number;
+        commitCount: number;
+        reviewComments: number;
+        rollbackFlag: boolean;
+        majorRevision: boolean;
+        mergedAt: string | null;
+        createdAt: string;
+      }>;
+    }>(`/api/v1/metrics/projects/${projectId}/prs`);
+  },
+
+  getDimensionFiles(projectId: string, dimension: string) {
+    return apiFetch<TopFilesResponse>(
+      `/api/v1/metrics/projects/${projectId}/files/top?limit=20&sort=${dimension}`,
+    );
+  },
+
+  exportMetrics(projectId: string, format = 'json') {
+    return apiFetch<{ success: boolean; data: MetricSnapshotItem[] }>(
+      `/api/v1/metrics/projects/${projectId}/export?format=${format}`,
+    );
+  },
 };

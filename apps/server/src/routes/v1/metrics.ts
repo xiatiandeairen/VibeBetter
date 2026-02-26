@@ -4,6 +4,7 @@ import type { ApiResponse, MetricResult } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
 import { metricsService } from '../../services/metrics.service.js';
+import { logger } from '../../utils/logger.js';
 
 const metrics = new Hono();
 
@@ -62,7 +63,7 @@ metrics.get('/projects/:id/overview', async (c) => {
 
     return c.json<ApiResponse<MetricResult>>({ success: true, data: result, error: null });
   } catch (err) {
-    console.error('Metrics overview error:', err);
+    logger.error({ err }, 'Metrics overview error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
   }
 });
@@ -103,7 +104,7 @@ metrics.get('/projects/:id/snapshots', async (c) => {
 
     return c.json<ApiResponse<typeof snapshots>>({ success: true, data: snapshots, error: null });
   } catch (err) {
-    console.error('Snapshots error:', err);
+    logger.error({ err }, 'Snapshots error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
   }
 });
@@ -118,10 +119,14 @@ metrics.get('/projects/:id/files/top', async (c) => {
       return c.json<ApiResponse>({ success: false, data: null, error: 'Project not found' }, 404);
     }
 
-    const topFiles = await metricsService.getTopFiles(projectId, 10);
+    const limitParam = c.req.query('limit');
+    const limit = limitParam ? parseInt(limitParam) : 10;
+    const sort = c.req.query('sort') || 'default';
+
+    const topFiles = await metricsService.getTopFiles(projectId, limit, sort);
     return c.json<ApiResponse<typeof topFiles>>({ success: true, data: topFiles, error: null });
   } catch (err) {
-    console.error('Top files error:', err);
+    logger.error({ err }, 'Top files error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
   }
 });
@@ -144,7 +149,7 @@ metrics.get('/projects/:id/recent-prs', async (c) => {
     });
     return c.json({ success: true, data: prs, error: null });
   } catch (err) {
-    console.error('Recent PRs error:', err);
+    logger.error({ err }, 'Recent PRs error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
   }
 });
@@ -162,8 +167,85 @@ metrics.post('/projects/:id/compute', async (c) => {
     const result = await metricsService.computeAndSaveSnapshot(projectId);
     return c.json<ApiResponse<MetricResult>>({ success: true, data: result, error: null }, 201);
   } catch (err) {
-    console.error('Compute metrics error:', err);
+    logger.error({ err }, 'Compute metrics error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
+  }
+});
+
+metrics.get('/projects/:id/prs', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({
+      where: { id: projectId, ownerId: userId },
+    });
+    if (!project) {
+      return c.json({ success: false, data: null, error: 'Not found' }, 404);
+    }
+    const prs = await prisma.pullRequest.findMany({
+      where: { projectId },
+      orderBy: { createdAt: 'desc' },
+    });
+    return c.json({ success: true, data: prs, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Get all PRs error');
+    return c.json<ApiResponse>(
+      { success: false, data: null, error: 'Internal server error' },
+      500,
+    );
+  }
+});
+
+metrics.get('/projects/:id/export', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({
+      where: { id: projectId, ownerId: userId },
+    });
+    if (!project) {
+      return c.json({ success: false, data: null, error: 'Not found' }, 404);
+    }
+
+    const format = c.req.query('format') || 'json';
+    const snapshots = await prisma.metricSnapshot.findMany({
+      where: { projectId },
+      orderBy: { snapshotDate: 'desc' },
+    });
+
+    if (format === 'csv') {
+      if (snapshots.length === 0) {
+        c.header('Content-Type', 'text/csv');
+        c.header(
+          'Content-Disposition',
+          `attachment; filename="${project.name}-metrics.csv"`,
+        );
+        return c.text('');
+      }
+      const headers = Object.keys(snapshots[0]!).join(',');
+      const rows = snapshots.map((s) =>
+        Object.values(s)
+          .map((v) =>
+            v instanceof Date ? v.toISOString() : String(v ?? ''),
+          )
+          .join(','),
+      );
+      const csv = [headers, ...rows].join('\n');
+      c.header('Content-Type', 'text/csv');
+      c.header(
+        'Content-Disposition',
+        `attachment; filename="${project.name}-metrics.csv"`,
+      );
+      return c.text(csv);
+    }
+
+    return c.json({ success: true, data: snapshots, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Export error');
+    return c.json<ApiResponse>(
+      { success: false, data: null, error: 'Internal server error' },
+      500,
+    );
   }
 });
 

@@ -3,6 +3,7 @@ import type { ContentfulStatusCode } from 'hono/utils/http-status';
 import type { ApiResponse } from '@vibebetter/shared';
 import { ZodError } from 'zod';
 import { Prisma } from '@vibebetter/db';
+import { logger } from '../utils/logger.js';
 
 export class AppError extends Error {
   public readonly statusCode: number;
@@ -37,7 +38,7 @@ export class AppError extends Error {
 }
 
 export const onError: ErrorHandler = (err, c) => {
-  console.error('Unhandled error:', err);
+  logger.error({ err }, 'Unhandled error');
 
   if (err instanceof AppError) {
     return c.json<ApiResponse>(

@@ -4,10 +4,13 @@ import type { ApiResponse } from '@vibebetter/shared';
 import { authMiddleware } from '../../middleware/auth.js';
 import { authService } from '../../services/auth.service.js';
 import { AppError } from '../../middleware/error-handler.js';
+import { rateLimiter } from '../../middleware/rate-limit.js';
 
 const auth = new Hono();
 
-auth.post('/register', async (c) => {
+const authRateLimit = rateLimiter({ windowMs: 60_000, max: 10 });
+
+auth.post('/register', authRateLimit, async (c) => {
   const body = await c.req.json();
   const parsed = RegisterSchema.safeParse(body);
   if (!parsed.success) {
@@ -18,7 +21,7 @@ auth.post('/register', async (c) => {
   return c.json<ApiResponse<typeof result>>({ success: true, data: result, error: null }, 201);
 });
 
-auth.post('/login', async (c) => {
+auth.post('/login', authRateLimit, async (c) => {
   const body = await c.req.json();
   const parsed = LoginSchema.safeParse(body);
   if (!parsed.success) {

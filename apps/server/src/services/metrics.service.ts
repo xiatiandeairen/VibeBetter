@@ -170,19 +170,25 @@ export class MetricsService {
     };
   }
 
-  async getTopFiles(projectId: string, limit = 10) {
+  async getTopFiles(projectId: string, limit = 10, sort = 'default') {
     const files = await prisma.fileMetric.findMany({
       where: { projectId },
-      orderBy: [{ cyclomaticComplexity: 'desc' }, { changeFrequency90d: 'desc' }],
     });
 
-    return files
-      .map((f) => ({
-        ...f,
-        riskScore: f.cyclomaticComplexity * f.changeFrequency90d,
-      }))
-      .sort((a, b) => b.riskScore - a.riskScore)
-      .slice(0, limit);
+    const enriched = files.map((f) => ({
+      ...f,
+      riskScore: f.cyclomaticComplexity * f.changeFrequency90d,
+    }));
+
+    if (sort === 'structural') {
+      enriched.sort((a, b) => b.cyclomaticComplexity - a.cyclomaticComplexity);
+    } else if (sort === 'change') {
+      enriched.sort((a, b) => b.changeFrequency90d - a.changeFrequency90d);
+    } else {
+      enriched.sort((a, b) => b.riskScore - a.riskScore);
+    }
+
+    return enriched.slice(0, limit);
   }
 
   private async getWeights(projectId: string): Promise<{

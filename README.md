@@ -270,7 +270,8 @@ If you ran the seed script:
 - [x] **v0.3.0** — Settings + Radar chart + Toast + Skeleton + Performance
 - [x] **v0.4.0** — Webhook + OAuth + Drill-down + Compare + Security + 45 tests
 - [x] **v0.5.0** — AI Attribution + Organization + Benchmarks + CI + Docs restructure
-- [ ] **v0.6.0** — Onboarding + OpenAPI + E2E testing + Sentry + Product differentiation
+- [x] **v0.6.0** — Onboarding + OpenAPI + API Key + Redis Cache + Insight Templates + VS Code
+- [ ] **v0.7.0** — Product differentiation + Sentry + E2E + i18n
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

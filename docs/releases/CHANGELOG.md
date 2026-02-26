@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.6.0] — 2026-02-26
+
+### Highlights
+- **Onboarding Flow** — 4-step wizard: Connect Repo → Collect → Compute → Report
+- **AI Coding Health Report** — Printable project insight report
+- **OpenAPI Documentation** — Swagger UI at `/api/v1/docs`
+- **API Key Authentication** — X-API-Key header for CI/CD integration
+- **Redis Cache** — 5-minute TTL on overview queries
+- **Insight Template Engine** — Foundation for product differentiation
+- **VS Code Extension** — Skeleton for AI behavior auto-reporting
+
+### Added
+- Onboarding page (`/dashboard/onboarding`) with step-by-step wizard
+- Report page (`/dashboard/report`) with printable health report
+- OpenAPI docs route (`/api/v1/docs`) with Swagger UI
+- API Key CRUD (`POST/GET/DELETE /api/v1/auth/api-keys`)
+- Auth middleware supports JWT + API Key dual mode
+- Redis cache layer (`getCached` / `invalidateCache`)
+- `DashboardConfig` + `InsightTemplate` type system
+- `AI_CODING_TEMPLATE` + `CODE_REVIEW_TEMPLATE`
+- VS Code extension skeleton (`packages/vscode-extension/`)
+- Webhook config UI in Settings page
+- Print styles (`@media print`)
+- `ApiKey` Prisma model
+
+### Changed
+- Prisma migration strategy: `db push` (dev) + `migrate deploy` (prod)
+- Metrics overview cached with 5-min Redis TTL
+- Projects page: added "Import from GitHub" button
+
+---
+
 ## [v0.5.0] — 2026-02-26
 
 ### Highlights

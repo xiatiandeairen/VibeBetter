@@ -127,6 +127,16 @@ import { playwrightCommand } from './commands/playwright.js';
 import { releaseNotesCommand } from './commands/release-notes.js';
 import { celebrateCommand } from './commands/celebrate.js';
 import { ecosystemCommand } from './commands/ecosystem.js';
+import { pulseCommand } from './commands/pulse.js';
+import { learnCommand } from './commands/learn.js';
+import { monorepoCommand } from './commands/monorepo.js';
+import { impactCommand } from './commands/impact.js';
+import { langCommand } from './commands/lang.js';
+import { npmPublishCommand } from './commands/npm-publish.js';
+import { roadmapCommand } from './commands/roadmap.js';
+import { discordCommand } from './commands/discord.js';
+import { smartReviewCommand } from './commands/smart-review.js';
+import { wellbeingCommand } from './commands/wellbeing.js';
 
 const program = new Command();
 program
@@ -261,5 +271,15 @@ program.addCommand(playwrightCommand);
 program.addCommand(releaseNotesCommand);
 program.addCommand(celebrateCommand);
 program.addCommand(ecosystemCommand);
+program.addCommand(pulseCommand);
+program.addCommand(learnCommand);
+program.addCommand(monorepoCommand);
+program.addCommand(impactCommand);
+program.addCommand(langCommand);
+program.addCommand(npmPublishCommand);
+program.addCommand(roadmapCommand);
+program.addCommand(discordCommand);
+program.addCommand(smartReviewCommand);
+program.addCommand(wellbeingCommand);
 
 program.parse();

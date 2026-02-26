@@ -256,30 +256,30 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v2.6.0  | Phase 204   | ✅ 完成    | Offline: 离线缓存指标                                               |
 | v2.7.0  | Phase 205   | ✅ 完成    | Security Headers: 安全响应头中间件                                  |
 | v2.8.0  | Phase 206   | ✅ 完成    | Ansible: Ansible Playbook 生成                                      |
-| v2.9.0  | Phase 207   | ✅ 完成    | Enterprise: SSO/Audit/DataRegion 类型                               |
-| v2.10.0 | Phase 208   | ✅ 完成    | AI Score: 单一 AI 效能评分                                          |
-| v2.11.0 | Phase 209   | ✅ 完成    | Walkthrough: 功能导览                                               |
-| v2.12.0 | Phase 210   | ✅ 完成    | Error Catalog: 错误码目录                                           |
-| v2.13.0 | Phase 211   | ✅ 完成    | Pulumi: 基础设施代码生成                                            |
-| v2.14.0 | Phase 212   | ✅ 完成    | Contract: 服务合同/SLA 类型                                         |
-| v2.15.0 | Phase 213   | ✅ 完成    | Radar: PSRI 雷达图                                                  |
-| v2.16.0 | Phase 214   | ✅ 完成    | FAQ: 常见问题                                                       |
-| v2.17.0 | Phase 215   | ✅ 完成    | Performance Monitor: 性能监控                                       |
-| v2.18.0 | Phase 216   | ✅ 完成    | Chromatic: 视觉回归配置                                             |
-| v2.19.0 | Phase 217   | ✅ 完成    | Channel: 分销渠道类型                                               |
-| v2.20.0 | Phase 218   | ✅ 完成    | Predict: 趋势预测                                                   |
-| v2.21.0 | Phase 219   | ✅ 完成    | Demo: 示例数据演示                                                  |
-| v2.22.0 | Phase 220   | ✅ 完成    | Tracing: 请求追踪                                                   |
-| v2.23.0 | Phase 221   | ✅ 完成    | Playwright: E2E 测试生成                                            |
-| v2.24.0 | Phase 222   | ✅ 完成    | Growth: 增长指标类型                                                |
-| v2.25.0 | Phase 223   | ✅ 完成    | Release Notes: 自动发布说明                                         |
-| v2.26.0 | Phase 224   | ✅ 完成    | Celebrate: 成就庆祝                                                 |
-| v2.27.0 | Phase 225   | ✅ 完成    | Backup: 数据库备份工具                                              |
-| v2.28.0 | Phase 226   | ✅ 完成    | Ecosystem: 生态系统集成总览 — 200-round sprint complete 🏁          |
+| v2.9.0  | Phase 207   | ✅ 完成    | Team Management: TeamInvite/TeamRole/TeamAnalytics 类型             |
+| v2.10.0 | Phase 208   | ✅ 完成    | Pulse: 实时项目脉搏                                                 |
+| v2.11.0 | Phase 209   | ✅ 完成    | Learn: AI 编码最佳实践教育                                          |
+| v2.12.0 | Phase 210   | ✅ 完成    | Backup: 数据库备份工具                                              |
+| v2.13.0 | Phase 211   | ✅ 完成    | Monorepo: 单仓分析与包级风险                                        |
+| v2.14.0 | Phase 212   | ✅ 完成    | Trial: 试用配置/状态/转化事件类型                                    |
+| v2.15.0 | Phase 213   | ✅ 完成    | Impact: 文件变更影响范围分析                                         |
+| v2.16.0 | Phase 214   | ✅ 完成    | Lang: CLI 输出语言设置 (en/zh)                                       |
+| v2.17.0 | Phase 215   | ✅ 完成    | Memory Monitor: Node.js 堆内存监控与告警                             |
+| v2.18.0 | Phase 216   | ✅ 完成    | npm Publish: npm 发布就绪检查                                        |
+| v2.19.0 | Phase 217   | ✅ 完成    | Referral: 推荐计划/奖励类型                                          |
+| v2.20.0 | Phase 218   | ✅ 完成    | Roadmap: 基于风险的项目路线图                                        |
+| v2.21.0 | Phase 219   | ✅ 完成    | Celebrate: 团队成就庆祝                                              |
+| v2.22.0 | Phase 220   | ✅ 完成    | Graceful Degradation: 服务降级策略                                   |
+| v2.23.0 | Phase 221   | ✅ 完成    | Discord: Discord Webhook 报告                                        |
+| v2.24.0 | Phase 222   | ✅ 完成    | Enterprise: SSO/Audit/DataRegion 企业配置                            |
+| v2.25.0 | Phase 223   | ✅ 完成    | Smart Review: 基于文件所有权的审查者推荐                              |
+| v2.26.0 | Phase 224   | ✅ 完成    | Wellbeing: 开发者健康检查                                            |
+| v2.27.0 | Phase 225   | ✅ 完成    | Performance Budget: API 性能预算检查                                  |
+| v2.28.0 | Phase 226   | ✅ 完成    | Ecosystem: 生态系统集成总览 — 200-iteration sprint complete 🏁       |
 
 ## 当前综合评分
 
-**9.8/10**（详见 `docs/workflow/scoring-standards.md`）— v2.28 200-round sprint complete 🏁
+**9.8/10**（详见 `docs/workflow/scoring-standards.md`）— v2.28 200-iteration sprint complete 🏁
 
 | 维度         | 分数    |
 | ------------ | ------- |
@@ -506,7 +506,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-197 | 2026-02-26 | v1.96.0 | Autofix 自动修复 |
 | Iteration-198 | 2026-02-26 | v1.97.0 | API Versioning 中间件 |
 | Iteration-199 | 2026-02-26 | v1.98.0 | Helm Chart 值生成 |
-| Iteration-200 | 2026-02-26 | v2.28.0 | **200-round sprint complete** — final batch v2.9–v2.28 |
+| Iteration-200 | 2026-02-26 | v2.28.0 | **200-iteration sprint complete** — final batch v2.9–v2.28 |
 
 ## 协作工作流
 

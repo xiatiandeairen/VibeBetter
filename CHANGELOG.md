@@ -3,64 +3,64 @@
 All notable changes to VibeBetter are documented here.
 
 ## [v2.28.0] — 2026-02-26
-- `vibe ecosystem` command — show all integrations and their status
+- `vibe ecosystem` command — list all VibeBetter ecosystem tools and integrations
 
 ## [v2.27.0] — 2026-02-26
-- `apps/server/src/utils/backup.ts` — database backup trigger utility (pg_dump wrapper)
+- `apps/server/src/utils/performance-budget.ts` — define and check API performance budgets
 
 ## [v2.26.0] — 2026-02-26
-- `vibe celebrate` command — celebrate metric achievements and milestones
+- `vibe wellbeing` command — developer wellbeing check (session length, break reminders)
 
 ## [v2.25.0] — 2026-02-26
-- `vibe release-notes` command — auto-generate release notes from PR data
+- `vibe smart-review` command — suggest optimal reviewers based on file ownership
 
 ## [v2.24.0] — 2026-02-26
-- `packages/shared/src/types/growth.ts` — GrowthMetric, Funnel, Cohort, Retention interfaces
+- `packages/shared/src/types/enterprise.ts` — EnterpriseConfig, SSO, AuditPolicy interfaces
 
 ## [v2.23.0] — 2026-02-26
-- `vibe playwright` command — generate Playwright E2E test for VibeBetter dashboard
+- `vibe discord` command — format VibeBetter report for Discord webhook
 
 ## [v2.22.0] — 2026-02-26
-- `apps/server/src/utils/tracing.ts` — request tracing utility (trace ID propagation across services)
+- `apps/server/src/utils/graceful-degradation.ts` — fallback strategies when Redis/external services are down
 
 ## [v2.21.0] — 2026-02-26
-- `vibe demo` command — run a demo with sample data to showcase features
+- `vibe celebrate` command — celebrate team achievements when metrics improve
 
 ## [v2.20.0] — 2026-02-26
-- `vibe predict` command — predict future risk trends using linear regression
+- `vibe roadmap` command — show project roadmap based on risk priorities
 
 ## [v2.19.0] — 2026-02-26
-- `packages/shared/src/types/channel.ts` — DistributionChannel, ChannelConfig, ChannelMetrics interfaces
+- `packages/shared/src/types/referral.ts` — ReferralProgram, ReferralReward interfaces
 
 ## [v2.18.0] — 2026-02-26
-- `vibe chromatic` command — generate visual regression test config
+- `vibe npm-publish` command — check package readiness for npm publishing
 
 ## [v2.17.0] — 2026-02-26
-- `apps/server/src/utils/performance-monitor.ts` — track memory usage, event loop lag, GC metrics
+- `apps/server/src/utils/memory-monitor.ts` — monitor Node.js heap usage and alert on threshold
 
 ## [v2.16.0] — 2026-02-26
-- `vibe faq` command — frequently asked questions about metrics and commands
+- `vibe lang` command — set CLI output language (en/zh placeholder)
 
 ## [v2.15.0] — 2026-02-26
-- `vibe radar` command — ASCII radar chart of PSRI dimensions in terminal
+- `vibe impact` command — analyze blast radius of file changes
 
 ## [v2.14.0] — 2026-02-26
-- `packages/shared/src/types/contract.ts` — ServiceContract, SLATerms, EscalationPolicy interfaces
+- `packages/shared/src/types/trial.ts` — TrialConfig, TrialStatus, ConversionEvent interfaces
 
 ## [v2.13.0] — 2026-02-26
-- `vibe pulumi` command — generate Pulumi infrastructure code for deployment
+- `vibe monorepo` command — analyze monorepo structure and per-package risk
 
 ## [v2.12.0] — 2026-02-26
-- `apps/server/src/utils/error-catalog.ts` — centralized error code catalog with descriptions and docs URLs
+- `apps/server/src/utils/backup.ts` — database backup helper with timestamp naming
 
 ## [v2.11.0] — 2026-02-26
-- `vibe walkthrough` command — guided walkthrough of all VibeBetter features
+- `vibe learn` command — educational content about AI coding best practices
 
 ## [v2.10.0] — 2026-02-26
-- `vibe ai-score` command — single AI effectiveness score (0-100) combining all metrics
+- `vibe pulse` command — real-time project pulse (quick health + trend in one line)
 
 ## [v2.9.0] — 2026-02-26
-- `packages/shared/src/types/enterprise.ts` — EnterpriseConfig, SSO, AuditPolicy, DataRegion interfaces
+- `packages/shared/src/types/team-management.ts` — TeamInvite, TeamRole, TeamAnalytics interfaces
 
 ## [v2.8.0] — 2026-02-26
 - `vibe ansible` command — generate Ansible playbook for VibeBetter deployment

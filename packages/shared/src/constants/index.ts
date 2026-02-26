@@ -29,3 +29,4 @@ export const COLLECTION_INTERVALS = {
 } as const;
 
 export { INDUSTRY_BENCHMARKS, getBenchmarkLevel } from './benchmarks';
+export { BRANDING } from './branding';

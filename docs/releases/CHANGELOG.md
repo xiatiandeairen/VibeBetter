@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.18.0] — 2026-02-26
+
+### Highlights
+- **Configurable Branding** — White-label foundation via environment variables
+- `BRANDING` constant: name, tagline, primaryColor, logoText
+- Override with BRAND_NAME, BRAND_TAGLINE, BRAND_COLOR, BRAND_LOGO_TEXT
+
+### Added
+- `packages/shared/src/constants/branding.ts` — Branding constant
+- v0.18.0 release archive (4 standard files)
+
+### Changed
+- Shared constants index exports branding module
+
+---
+
 ## [v0.17.0] — 2026-02-26
 
 ### Highlights

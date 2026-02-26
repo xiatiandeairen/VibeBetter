@@ -282,6 +282,7 @@ If you ran the seed script:
 - [x] **v0.15.0** — Customizable Decision Rule types (DecisionRule interface + DEFAULT_RULES)
 - [x] **v0.16.0** — Enhanced health check endpoint (database + Redis dependency checks)
 - [x] **v0.17.0** — Contextual tips in CLI commands (check, insights, status)
+- [x] **v0.18.0** — Configurable branding constants (white-label via env vars)
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

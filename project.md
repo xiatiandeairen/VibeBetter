@@ -65,6 +65,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.15.0 | Phase 13    | ✅ 完成    | 自定义决策规则: DecisionRule 类型定义                      |
 | v0.16.0 | Phase 14    | ✅ 完成    | 健康检查增强: 数据库 + Redis 状态                          |
 | v0.17.0 | Phase 15    | ✅ 完成    | CLI 上下文提示: showTip() 3 个命令                         |
+| v0.18.0 | Phase 16    | ✅ 完成    | 可配置品牌: 白标环境变量                                    |
 
 ## 当前综合评分
 
@@ -114,6 +115,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-016 | 2026-02-26 | v0.15.0 | 自定义决策规则类型定义 |
 | Iteration-017 | 2026-02-26 | v0.16.0 | 健康检查增强 (DB + Redis) |
 | Iteration-018 | 2026-02-26 | v0.17.0 | CLI 上下文提示 (showTip) |
+| Iteration-019 | 2026-02-26 | v0.18.0 | 可配置品牌常量 (BRANDING) |
 
 ## 协作工作流
 

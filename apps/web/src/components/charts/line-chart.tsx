@@ -1,5 +1,6 @@
 'use client';
 
+import { memo, useMemo } from 'react';
 import ReactECharts from 'echarts-for-react';
 import type { EChartsOption } from 'echarts';
 
@@ -17,8 +18,8 @@ interface LineChartProps {
 
 const COLORS = ['#6366f1', '#3b82f6', '#8b5cf6', '#22c55e', '#f59e0b', '#ef4444'];
 
-export function LineChart({ title, xData, series, loading = false }: LineChartProps) {
-  const option: EChartsOption = {
+export const LineChart = memo(function LineChart({ title, xData, series, loading = false }: LineChartProps) {
+  const option: EChartsOption = useMemo(() => ({
     title: title
       ? {
           text: title,
@@ -93,7 +94,7 @@ export function LineChart({ title, xData, series, loading = false }: LineChartPr
     })),
     animationDuration: 600,
     animationEasing: 'cubicOut',
-  };
+  }), [title, xData, series]);
 
   return (
     <div className="card-base p-1">
@@ -106,4 +107,4 @@ export function LineChart({ title, xData, series, loading = false }: LineChartPr
       )}
     </div>
   );
-}
+});

@@ -120,6 +120,32 @@ export default function InsightsPage() {
             </div>
           )}
 
+          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-400">Effectiveness Metrics</h3>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="rounded-lg border border-zinc-800 p-4">
+                <p className="text-[11px] font-medium uppercase text-zinc-600">Acceptance Rate</p>
+                <div className="mt-2 flex items-end gap-2">
+                  <span className="text-3xl font-bold text-emerald-400">{ai ? (ai.acceptanceRate * 100).toFixed(0) : 0}%</span>
+                  <span className="mb-1 text-xs text-zinc-600">of AI suggestions accepted</span>
+                </div>
+                <div className="mt-3 h-2 w-full rounded-full bg-zinc-800">
+                  <div className="h-2 rounded-full bg-emerald-500 transition-all" style={{ width: `${(ai?.acceptanceRate ?? 0) * 100}%` }} />
+                </div>
+              </div>
+              <div className="rounded-lg border border-zinc-800 p-4">
+                <p className="text-[11px] font-medium uppercase text-zinc-600">Avg Edit Distance</p>
+                <div className="mt-2 flex items-end gap-2">
+                  <span className="text-3xl font-bold text-amber-400">{ai?.avgEditDistance?.toFixed(2) ?? 'N/A'}</span>
+                  <span className="mb-1 text-xs text-zinc-600">modification after accept</span>
+                </div>
+                <div className="mt-3 h-2 w-full rounded-full bg-zinc-800">
+                  <div className="h-2 rounded-full bg-amber-500 transition-all" style={{ width: `${Math.min((ai?.avgEditDistance ?? 0) * 200, 100)}%` }} />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div>
             <h2 className="mb-3 text-lg font-semibold text-zinc-200">Developer Activity</h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

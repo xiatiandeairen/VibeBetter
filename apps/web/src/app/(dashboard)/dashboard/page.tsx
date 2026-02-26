@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { MetricCard } from '@/components/ui/metric-card';
+import { MetricCardSkeleton } from '@/components/ui/skeleton';
 import { LineChart } from '@/components/charts/line-chart';
 import { toPercent } from '@vibebetter/shared';
 
@@ -173,62 +174,69 @@ export default function DashboardOverviewPage() {
 
       {projectId && (
         <>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <MetricCard
-              title="AI Success Rate"
-              value={overviewLoading ? '...' : toPercent(overview?.aiSuccessRate ?? null)}
-              subtitle="PRs merged without major revision"
-              color="green"
-              delta={successDelta}
-              icon={
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              }
-            />
-            <MetricCard
-              title="AI Stable Rate"
-              value={overviewLoading ? '...' : toPercent(overview?.aiStableRate ?? null)}
-              subtitle="PRs without rollback"
-              color="blue"
-              delta={stableDelta}
-              icon={
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
-              }
-            />
-            <MetricCard
-              title="PSRI Score"
-              value={
-                overviewLoading
-                  ? '...'
-                  : overview?.psriScore != null
+          {overviewLoading ? (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <MetricCardSkeleton />
+              <MetricCardSkeleton />
+              <MetricCardSkeleton />
+              <MetricCardSkeleton />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <MetricCard
+                title="AI Success Rate"
+                value={toPercent(overview?.aiSuccessRate ?? null)}
+                subtitle="PRs merged without major revision"
+                color="green"
+                delta={successDelta}
+                icon={
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                }
+              />
+              <MetricCard
+                title="AI Stable Rate"
+                value={toPercent(overview?.aiStableRate ?? null)}
+                subtitle="PRs without rollback"
+                color="blue"
+                delta={stableDelta}
+                icon={
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                }
+              />
+              <MetricCard
+                title="PSRI Score"
+                value={
+                  overview?.psriScore != null
                     ? overview.psriScore.toFixed(2)
                     : 'N/A'
-              }
-              subtitle="Predictive Structural Risk"
-              color="amber"
-              delta={psriDelta}
-              invertDelta
-              icon={
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                </svg>
-              }
-            />
-            <MetricCard
-              title="Total Files"
-              value={overviewLoading ? '...' : String(overview?.totalFiles ?? 0)}
-              subtitle={`${overview?.hotspotFiles ?? 0} hotspot files`}
-              color="violet"
-              icon={
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                </svg>
-              }
-            />
-          </div>
+                }
+                subtitle="Predictive Structural Risk"
+                color="amber"
+                delta={psriDelta}
+                invertDelta
+                icon={
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  </svg>
+                }
+              />
+              <MetricCard
+                title="Total Files"
+                value={String(overview?.totalFiles ?? 0)}
+                subtitle={`${overview?.hotspotFiles ?? 0} hotspot files`}
+                color="violet"
+                icon={
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                  </svg>
+                }
+              />
+            </div>
+          )}
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-5">
             <QuickStat label="Total PRs" value={overview?.totalPrs ?? 0} />

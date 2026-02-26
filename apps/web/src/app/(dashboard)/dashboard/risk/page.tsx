@@ -150,6 +150,7 @@ export default function RiskTrendsPage() {
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">Changes (90d)</th>
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">LOC</th>
                       <th className="px-5 py-2.5 text-left font-medium text-zinc-500">Authors</th>
+                      <th className="px-5 py-2.5 text-left font-medium text-zinc-500">AI %</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -174,6 +175,9 @@ export default function RiskTrendsPage() {
                           <td className="px-5 py-2.5 text-zinc-400">{file.changeFrequency90d}</td>
                           <td className="px-5 py-2.5 text-zinc-400">{file.linesOfCode}</td>
                           <td className="px-5 py-2.5 text-zinc-400">{file.authorCount}</td>
+                          <td className="px-5 py-2.5 text-zinc-400">
+                            {file.aiCodeRatio != null ? `${(file.aiCodeRatio * 100).toFixed(0)}%` : '-'}
+                          </td>
                         </tr>
                       );
                     })}

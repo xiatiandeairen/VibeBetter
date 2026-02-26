@@ -68,7 +68,19 @@ VibeBetter provides the data infrastructure and analytics to answer these questi
 - **Metric Cards** — Key indicators with trend arrows and delta percentages
 - **Trend Charts** — ECharts-powered line and stacked area charts for historical analysis
 - **Quick Stats** — At-a-glance summary of Total PRs, AI PRs, Average Complexity, Hotspot Count
+- **Health Assessment Summary** — Contextual narrative summarizing project health based on current metrics
+- **Toast Notifications** — Real-time feedback for user actions and background operations
+- **Loading Skeletons** — Polished skeleton placeholders during data loading
 - **Dark Theme** — Modern, professional dark-mode-first interface
+
+### Decision Recommendations
+- **Rule-based Engine** — AI-driven engineering recommendations generated from project metrics
+- **Priority-ranked Decisions** — Actionable items ranked by severity and impact
+- **Status Tracking** — Mark decisions as open, accepted, or dismissed
+
+### Weight Configuration
+- **Per-project PSRI Weights** — Customize the structural, change, defect, architecture, runtime, and coverage weight dimensions
+- **Real-time Updates** — Adjust weights and immediately see their impact on risk scores
 
 ### Project Management
 - **Multi-project Support** — Manage multiple repositories from a single dashboard
@@ -208,6 +220,14 @@ If you ran the seed script:
 | POST   | `/api/v1/metrics/projects/:id/compute`            | Trigger computation      |
 | POST   | `/api/v1/collectors/projects/:id/collect`         | Trigger data collection  |
 | GET    | `/api/v1/collectors/projects/:id/jobs`            | Collection job history   |
+| GET    | `/api/v1/decisions/projects/:id/decisions`        | List decisions           |
+| POST   | `/api/v1/decisions/projects/:id/decisions/generate` | Generate decisions     |
+| PATCH  | `/api/v1/decisions/decisions/:id/status`          | Update decision status   |
+| GET    | `/api/v1/weights/projects/:id/weights`            | Get PSRI weights         |
+| PUT    | `/api/v1/weights/projects/:id/weights`            | Update PSRI weights      |
+| GET    | `/api/v1/behaviors/projects/:id/ai-behaviors/stats` | AI behavior stats      |
+| GET    | `/api/v1/behaviors/projects/:id/user-behaviors/stats` | User behavior stats  |
+| GET    | `/api/v1/metrics/projects/:id/recent-prs`        | Recent pull requests     |
 
 ---
 
@@ -224,8 +244,27 @@ If you ran the seed script:
 
 ## Roadmap
 
+### Frontend Routes
+
+| Route                    | Description                              |
+| ------------------------ | ---------------------------------------- |
+| `/`                      | Landing page                             |
+| `/login`                 | Authentication                           |
+| `/register`              | User registration                        |
+| `/dashboard`             | Overview with metric cards and charts    |
+| `/dashboard/projects`    | Project management                       |
+| `/dashboard/risk`        | Risk trends and hotspot analysis         |
+| `/dashboard/decisions`   | Decision recommendations                 |
+| `/dashboard/insights`    | AI tool effectiveness and behavior stats |
+| `/dashboard/collection`  | Data collection management               |
+| `/dashboard/settings`    | Weight configuration and settings        |
+
+---
+
+## Roadmap
+
 - [x] **MVP**: Core data collection + AI metrics + PSRI + Dashboard
-- [ ] **Phase 1**: Complete PSRI (6 dimensions) + Rule engine + Decision recommendations
+- [x] **Phase 1**: Decision recommendations + Weight configuration + AI Insights + Toast notifications
 - [ ] **Phase 2**: ML prediction + Real-time PR risk assessment + LLM requirement analysis
 - [ ] **Phase 3**: Organization-level analytics + IDE plugin + Scale to 1M+ files
 

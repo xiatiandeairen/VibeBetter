@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.27.0] — 2026-02-26
+
+### Highlights
+- **Terminal Dashboard (TUI)** — `vibe dashboard` displays key metrics at a glance
+- Color-coded AI Success Rate, Stable Rate, PSRI, TDI, PR counts, hotspots
+- Integrates AI behavior stats and pending decision counts
+- Single-screen summary for terminal-native workflows
+
+### Added
+- `packages/cli/src/commands/dashboard.ts` — Terminal dashboard command
+- v0.27.0 release archive (4 standard files)
+
+### Changed
+- CLI commands: 13 → 14
+- CLI version bumped to 0.27.0
+
+---
+
 ## [v0.26.0] — 2026-02-26
 
 ### Highlights

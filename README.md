@@ -291,6 +291,7 @@ If you ran the seed script:
 - [x] **v0.24.0** — Graceful shutdown: SIGTERM/SIGINT handling with BullMQ cleanup
 - [x] **v0.25.0** — Auto-detect project from git remote: `vibe init --auto`
 - [x] **v0.26.0** — HTML report export: `vibe report --format html` (self-contained dark theme)
+- [x] **v0.27.0** — Terminal dashboard: `vibe dashboard` TUI for at-a-glance metrics
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

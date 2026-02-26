@@ -13,12 +13,13 @@ import { digestCommand } from './commands/digest.js';
 import { fixCommand } from './commands/fix.js';
 import { prRiskCommand } from './commands/pr-risk.js';
 import { diffCommand } from './commands/diff.js';
+import { dashboardCommand } from './commands/dashboard.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.23.0');
+  .version('0.27.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -33,5 +34,6 @@ program.addCommand(digestCommand);
 program.addCommand(fixCommand);
 program.addCommand(prRiskCommand);
 program.addCommand(diffCommand);
+program.addCommand(dashboardCommand);
 
 program.parse();

@@ -74,6 +74,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.24.0 | Phase 22    | ✅ 完成    | 优雅关闭: SIGTERM/SIGINT 处理                                  |
 | v0.25.0 | Phase 23    | ✅ 完成    | 自动检测项目: vibe init --auto                                  |
 | v0.26.0 | Phase 24    | ✅ 完成    | HTML 报告导出: vibe report --format html                        |
+| v0.27.0 | Phase 25    | ✅ 完成    | 终端仪表盘: vibe dashboard TUI                                   |
 
 ## 当前综合评分
 
@@ -132,6 +133,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-025 | 2026-02-26 | v0.24.0 | 优雅关闭 (SIGTERM/SIGINT) |
 | Iteration-026 | 2026-02-26 | v0.25.0 | 自动检测项目 (vibe init --auto) |
 | Iteration-027 | 2026-02-26 | v0.26.0 | HTML 报告导出 (vibe report --format html) |
+| Iteration-028 | 2026-02-26 | v0.27.0 | 终端仪表盘 (vibe dashboard) |
 
 ## 协作工作流
 

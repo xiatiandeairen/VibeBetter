@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import type { WeightConfigData } from '@/lib/api';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const WEIGHT_KEYS: Array<{ key: keyof WeightConfigData; label: string }> = [
   { key: 'structural', label: 'Structural' },
@@ -14,6 +15,8 @@ const WEIGHT_KEYS: Array<{ key: keyof WeightConfigData; label: string }> = [
   { key: 'runtime', label: 'Runtime' },
   { key: 'coverage', label: 'Coverage' },
 ];
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export default function SettingsPage() {
   const queryClient = useQueryClient();
@@ -27,6 +30,9 @@ export default function SettingsPage() {
     coverage: 0.1,
   });
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [newKeyName, setNewKeyName] = useState('');
+  const [revealedKey, setRevealedKey] = useState('');
+  const [webhookCopied, setWebhookCopied] = useState(false);
 
   const { data: projectsData } = useQuery({
     queryKey: ['projects'],
@@ -81,6 +87,39 @@ export default function SettingsPage() {
 
   function handleSliderChange(key: keyof WeightConfigData, value: number) {
     setWeights((prev) => ({ ...prev, [key]: value }));
+  }
+
+  // API Keys
+  const { data: apiKeysData, isLoading: apiKeysLoading } = useQuery({
+    queryKey: ['api-keys'],
+    queryFn: () => api.getApiKeys(),
+  });
+
+  const apiKeys = apiKeysData?.data ?? [];
+
+  const createKeyMutation = useMutation({
+    mutationFn: (name: string) => api.createApiKey(name),
+    onSuccess: (res) => {
+      queryClient.invalidateQueries({ queryKey: ['api-keys'] });
+      setRevealedKey(res.data.key);
+      setNewKeyName('');
+    },
+  });
+
+  const deleteKeyMutation = useMutation({
+    mutationFn: (id: string) => api.deleteApiKey(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['api-keys'] });
+    },
+  });
+
+  const webhookUrl = `${API_URL}/api/v1/webhooks/github`;
+
+  function handleCopyWebhook() {
+    navigator.clipboard.writeText(webhookUrl).then(() => {
+      setWebhookCopied(true);
+      setTimeout(() => setWebhookCopied(false), 2000);
+    });
   }
 
   return (
@@ -159,6 +198,157 @@ export default function SettingsPage() {
           </div>
         </div>
       )}
+
+      {/* API Keys Section */}
+      <div className="card-base p-6">
+        <h2 className="mb-1 text-sm font-semibold text-zinc-300">API Keys</h2>
+        <p className="mb-5 text-[13px] text-zinc-500">Manage API keys for programmatic access</p>
+
+        <div className="flex items-end gap-3 mb-5">
+          <Input
+            label="Key Name"
+            value={newKeyName}
+            onChange={(e) => setNewKeyName(e.target.value)}
+            placeholder="My CI/CD key"
+            className="max-w-xs"
+          />
+          <Button
+            onClick={() => createKeyMutation.mutate(newKeyName || 'Untitled Key')}
+            loading={createKeyMutation.isPending}
+            size="md"
+          >
+            Create Key
+          </Button>
+        </div>
+
+        {revealedKey && (
+          <div className="mb-5 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3">
+            <p className="mb-1 text-xs font-medium text-amber-400">Copy your API key now — it won&apos;t be shown again</p>
+            <div className="flex items-center gap-2">
+              <code className="flex-1 break-all rounded bg-zinc-900 px-3 py-1.5 font-mono text-xs text-zinc-200">{revealedKey}</code>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => {
+                  navigator.clipboard.writeText(revealedKey);
+                  setRevealedKey('');
+                }}
+              >
+                Copy &amp; Dismiss
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {apiKeysLoading ? (
+          <div className="flex justify-center py-8">
+            <div className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+          </div>
+        ) : apiKeys.length === 0 ? (
+          <p className="py-6 text-center text-sm text-zinc-600">No API keys yet</p>
+        ) : (
+          <div className="overflow-hidden rounded-lg border border-zinc-800">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-zinc-800 bg-zinc-900/50 text-left">
+                  <th className="px-4 py-2.5 text-xs font-medium text-zinc-500">Name</th>
+                  <th className="px-4 py-2.5 text-xs font-medium text-zinc-500">Prefix</th>
+                  <th className="px-4 py-2.5 text-xs font-medium text-zinc-500">Last Used</th>
+                  <th className="px-4 py-2.5 text-xs font-medium text-zinc-500">Created</th>
+                  <th className="px-4 py-2.5 text-xs font-medium text-zinc-500"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {apiKeys.map((k) => (
+                  <tr key={k.id} className="border-b border-zinc-800/50 last:border-0">
+                    <td className="px-4 py-2.5 text-[13px] text-zinc-300">{k.name}</td>
+                    <td className="px-4 py-2.5 font-mono text-[13px] text-zinc-500">{k.prefix}...</td>
+                    <td className="px-4 py-2.5 text-[13px] text-zinc-500">
+                      {k.lastUsed ? new Date(k.lastUsed).toLocaleDateString() : 'Never'}
+                    </td>
+                    <td className="px-4 py-2.5 text-[13px] text-zinc-500">
+                      {new Date(k.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-4 py-2.5 text-right">
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        loading={deleteKeyMutation.isPending}
+                        onClick={() => {
+                          if (confirm('Revoke this API key?')) {
+                            deleteKeyMutation.mutate(k.id);
+                          }
+                        }}
+                      >
+                        Revoke
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* Webhook Configuration Section */}
+      <div className="card-base p-6">
+        <h2 className="mb-1 text-sm font-semibold text-zinc-300">Webhook Configuration</h2>
+        <p className="mb-5 text-[13px] text-zinc-500">Configure GitHub webhooks to receive real-time updates</p>
+
+        <div className="space-y-4">
+          <div>
+            <label className="mb-1.5 block text-[13px] font-medium text-zinc-400">Webhook URL</label>
+            <div className="flex items-center gap-2">
+              <code className="flex-1 rounded-lg border border-zinc-800 bg-zinc-900/50 px-3 py-2 font-mono text-[13px] text-zinc-300">
+                {webhookUrl}
+              </code>
+              <Button
+                variant="secondary"
+                size="md"
+                onClick={handleCopyWebhook}
+              >
+                {webhookCopied ? (
+                  <>
+                    <svg className="mr-1.5 h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <svg className="mr-1.5 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9.75a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" />
+                    </svg>
+                    Copy URL
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-zinc-800 bg-zinc-900/30 p-4">
+            <h3 className="mb-2 text-xs font-semibold text-zinc-400">Instructions</h3>
+            <p className="text-[13px] leading-relaxed text-zinc-500">
+              Add this URL as a webhook in your GitHub repository settings
+              (Settings → Webhooks → Add webhook). Set the content type to{' '}
+              <code className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-[12px] text-zinc-400">application/json</code>.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="mb-2 text-xs font-semibold text-zinc-400">Supported Events</h3>
+            <div className="flex gap-2">
+              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-[12px] font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                pull_request
+              </span>
+              <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-[12px] font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+                push
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

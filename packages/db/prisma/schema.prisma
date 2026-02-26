@@ -18,6 +18,7 @@ model User {
 
   projects       Project[]
   projectMembers ProjectMember[]
+  apiKeys        ApiKey[]
 
   @@map("users")
 }
@@ -234,6 +235,20 @@ model Decision {
 
   @@index([projectId, status])
   @@map("decisions")
+}
+
+model ApiKey {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  name      String
+  keyHash   String    @unique @map("key_hash")
+  prefix    String
+  lastUsed  DateTime? @map("last_used")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("api_keys")
 }
 
 model WeightConfig {

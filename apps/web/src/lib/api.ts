@@ -351,6 +351,23 @@ export const api = {
     }>(`/api/v1/metrics/projects/${projectId}/developers`);
   },
 
+  createApiKey(name: string) {
+    return apiFetch<{ success: boolean; data: { id: string; name: string; prefix: string; key: string; createdAt: string } }>(
+      '/api/v1/auth/api-keys',
+      { method: 'POST', body: JSON.stringify({ name }) },
+    );
+  },
+
+  getApiKeys() {
+    return apiFetch<{ success: boolean; data: Array<{ id: string; name: string; prefix: string; lastUsed: string | null; createdAt: string }> }>(
+      '/api/v1/auth/api-keys',
+    );
+  },
+
+  deleteApiKey(id: string) {
+    return apiFetch<{ success: boolean }>(`/api/v1/auth/api-keys/${id}`, { method: 'DELETE' });
+  },
+
   getDimensionFiles(projectId: string, dimension: string) {
     return apiFetch<TopFilesResponse>(
       `/api/v1/metrics/projects/${projectId}/files/top?limit=20&sort=${dimension}`,

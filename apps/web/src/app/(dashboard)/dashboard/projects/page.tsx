@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Link from 'next/link';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -54,12 +55,22 @@ export default function ProjectsPage() {
           <h1 className="text-xl font-semibold text-zinc-100">Projects</h1>
           <p className="mt-0.5 text-[13px] text-zinc-500">Manage your repositories</p>
         </div>
-        <Button onClick={() => setShowModal(true)}>
-          <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-          New Project
-        </Button>
+        <div className="flex items-center gap-3">
+          <Link href="/dashboard/onboarding">
+            <Button variant="secondary">
+              <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              Import from GitHub
+            </Button>
+          </Link>
+          <Button onClick={() => setShowModal(true)}>
+            <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            New Project
+          </Button>
+        </div>
       </div>
 
       {isLoading ? (

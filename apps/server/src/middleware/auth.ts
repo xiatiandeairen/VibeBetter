@@ -1,6 +1,8 @@
 import type { Context, Next } from 'hono';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import type { AuthTokenPayload } from '@vibebetter/shared';
+import { prisma } from '@vibebetter/db';
 import { env } from '../config/env.js';
 
 declare module 'hono' {
@@ -10,6 +12,18 @@ declare module 'hono' {
 }
 
 export async function authMiddleware(c: Context, next: Next): Promise<Response | void> {
+  const apiKey = c.req.header('X-API-Key');
+  if (apiKey) {
+    const keyHash = crypto.createHash('sha256').update(apiKey).digest('hex');
+    const key = await prisma.apiKey.findUnique({ where: { keyHash }, include: { user: true } });
+    if (key) {
+      await prisma.apiKey.update({ where: { id: key.id }, data: { lastUsed: new Date() } });
+      c.set('user', { userId: key.user.id, email: key.user.email, role: key.user.role });
+      await next();
+      return;
+    }
+  }
+
   const header = c.req.header('Authorization');
   if (!header?.startsWith('Bearer ')) {
     return c.json(

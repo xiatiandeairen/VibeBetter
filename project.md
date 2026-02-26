@@ -99,14 +99,11 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 详见 `docs/workflow/README.md`。
 
-## 下一步计划（v0.4.0）
+## 下一步计划（v0.5.0）
 
-详见 [`docs/roadmap-v0.4.md`](docs/roadmap-v0.4.md)。
+详见 [`docs/roadmap-v0.5.md`](docs/roadmap-v0.5.md)。
 
-核心方向：
-1. GitHub OAuth SSO — 一键登录
-2. Webhook 实时 PR 风险评估
-3. 指标下钻（PSRI → 子维度 → 文件级）
-4. 风险传播图（graphology 依赖分析）
-5. 安全加固（Cookie + Refresh Token + Rate Limiting）
-6. 测试覆盖（API 集成测试 + 前端 E2E）
+核心方向（三个视角驱动）：
+1. **用户痛点** — AI 归因分析（哪些技术债是 AI 引入的）、行业基准线、失败 PR 归因
+2. **专家视角** — GitHub Check 回写（PR 页面即时风险评分）、组织级 Dashboard、开发者效能排行
+3. **成熟化** — GitHub Actions CI/CD、Prisma 版本化迁移、E2E 测试、Sentry 错误追踪

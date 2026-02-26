@@ -136,6 +136,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.86.0 | Phase 84    | ✅ 完成    | Quick: 单行项目状态                                                  |
 | v0.87.0 | Phase 85    | ✅ 完成    | Env Check: 环境变量启动验证                                          |
 | v0.88.0 | Phase 86    | ✅ 完成    | Markdown Report: 完整 Markdown 报告                                  |
+| v0.89.0 | Phase 87    | ✅ 完成    | SSO Types: SAML + OIDC 单点登录类型                                  |
+| v0.90.0 | Phase 88    | ✅ 完成    | Sprint Plan: 冲刺优先级建议                                          |
+| v0.91.0 | Phase 89    | ✅ 完成    | Annotate: 文件注释管理                                               |
+| v0.92.0 | Phase 90    | ✅ 完成    | Graceful Error: 异步路由错误转发                                     |
+| v0.93.0 | Phase 91    | ✅ 完成    | Pre-Review: 变更文件审查清单                                         |
+| v0.94.0 | Phase 92    | ✅ 完成    | Report Types: 报告模板/调度/投递                                     |
+| v0.95.0 | Phase 93    | ✅ 完成    | Goals: 指标目标设定追踪                                              |
+| v0.96.0 | Phase 94    | ✅ 完成    | Alias: 自定义命令别名                                                |
+| v0.97.0 | Phase 95    | ✅ 完成    | DB Health: 数据库连接池监控                                          |
+| v0.98.0 | Phase 96    | ✅ 完成    | Standup: 每日站会摘要                                                |
+| v0.99.0 | Phase 97    | ✅ 完成    | Marketplace Types: 插件市场类型                                      |
+| v1.0.0  | Phase 98    | ✅ 完成    | Version Info: 全包版本信息                                           |
+| v1.1.0  | Phase 99    | ✅ 完成    | Interactive: 交互式菜单模式                                          |
+| v1.2.0  | Phase 100   | ✅ 完成    | Startup Checks: 全面启动验证                                        |
+| v1.3.0  | Phase 101   | ✅ 完成    | Retro: 冲刺回顾数据                                                 |
+| v1.4.0  | Phase 102   | ✅ 完成    | Custom Metrics: 自定义指标类型                                       |
+| v1.5.0  | Phase 103   | ✅ 完成    | Benchmark: 行业基准对比                                              |
+| v1.6.0  | Phase 104   | ✅ 完成    | Notify: 指标告警通知                                                 |
+| v1.7.0  | Phase 105   | ✅ 完成    | Migration Helper: 安全迁移助手                                       |
+| v1.8.0  | Phase 106   | ✅ 完成    | Compliance: 合规阈值检查                                             |
 
 ## 当前综合评分
 
@@ -256,6 +276,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-087 | 2026-02-26 | v0.86.0 | Quick 单行状态 |
 | Iteration-088 | 2026-02-26 | v0.87.0 | Env Check 环境验证 |
 | Iteration-089 | 2026-02-26 | v0.88.0 | Markdown Report 完整报告 |
+| Iteration-090 | 2026-02-26 | v0.89.0 | SSO Types SAML+OIDC |
+| Iteration-091 | 2026-02-26 | v0.90.0 | Sprint Plan 冲刺优先级 |
+| Iteration-092 | 2026-02-26 | v0.91.0 | Annotate 文件注释 |
+| Iteration-093 | 2026-02-26 | v0.92.0 | Graceful Error 错误转发 |
+| Iteration-094 | 2026-02-26 | v0.93.0 | Pre-Review 审查清单 |
+| Iteration-095 | 2026-02-26 | v0.94.0 | Report Types 报告类型 |
+| Iteration-096 | 2026-02-26 | v0.95.0 | Goals 指标目标 |
+| Iteration-097 | 2026-02-26 | v0.96.0 | Alias 命令别名 |
+| Iteration-098 | 2026-02-26 | v0.97.0 | DB Health 数据库健康 |
+| Iteration-099 | 2026-02-26 | v0.98.0 | Standup 站会摘要 |
+| Iteration-100 | 2026-02-26 | v0.99.0 | Marketplace 插件市场 |
+| Iteration-101 | 2026-02-26 | v1.0.0  | Version Info 版本信息 |
+| Iteration-102 | 2026-02-26 | v1.1.0  | Interactive 交互模式 |
+| Iteration-103 | 2026-02-26 | v1.2.0  | Startup Checks 启动验证 |
+| Iteration-104 | 2026-02-26 | v1.3.0  | Retro 冲刺回顾 |
+| Iteration-105 | 2026-02-26 | v1.4.0  | Custom Metrics 自定义指标 |
+| Iteration-106 | 2026-02-26 | v1.5.0  | Benchmark 行业基准 |
+| Iteration-107 | 2026-02-26 | v1.6.0  | Notify 告警通知 |
+| Iteration-108 | 2026-02-26 | v1.7.0  | Migration Helper 迁移助手 |
+| Iteration-109 | 2026-02-26 | v1.8.0  | Compliance 合规检查 |
 
 ## 协作工作流
 

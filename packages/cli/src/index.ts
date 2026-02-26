@@ -51,12 +51,24 @@ import { dockerCommand } from './commands/docker.js';
 import { forecastCommand } from './commands/forecast.js';
 import { quickCommand } from './commands/quick.js';
 import { markdownReportCommand } from './commands/markdown-report.js';
+import { sprintPlanCommand } from './commands/sprint-plan.js';
+import { annotateCommand } from './commands/annotate.js';
+import { preReviewCommand } from './commands/pre-review.js';
+import { goalsCommand } from './commands/goals.js';
+import { aliasCommand } from './commands/alias.js';
+import { standupCommand } from './commands/standup.js';
+import { versionInfoCommand } from './commands/version-info.js';
+import { interactiveCommand } from './commands/interactive.js';
+import { retroCommand } from './commands/retro.js';
+import { benchmarkCommand } from './commands/benchmark.js';
+import { notifyCommand } from './commands/notify.js';
+import { complianceCommand } from './commands/compliance.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.88.0');
+  .version('1.8.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -109,5 +121,17 @@ program.addCommand(dockerCommand);
 program.addCommand(forecastCommand);
 program.addCommand(quickCommand);
 program.addCommand(markdownReportCommand);
+program.addCommand(sprintPlanCommand);
+program.addCommand(annotateCommand);
+program.addCommand(preReviewCommand);
+program.addCommand(goalsCommand);
+program.addCommand(aliasCommand);
+program.addCommand(standupCommand);
+program.addCommand(versionInfoCommand);
+program.addCommand(interactiveCommand);
+program.addCommand(retroCommand);
+program.addCommand(benchmarkCommand);
+program.addCommand(notifyCommand);
+program.addCommand(complianceCommand);
 
 program.parse();

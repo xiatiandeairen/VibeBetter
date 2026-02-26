@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v1.8.0] — 2026-02-26
+- `vibe compliance` command — check if metrics meet compliance thresholds
+
+## [v1.7.0] — 2026-02-26
+- `apps/server/src/utils/migration-helper.ts` — safe schema migration runner with rollback support
+
+## [v1.6.0] — 2026-02-26
+- `vibe notify` command — send metric alerts to stdout, file, or webhook
+
+## [v1.5.0] — 2026-02-26
+- `vibe benchmark` command — compare project metrics against industry benchmarks
+
+## [v1.4.0] — 2026-02-26
+- `packages/shared/src/types/custom-metrics.ts` — CustomMetric, MetricFormula for user-defined metrics
+
+## [v1.3.0] — 2026-02-26
+- `vibe retro` command — generate retrospective data for sprint review
+
+## [v1.2.0] — 2026-02-26
+- `apps/server/src/utils/startup-checks.ts` — comprehensive startup validation (DB, Redis, config)
+
+## [v1.1.0] — 2026-02-26
+- `vibe interactive` command — interactive menu-driven CLI mode
+
+## [v1.0.0] — 2026-02-26
+- `vibe version` command — show detailed version info for all packages
+
+## [v0.99.0] — 2026-02-26
+- `packages/shared/src/types/marketplace.ts` — Plugin, PluginManifest, PluginConfig for future marketplace
+
+## [v0.98.0] — 2026-02-26
+- `vibe standup` command — generate daily standup summary from recent metrics
+
+## [v0.97.0] — 2026-02-26
+- `apps/server/src/utils/db-health.ts` — database connection pool monitoring helper
+
+## [v0.96.0] — 2026-02-26
+- `vibe alias` command — create custom command aliases
+
+## [v0.95.0] — 2026-02-26
+- `vibe goals` command — set and track metric goals
+
+## [v0.94.0] — 2026-02-26
+- `packages/shared/src/types/reports.ts` — ReportTemplate, ReportSchedule, ReportDelivery interfaces
+
+## [v0.93.0] — 2026-02-26
+- `vibe pre-review` command — generate pre-review checklist based on changed files
+
+## [v0.92.0] — 2026-02-26
+- `apps/server/src/utils/graceful-error.ts` — async route handler error forwarding
+
+## [v0.91.0] — 2026-02-26
+- `vibe annotate` command — add notes to files in the risk system
+
+## [v0.90.0] — 2026-02-26
+- `vibe sprint-plan` command — suggest sprint priorities based on risk + decisions
+
+## [v0.89.0] — 2026-02-26
+- `packages/shared/src/types/sso.ts` — SSOProvider, SSOConfig, SSOSession interfaces (SAML + OIDC)
+
 ## [v0.88.0] — 2026-02-26
 - `vibe markdown-report` command — generate full analysis as standalone markdown file
 

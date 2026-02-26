@@ -233,12 +233,14 @@ If you ran the seed script:
 
 ## Documentation
 
-| Document                             | Description                                         |
-| ------------------------------------ | --------------------------------------------------- |
-| [`docs/spec.md`](docs/spec.md)       | Product specification with data models and formulas |
-| [`docs/research.md`](docs/research.md) | Technology research and architecture decisions     |
-| [`docs/plan.md`](docs/plan.md)       | Implementation plan with sprint task breakdown      |
-| [`docs/analysis.md`](docs/analysis.md) | Expert review of features, architecture, and code quality |
+| Document                                         | Description                              |
+| ------------------------------------------------ | ---------------------------------------- |
+| [`docs/README.md`](docs/README.md)               | Documentation index                      |
+| [`docs/product/spec.md`](docs/product/spec.md)   | Product specification                    |
+| [`docs/product/research.md`](docs/product/research.md) | Technology research               |
+| [`docs/releases/`](docs/releases/)               | Version archives (changes/tasks/insights)|
+| [`docs/roadmap/current.md`](docs/roadmap/current.md) | Current version roadmap             |
+| [`docs/process/`](docs/process/)                 | Development process & scoring            |
 
 ---
 
@@ -269,7 +271,7 @@ If you ran the seed script:
 - [x] **v0.4.0** — Webhook + OAuth + Drill-down + Compare + Security + 45 tests
 - [ ] **v0.5.0** — Organization-level + Product differentiation + IDE plugin
 
-See [`docs/roadmap-v0.4.md`](docs/roadmap-v0.4.md) for v0.4 details and [`docs/changelog/CHANGELOG.md`](docs/changelog/CHANGELOG.md) for release history.
+See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 
 ---
 

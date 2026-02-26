@@ -71,15 +71,14 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 ## 文档导航
 
-| 文档                                  | 说明                    |
-| ------------------------------------- | ----------------------- |
-| [`README.md`](README.md)             | 项目介绍和快速开始      |
-| [`CLAUDE.md`](CLAUDE.md)             | AI Agent 协作规则       |
-| [`docs/spec.md`](docs/spec.md)       | 产品规格说明书          |
-| [`docs/research.md`](docs/research.md)| 技术调研报告           |
-| [`docs/plan.md`](docs/plan.md)       | 实施计划                |
-| [`docs/analysis.md`](docs/analysis.md)| 专家评审报告 v2        |
-| [`docs/workflow/`](docs/workflow/)    | AI Coding 工作流文档    |
+| 文档                                            | 说明                   |
+| ----------------------------------------------- | ---------------------- |
+| [`README.md`](README.md)                       | 项目介绍和快速开始     |
+| [`CLAUDE.md`](CLAUDE.md)                       | AI Agent 协作规则      |
+| [`docs/product/spec.md`](docs/product/spec.md) | 产品规格说明书         |
+| [`docs/releases/`](docs/releases/)             | 版本归档 (编号)        |
+| [`docs/roadmap/current.md`](docs/roadmap/current.md) | 当前版本规划     |
+| [`docs/process/`](docs/process/)               | 开发流程 + 评分标准    |
 
 ## 迭代历史
 
@@ -101,7 +100,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 ## 下一步计划（v0.5.0）
 
-详见 [`docs/roadmap-v0.5.md`](docs/roadmap-v0.5.md)。
+详见 [`docs/roadmap/current.md`](docs/roadmap/current.md)。
 
 核心方向（三个视角驱动）：
 1. **用户痛点** — AI 归因分析（哪些技术债是 AI 引入的）、行业基准线、失败 PR 归因

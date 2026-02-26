@@ -49,6 +49,9 @@ export interface MetricsOverviewResponse {
     totalPrs: number;
     aiPrs: number;
     psriScore: number | null;
+    psriStructural: number | null;
+    psriChange: number | null;
+    psriDefect: number | null;
     tdiScore: number | null;
     avgComplexity: number | null;
     totalFiles: number;

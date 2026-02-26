@@ -35,7 +35,7 @@ export default function DashboardOverviewPage() {
     if (!projectId && projects.length === 1 && projects[0]) {
       setProjectId(projects[0].id);
     }
-  }, [projectId, projects]);
+  }, [projectId, projects, setProjectId]);
 
   const { data: overviewData, isLoading: overviewLoading } = useQuery({
     queryKey: ['metrics-overview', projectId],

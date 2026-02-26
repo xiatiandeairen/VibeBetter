@@ -4,6 +4,7 @@ import type { ApiResponse, MetricResult } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { requireProject } from '../../../middleware/require-project.js';
 import { metricsService } from '../../../services/metrics.service.js';
+import { digestService } from '../../../services/digest.service.js';
 import { logger } from '../../../utils/logger.js';
 import { getCached, invalidateCache } from '../../../utils/cache.js';
 
@@ -90,6 +91,17 @@ overview.get('/projects/:id/recent-prs', requireProject(), async (c) => {
     return c.json({ success: true, data: prs, error: null });
   } catch (err) {
     logger.error({ err }, 'Recent PRs error');
+    return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
+  }
+});
+
+overview.get('/projects/:id/digest', requireProject(), async (c) => {
+  try {
+    const project = c.get('project');
+    const digest = await digestService.generateWeeklyDigest(project.id);
+    return c.json({ success: true, data: digest, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Digest error');
     return c.json<ApiResponse>({ success: false, data: null, error: 'Internal server error' }, 500);
   }
 });

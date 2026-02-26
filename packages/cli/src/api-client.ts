@@ -108,6 +108,21 @@ export class ApiClient {
     return this.request(`/api/v1/metrics/projects/${this.config.projectId}/compute`, { method: 'POST' });
   }
 
+  async getDigest() {
+    return this.request<{
+      period: { from: string; to: string };
+      metrics: {
+        aiSuccessRate: number | null;
+        aiStableRate: number | null;
+        psriScore: number | null;
+        tdiScore: number | null;
+      };
+      trends: { psriChange: number; tdiChange: number };
+      activity: { prsThisWeek: number; aiPrsThisWeek: number };
+      snapshotCount: number;
+    }>(`/api/v1/metrics/projects/${this.config.projectId}/digest`);
+  }
+
   async healthCheck() {
     const res = await fetch(`${this.config.apiUrl}/health`);
     return res.ok;

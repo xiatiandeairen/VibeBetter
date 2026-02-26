@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.11.0] — 2026-02-26
+
+### Highlights
+- **Weekly Digest Service** — Automated weekly activity summary
+- `DigestService` backend service (7-day metric snapshots + PR activity + trends)
+- `GET /api/v1/metrics/projects/:id/digest` — Weekly digest endpoint
+- `vibe digest` — CLI command for terminal weekly summary
+
+### Added
+- `apps/server/src/services/digest.service.ts` — Digest service
+- Digest route in overview.ts
+- `packages/cli/src/commands/digest.ts` — CLI digest command
+- `getDigest()` method in CLI ApiClient
+- v0.11.0 release archive (4 standard files)
+
+---
+
 ## [v0.10.0] — 2026-02-26
 
 ### Highlights

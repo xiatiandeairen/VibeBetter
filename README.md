@@ -275,6 +275,7 @@ If you ran the seed script:
 - [x] **v0.8.0** — CLI: `vibe` tool with 8 commands for AI Coding workflow
 - [x] **v0.9.0** — Local Analysis Mode: `vibe analyze` (offline, no backend required)
 - [x] **v0.10.0** — Team Comparison View for enterprise ROI analysis
+- [x] **v0.11.0** — Automated Weekly Digest service + `vibe digest` CLI command
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

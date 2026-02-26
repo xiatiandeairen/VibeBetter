@@ -273,6 +273,7 @@ If you ran the seed script:
 - [x] **v0.6.0** — Onboarding + OpenAPI + API Key + Redis Cache + Insight Templates + VS Code
 - [x] **v0.7.0** — Quality Engineering: 133 tests, requireProject middleware, Quality Dashboard
 - [x] **v0.8.0** — CLI: `vibe` tool with 8 commands for AI Coding workflow
+- [x] **v0.9.0** — Local Analysis Mode: `vibe analyze` (offline, no backend required)
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

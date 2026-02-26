@@ -8,12 +8,13 @@ import { decisionsCommand } from './commands/decisions.js';
 import { insightsCommand } from './commands/insights.js';
 import { reportCommand } from './commands/report.js';
 import { syncCommand } from './commands/sync.js';
+import { analyzeCommand } from './commands/analyze.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.8.0');
+  .version('0.9.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -23,5 +24,6 @@ program.addCommand(decisionsCommand);
 program.addCommand(insightsCommand);
 program.addCommand(reportCommand);
 program.addCommand(syncCommand);
+program.addCommand(analyzeCommand);
 
 program.parse();

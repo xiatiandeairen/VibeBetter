@@ -56,6 +56,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.6.0 | Phase 4      | ✅ 完成    | Onboarding + OpenAPI + API Key + Redis + 模板引擎 + VS Code |
 | v0.7.0 | Phase 5      | ✅ 完成    | 质量工程: 测试 +196% + 重构 + Quality Dashboard         |
 | v0.8.0 | Phase 6      | ✅ 完成    | CLI 场景化落地: vibe check/risk/decisions/report/sync    |
+| v0.9.0 | Phase 7      | ✅ 完成    | 本地离线分析: vibe analyze (无需后端)                     |
 
 ## 当前综合评分
 
@@ -96,6 +97,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-007 | 2026-02-26 | v0.6.0 | Onboarding + Report + OpenAPI + API Key + Redis + 模板引擎 |
 | Iteration-008 | 2026-02-26 | v0.7.0 | 质量工程: 测试 133 + requireProject + metrics 拆分 + Quality Dashboard |
 | Iteration-009 | 2026-02-26 | v0.8.0 | CLI: vibe 命令行工具 8 个命令 + 端到端验证 |
+| Iteration-010 | 2026-02-26 | v0.9.0 | 本地离线分析: vibe analyze 命令 |
 
 ## 协作工作流
 

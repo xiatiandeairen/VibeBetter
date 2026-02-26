@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.9.0] — 2026-02-26
+
+### Highlights
+- **`vibe analyze`** — Local offline analysis, no backend required
+- Scans git log (last 90 days by default) for file change frequency
+- Identifies hotspot files (≥10 changes) with risk badges
+- `--days` flag to customize analysis window
+
+### Added
+- `packages/cli/src/commands/analyze.ts` — Local analysis command
+- v0.9.0 release archive (4 standard files)
+
+### Changed
+- CLI version bumped to 0.9.0
+- CLI commands: 8 → 9
+
+---
+
 ## [v0.8.0] — 2026-02-26
 
 ### Highlights

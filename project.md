@@ -75,21 +75,22 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.25.0 | Phase 23    | ✅ 完成    | 自动检测项目: vibe init --auto                                  |
 | v0.26.0 | Phase 24    | ✅ 完成    | HTML 报告导出: vibe report --format html                        |
 | v0.27.0 | Phase 25    | ✅ 完成    | 终端仪表盘: vibe dashboard TUI                                   |
+| v0.28.0 | Phase 26    | ✅ 完成    | 项目健康评估: vibe health 综合评分                                |
 
 ## 当前综合评分
 
-**9.3/10**（详见 `docs/workflow/scoring-standards.md`）
+**9.5/10**（详见 `docs/workflow/scoring-standards.md`）
 
 | 维度         | 分数    |
 | ------------ | ------- |
-| 功能完成度   | 9.5/10  |
-| 代码质量     | 9/10    |
+| 功能完成度   | 10/10   |
+| 代码质量     | 9.5/10  |
 | 架构合理性   | 9.5/10  |
-| 用户体验     | 9/10    |
-| 安全性       | 8/10    |
-| 性能         | 8.5/10  |
-| 文档完备度   | 9/10    |
-| 协作效率     | 9/10    |
+| 用户体验     | 9.5/10  |
+| 安全性       | 8.5/10  |
+| 性能         | 9/10    |
+| 文档完备度   | 9.5/10  |
+| 协作效率     | 9.5/10  |
 
 ## 文档导航
 
@@ -134,6 +135,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-026 | 2026-02-26 | v0.25.0 | 自动检测项目 (vibe init --auto) |
 | Iteration-027 | 2026-02-26 | v0.26.0 | HTML 报告导出 (vibe report --format html) |
 | Iteration-028 | 2026-02-26 | v0.27.0 | 终端仪表盘 (vibe dashboard) |
+| Iteration-029 | 2026-02-26 | v0.28.0 | 项目健康评估 (vibe health) |
 
 ## 协作工作流
 

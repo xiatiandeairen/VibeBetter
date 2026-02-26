@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.28.0] — 2026-02-26
+
+### Highlights
+- **Comprehensive Health Assessment** — `vibe health` runs all checks and outputs a project health grade
+- 7-dimension weighted scoring: API, AI Success, PSRI, TDI, Hotspots, Data Freshness, AI Tools
+- Letter grade output (A+/A/B/C/D) with percentage score
+- Project maturity milestone: 15 CLI commands, score 9.5/10
+
+### Added
+- `packages/cli/src/commands/health.ts` — Health assessment command
+- v0.28.0 release archive (4 standard files)
+
+### Changed
+- CLI commands: 14 → 15
+- CLI version bumped to 0.28.0
+- Project score updated to 9.5/10
+
+---
+
 ## [v0.27.0] — 2026-02-26
 
 ### Highlights

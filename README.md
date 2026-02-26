@@ -283,6 +283,7 @@ If you ran the seed script:
 - [x] **v0.16.0** — Enhanced health check endpoint (database + Redis dependency checks)
 - [x] **v0.17.0** — Contextual tips in CLI commands (check, insights, status)
 - [x] **v0.18.0** — Configurable branding constants (white-label via env vars)
+- [x] **v0.19.0** — Metric alert configuration API (AlertConfig model + CRUD endpoints)
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

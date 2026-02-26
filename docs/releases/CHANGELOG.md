@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.19.0] — 2026-02-26
+
+### Highlights
+- **Metric Alert Configuration** — Threshold-based alerts per project per metric
+- `AlertConfig` Prisma model with project relation
+- 3 new API endpoints: GET/POST/DELETE alert configs
+
+### Added
+- `apps/server/src/routes/v1/alerts.ts` — Alert config CRUD routes
+- `AlertConfig` model in Prisma schema
+- v0.19.0 release archive (4 standard files)
+
+### Changed
+- `Project` model now has `alertConfigs` relation
+- Server index registers `/api/v1/alerts` route
+- Backend endpoints: 37+ → 40+
+
+---
+
 ## [v0.18.0] — 2026-02-26
 
 ### Highlights

@@ -44,6 +44,7 @@ model Project {
   aiBehaviors      AiBehavior[]
   decisions        Decision[]
   weightConfig     WeightConfig?
+  alertConfigs     AlertConfig[]
 
   @@map("projects")
 }
@@ -267,4 +268,20 @@ model WeightConfig {
 
   @@unique([projectId])
   @@map("weight_configs")
+}
+
+model AlertConfig {
+  id        String   @id @default(cuid())
+  projectId String   @map("project_id")
+  metric    String
+  operator  String
+  threshold Float
+  channel   String   @default("in_app")
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId, metric])
+  @@map("alert_configs")
 }

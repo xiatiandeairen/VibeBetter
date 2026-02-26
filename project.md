@@ -61,6 +61,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.11.0 | Phase 9     | ✅ 完成    | 周报摘要: DigestService + vibe digest                    |
 | v0.12.0 | Phase 10    | ✅ 完成    | 错误恢复: CLI 重试 + ErrorBoundary                       |
 | v0.13.0 | Phase 11    | ✅ 完成    | 修复建议: vibe fix 可操作建议                             |
+| v0.14.0 | Phase 12    | ✅ 完成    | Admin 统计: 平台使用分析端点                              |
 
 ## 当前综合评分
 
@@ -106,6 +107,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-012 | 2026-02-26 | v0.11.0 | DigestService + vibe digest + 周报端点 |
 | Iteration-013 | 2026-02-26 | v0.12.0 | CLI 重试逻辑 + React ErrorBoundary |
 | Iteration-014 | 2026-02-26 | v0.13.0 | vibe fix 可操作修复建议 |
+| Iteration-015 | 2026-02-26 | v0.14.0 | Admin 使用统计端点 |
 
 ## 协作工作流
 

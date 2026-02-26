@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.14.0] — 2026-02-26
+
+### Highlights
+- **Admin Usage Analytics** — Platform-level usage statistics endpoint
+- `GET /api/v1/admin/stats` — Admin-only, returns users/projects/PRs/collections counts
+- Role-based access control (requires `admin` role)
+
+### Added
+- `apps/server/src/routes/v1/admin.ts` — Admin stats route
+- v0.14.0 release archive (4 standard files)
+
+### Changed
+- Server index registers `/api/v1/admin` route
+- Backend endpoints: 36+ → 37+
+
+---
+
 ## [v0.13.0] — 2026-02-26
 
 ### Highlights

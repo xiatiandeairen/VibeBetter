@@ -16,6 +16,7 @@ import behaviors from './routes/v1/behaviors.js';
 import webhooks from './routes/v1/webhooks.js';
 import oauth from './routes/v1/oauth.js';
 import docs from './routes/v1/docs.js';
+import admin from './routes/v1/admin.js';
 
 const app = new Hono();
 
@@ -52,6 +53,7 @@ app.route('/api/v1/weights', weights);
 app.route('/api/v1/decisions', decisions);
 app.route('/api/v1/behaviors', behaviors);
 app.route('/api/v1/docs', docs);
+app.route('/api/v1/admin', admin);
 
 serve({ fetch: app.fetch, port: env.PORT }, (info) => {
   logger.info(`VibeBetter server running on http://localhost:${info.port}`);

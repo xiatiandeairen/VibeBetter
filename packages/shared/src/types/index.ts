@@ -94,3 +94,7 @@ export * from './webhook-config';
 export * from './notification';
 export * from './export';
 export * from './api-analytics';
+export * from './partner';
+export * from './license';
+export * from './entitlements';
+export * from './invoice';

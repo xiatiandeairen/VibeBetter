@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v1.88.0] — 2026-02-26
+- `vibe argocd` command — generate ArgoCD application manifest
+
+## [v1.87.0] — 2026-02-26
+- `apps/server/src/utils/data-cleanup.ts` — automatic cleanup of old snapshots, jobs, events beyond retention period
+
+## [v1.86.0] — 2026-02-26
+- `vibe cheatsheet` command — display CLI command cheatsheet
+
+## [v1.85.0] — 2026-02-26
+- `vibe velocity` command — calculate team velocity metrics (PRs/week, merge rate)
+
+## [v1.84.0] — 2026-02-26
+- `packages/shared/src/types/invoice.ts` — InvoiceLine, PaymentStatus, BillingCycle interfaces
+
+## [v1.83.0] — 2026-02-26
+- `vibe backstage` command — generate Backstage catalog entry for the project
+
+## [v1.82.0] — 2026-02-26
+- `apps/server/src/utils/shutdown-manager.ts` — ordered shutdown of all services (workers, cache, db)
+
+## [v1.81.0] — 2026-02-26
+- `vibe journal` command — log daily AI coding notes/observations
+
+## [v1.80.0] — 2026-02-26
+- `vibe coverage` command — show test coverage data from CI if available
+
+## [v1.79.0] — 2026-02-26
+- `packages/shared/src/types/entitlements.ts` — Entitlement, FeatureGate, UsageLimit interfaces
+
+## [v1.78.0] — 2026-02-26
+- `vibe k8s` command — generate Kubernetes deployment manifest for VibeBetter
+
+## [v1.77.0] — 2026-02-26
+- `apps/server/src/utils/config-validator.ts` — validate all server configuration on startup with helpful error messages
+
+## [v1.76.0] — 2026-02-26
+- `vibe remind` command — set metric check reminders
+
+## [v1.75.0] — 2026-02-26
+- `vibe deps` command — analyze file dependencies using import statements
+
+## [v1.74.0] — 2026-02-26
+- `packages/shared/src/types/license.ts` — LicenseKey, LicenseTier, LicenseValidation interfaces
+
+## [v1.73.0] — 2026-02-26
+- `vibe jenkins` command — generate Jenkins pipeline snippet for VibeBetter integration
+
+## [v1.72.0] — 2026-02-26
+- `apps/server/src/utils/health-aggregator.ts` — aggregate health from all subsystems into single status
+
+## [v1.71.0] — 2026-02-26
+- `vibe bookmarks` command — manage bookmarked files for quick access
+
+## [v1.70.0] — 2026-02-26
+- `vibe diff-files` command — show risk diff for specific files between snapshots
+
+## [v1.69.0] — 2026-02-26
+- `packages/shared/src/types/partner.ts` — PartnerIntegration, PartnerAPI, PartnerWebhook interfaces
+
 ## [v1.68.0] — 2026-02-26
 - `vibe opentelemetry` command — export metrics as OpenTelemetry spans
 

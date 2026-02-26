@@ -91,12 +91,24 @@ import { cleanCommand } from './commands/clean.js';
 import { csvCommand } from './commands/csv.js';
 import { undoCommand } from './commands/undo.js';
 import { opentelemetryCommand } from './commands/opentelemetry.js';
+import { diffFilesCommand } from './commands/diff-files.js';
+import { bookmarksCommand } from './commands/bookmarks.js';
+import { jenkinsCommand } from './commands/jenkins.js';
+import { depsCommand } from './commands/deps.js';
+import { remindCommand } from './commands/remind.js';
+import { k8sCommand } from './commands/k8s.js';
+import { coverageCommand } from './commands/coverage.js';
+import { journalCommand } from './commands/journal.js';
+import { backstageCommand } from './commands/backstage.js';
+import { velocityCommand } from './commands/velocity.js';
+import { cheatsheetCommand } from './commands/cheatsheet.js';
+import { argocdCommand } from './commands/argocd.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('1.68.0');
+  .version('1.88.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -189,5 +201,17 @@ program.addCommand(cleanCommand);
 program.addCommand(csvCommand);
 program.addCommand(undoCommand);
 program.addCommand(opentelemetryCommand);
+program.addCommand(diffFilesCommand);
+program.addCommand(bookmarksCommand);
+program.addCommand(jenkinsCommand);
+program.addCommand(depsCommand);
+program.addCommand(remindCommand);
+program.addCommand(k8sCommand);
+program.addCommand(coverageCommand);
+program.addCommand(journalCommand);
+program.addCommand(backstageCommand);
+program.addCommand(velocityCommand);
+program.addCommand(cheatsheetCommand);
+program.addCommand(argocdCommand);
 
 program.parse();

@@ -216,6 +216,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v1.66.0 | Phase 164   | ✅ 完成    | Undo: 操作撤销                                                      |
 | v1.67.0 | Phase 165   | ✅ 完成    | Structured Error: 结构化错误类型                                     |
 | v1.68.0 | Phase 166   | ✅ 完成    | OpenTelemetry: 指标 OTLP 导出                                       |
+| v1.69.0 | Phase 167   | ✅ 完成    | Partner: 合作伙伴集成类型                                           |
+| v1.70.0 | Phase 168   | ✅ 完成    | Diff Files: 文件级风险对比                                          |
+| v1.71.0 | Phase 169   | ✅ 完成    | Bookmarks: 文件书签快速访问                                         |
+| v1.72.0 | Phase 170   | ✅ 完成    | Health Aggregator: 子系统健康聚合                                   |
+| v1.73.0 | Phase 171   | ✅ 完成    | Jenkins: Jenkins 流水线生成                                         |
+| v1.74.0 | Phase 172   | ✅ 完成    | License: 许可证密钥/层级/验证                                       |
+| v1.75.0 | Phase 173   | ✅ 完成    | Deps: 文件依赖分析                                                  |
+| v1.76.0 | Phase 174   | ✅ 完成    | Remind: 指标提醒设置                                                |
+| v1.77.0 | Phase 175   | ✅ 完成    | Config Validator: 启动配置验证                                      |
+| v1.78.0 | Phase 176   | ✅ 完成    | K8s: Kubernetes 部署清单                                            |
+| v1.79.0 | Phase 177   | ✅ 完成    | Entitlements: 权益/功能门控/用量限制                                |
+| v1.80.0 | Phase 178   | ✅ 完成    | Coverage: 测试覆盖率展示                                            |
+| v1.81.0 | Phase 179   | ✅ 完成    | Journal: 每日 AI 编码日志                                           |
+| v1.82.0 | Phase 180   | ✅ 完成    | Shutdown Manager: 有序关闭管理                                      |
+| v1.83.0 | Phase 181   | ✅ 完成    | Backstage: Backstage 目录生成                                       |
+| v1.84.0 | Phase 182   | ✅ 完成    | Invoice: 发票/支付/账单周期                                         |
+| v1.85.0 | Phase 183   | ✅ 完成    | Velocity: 团队速度指标                                              |
+| v1.86.0 | Phase 184   | ✅ 完成    | Cheatsheet: CLI 速查表                                              |
+| v1.87.0 | Phase 185   | ✅ 完成    | Data Cleanup: 自动数据清理                                          |
+| v1.88.0 | Phase 186   | ✅ 完成    | ArgoCD: ArgoCD 应用清单生成                                         |
 
 ## 当前综合评分
 
@@ -416,6 +436,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-167 | 2026-02-26 | v1.66.0 | Undo 操作撤销 |
 | Iteration-168 | 2026-02-26 | v1.67.0 | Structured Error 结构化错误 |
 | Iteration-169 | 2026-02-26 | v1.68.0 | OpenTelemetry OTLP 导出 |
+| Iteration-170 | 2026-02-26 | v1.69.0 | Partner 合作伙伴类型 |
+| Iteration-171 | 2026-02-26 | v1.70.0 | Diff Files 文件风险对比 |
+| Iteration-172 | 2026-02-26 | v1.71.0 | Bookmarks 文件书签 |
+| Iteration-173 | 2026-02-26 | v1.72.0 | Health Aggregator 健康聚合 |
+| Iteration-174 | 2026-02-26 | v1.73.0 | Jenkins 流水线生成 |
+| Iteration-175 | 2026-02-26 | v1.74.0 | License 许可证类型 |
+| Iteration-176 | 2026-02-26 | v1.75.0 | Deps 依赖分析 |
+| Iteration-177 | 2026-02-26 | v1.76.0 | Remind 指标提醒 |
+| Iteration-178 | 2026-02-26 | v1.77.0 | Config Validator 配置验证 |
+| Iteration-179 | 2026-02-26 | v1.78.0 | K8s Kubernetes 部署 |
+| Iteration-180 | 2026-02-26 | v1.79.0 | Entitlements 权益类型 |
+| Iteration-181 | 2026-02-26 | v1.80.0 | Coverage 覆盖率 |
+| Iteration-182 | 2026-02-26 | v1.81.0 | Journal 编码日志 |
+| Iteration-183 | 2026-02-26 | v1.82.0 | Shutdown Manager 关闭管理 |
+| Iteration-184 | 2026-02-26 | v1.83.0 | Backstage 目录生成 |
+| Iteration-185 | 2026-02-26 | v1.84.0 | Invoice 发票类型 |
+| Iteration-186 | 2026-02-26 | v1.85.0 | Velocity 团队速度 |
+| Iteration-187 | 2026-02-26 | v1.86.0 | Cheatsheet 速查表 |
+| Iteration-188 | 2026-02-26 | v1.87.0 | Data Cleanup 数据清理 |
+| Iteration-189 | 2026-02-26 | v1.88.0 | ArgoCD 应用清单 |
 
 ## 协作工作流
 

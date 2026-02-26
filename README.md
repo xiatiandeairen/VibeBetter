@@ -266,7 +266,7 @@ If you ran the seed script:
 - [x] **v0.1.0** — MVP: Data collection + AI metrics + PSRI + Dashboard
 - [x] **v0.2.0** — Decisions + AI Insights + Health Assessment + Service layer
 - [x] **v0.3.0** — Settings + Radar chart + Toast + Skeleton + Performance
-- [ ] **v0.4.0** — OAuth SSO + Webhook + Drill-down + Risk propagation + Security
+- [x] **v0.4.0** — Webhook + OAuth + Drill-down + Compare + Security + 45 tests
 - [ ] **v0.5.0** — Organization-level + Product differentiation + IDE plugin
 
 See [`docs/roadmap-v0.4.md`](docs/roadmap-v0.4.md) for v0.4 details and [`docs/changelog/CHANGELOG.md`](docs/changelog/CHANGELOG.md) for release history.

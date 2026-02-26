@@ -51,22 +51,22 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.1.0 | MVP          | ✅ 完成    | 采集→计算→可视化链路通                                  |
 | v0.2.0 | Phase 1a     | ✅ 完成    | PSRI 6 维 + TDI + 决策引擎 + AI 行为分析               |
 | v0.3.0 | Phase 1b     | ✅ 完成    | Settings + 雷达图 + Toast + 骨架屏 + 决策正向规则       |
-| v0.4.0 | Phase 2      | ⏳ 计划中  | OAuth + Webhook + 下钻 + 风险传播 + 安全加固            |
+| v0.4.0 | Phase 2      | ✅ 完成    | Webhook + OAuth + 下钻 + 对比 + 安全加固 + 45 测试      |
 | v0.5.0 | Phase 3      | ⏳ 计划中  | 组织级 + 产品分化 + IDE 插件                            |
 
 ## 当前综合评分
 
-**7.15/10**（详见 `docs/workflow/scoring-standards.md`）
+**7.85/10**（详见 `docs/workflow/scoring-standards.md`）
 
 | 维度         | 分数    |
 | ------------ | ------- |
-| 功能完成度   | 8/10    |
-| 代码质量     | 6.5/10  |
-| 架构合理性   | 7/10    |
+| 功能完成度   | 9/10    |
+| 代码质量     | 7.5/10  |
+| 架构合理性   | 8/10    |
 | 用户体验     | 8/10    |
-| 安全性       | 3/10    |
+| 安全性       | 6/10    |
 | 性能         | 7/10    |
-| 文档完备度   | 8/10    |
+| 文档完备度   | 8.5/10  |
 | 协作效率     | 9/10    |
 
 ## 文档导航
@@ -89,6 +89,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-002 | 2026-02-25 | v0.2.0 | Decisions + AI Insights 前端 + 种子数据修复   |
 | Iteration-003 | 2026-02-25 | v0.2.0 | Health Assessment + TDI + 端到端验证          |
 | Iteration-004 | 2026-02-26 | v0.3.0 | 20 轮微循环：Settings + Radar + Toast + Skeleton + 性能优化 |
+| Iteration-005 | 2026-02-26 | v0.4.0 | PR/File/Drilldown/Compare 页 + Webhook + OAuth + Security + 45 tests |
 
 ## 协作工作流
 

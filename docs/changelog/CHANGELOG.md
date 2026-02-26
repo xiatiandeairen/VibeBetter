@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.4.0] — 2026-02-26
+
+### Highlights
+- **17 frontend routes** — 6 new pages (PR List, File Explorer, PSRI Drill-down, Trend Compare, Settings, OAuth)
+- **GitHub Webhook** — Real-time PR event processing with auto-collection and metrics recomputation
+- **GitHub OAuth** — Infrastructure code-ready (needs GITHUB_CLIENT_ID/SECRET configuration)
+- **Security hardening** — CORS whitelist, API rate limiting, structured Pino logging
+- **Deep analysis** — PSRI drill-down with breadcrumb navigation, trend comparison, file risk explorer
+- **45 automated tests** — up from 29 (16 new integration tests)
+
+### Added
+- PR list page (`/dashboard/prs`) with inline detail expansion
+- File explorer page (`/dashboard/files`) with search, risk badges, AI% column
+- PSRI drill-down page (`/dashboard/drilldown`) with breadcrumb: PSRI → Dimension → File
+- Trend comparison page (`/dashboard/compare`) with side-by-side period analysis
+- GitHub Webhook endpoint (`POST /api/v1/webhooks/github`) handling `pull_request` and `push` events
+- GitHub OAuth flow (`/api/v1/oauth/github` → `/callback` → `/status`)
+- Rate limiting middleware (10 req/min on auth routes)
+- Pino structured logging (replaces console.log/error)
+- CSV data export (`GET /api/v1/metrics/projects/:id/export?format=csv`)
+- Zustand global state store (persisted project selection + auth state)
+- Auto-collection on project creation (fire-and-forget)
+- "Export CSV" button on Dashboard
+- 16 new integration tests covering schema validation + utility functions
+
+### Changed
+- CORS: from `origin: '*'` to whitelist (`localhost:3000`, `localhost:3001`, `CORS_ORIGIN`)
+- Login page: added Suspense boundary for `useSearchParams`, conditional GitHub OAuth button
+- Backend files/top route: accepts `sort` query param (structural, change, default)
+- Navigation: added Pull Requests, Files, Drill-down, Compare, Settings to sidebar
+
+### Security
+- Rate limiting on `/auth/register` and `/auth/login` (10 req/60s)
+- CORS origin whitelist (configurable via `CORS_ORIGIN` env)
+- Structured logging prevents sensitive data leaks
+
+---
+
 ## [v0.3.0] — 2026-02-26
 
 ### Highlights

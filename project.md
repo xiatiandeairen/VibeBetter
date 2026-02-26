@@ -76,6 +76,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.26.0 | Phase 24    | ✅ 完成    | HTML 报告导出: vibe report --format html                        |
 | v0.27.0 | Phase 25    | ✅ 完成    | 终端仪表盘: vibe dashboard TUI                                   |
 | v0.28.0 | Phase 26    | ✅ 完成    | 项目健康评估: vibe health 综合评分                                |
+| v0.29.0 | Phase 27    | ✅ 完成    | Admin 项目统计: 按项目 PR 计数端点                                 |
+| v0.30.0 | Phase 28    | ✅ 完成    | Changelog 命令: AI 检测提交列表                                    |
+| v0.31.0 | Phase 29    | ✅ 完成    | Review 建议: 按风险排序文件审查                                     |
+| v0.32.0 | Phase 30    | ✅ 完成    | Request ID 中间件: X-Request-Id 追踪                                |
+| v0.33.0 | Phase 31    | ✅ 完成    | CI/CD 集成: JSON 指标输出                                           |
+| v0.34.0 | Phase 32    | ✅ 完成    | 定价层级: Free/Pro/Enterprise                                       |
+| v0.35.0 | Phase 33    | ✅ 完成    | Watch 模式: 实时指标轮询                                            |
+| v0.36.0 | Phase 34    | ✅ 完成    | Config 命令: CLI 配置管理                                           |
+| v0.37.0 | Phase 35    | ✅ 完成    | Metrics Collector: 请求计数器                                       |
+| v0.38.0 | Phase 36    | ✅ 完成    | Git Hook: pre-commit 安装                                          |
+| v0.39.0 | Phase 37    | ✅ 完成    | Subscription 类型: 订阅/计划/用量接口                               |
+| v0.40.0 | Phase 38    | ✅ 完成    | Search 命令: 文件名搜索                                             |
+| v0.41.0 | Phase 39    | ✅ 完成    | Explain 命令: 指标解释                                              |
+| v0.42.0 | Phase 40    | ✅ 完成    | 输入净化: sanitize 工具函数                                         |
+| v0.43.0 | Phase 41    | ✅ 完成    | Badge 命令: shields.io 徽章生成                                     |
+| v0.44.0 | Phase 42    | ✅ 完成    | 集成注册表: GitHub/GitLab/Jira/Slack                                |
+| v0.45.0 | Phase 43    | ✅ 完成    | Summary 命令: 综合检查+洞察+风险                                    |
+| v0.46.0 | Phase 44    | ✅ 完成    | History 命令: 指标历史火花图                                        |
+| v0.47.0 | Phase 45    | ✅ 完成    | Validators: 通用验证工具函数                                        |
+| v0.48.0 | Phase 46    | ✅ 完成    | Export Config: YAML 配置导出                                        |
 
 ## 当前综合评分
 
@@ -87,7 +107,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | 代码质量     | 9.5/10  |
 | 架构合理性   | 9.5/10  |
 | 用户体验     | 9.5/10  |
-| 安全性       | 8.5/10  |
+| 安全性       | 9/10    |
 | 性能         | 9/10    |
 | 文档完备度   | 9.5/10  |
 | 协作效率     | 9.5/10  |
@@ -136,6 +156,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-027 | 2026-02-26 | v0.26.0 | HTML 报告导出 (vibe report --format html) |
 | Iteration-028 | 2026-02-26 | v0.27.0 | 终端仪表盘 (vibe dashboard) |
 | Iteration-029 | 2026-02-26 | v0.28.0 | 项目健康评估 (vibe health) |
+| Iteration-030 | 2026-02-26 | v0.29.0 | Admin 项目统计端点 |
+| Iteration-031 | 2026-02-26 | v0.30.0 | Changelog 命令 (AI 检测) |
+| Iteration-032 | 2026-02-26 | v0.31.0 | Review 建议命令 |
+| Iteration-033 | 2026-02-26 | v0.32.0 | Request ID 中间件 |
+| Iteration-034 | 2026-02-26 | v0.33.0 | CI/CD 集成命令 |
+| Iteration-035 | 2026-02-26 | v0.34.0 | 定价层级常量 |
+| Iteration-036 | 2026-02-26 | v0.35.0 | Watch 实时轮询 |
+| Iteration-037 | 2026-02-26 | v0.36.0 | Config 配置管理 |
+| Iteration-038 | 2026-02-26 | v0.37.0 | Metrics Collector 请求计数 |
+| Iteration-039 | 2026-02-26 | v0.38.0 | Git Hook 安装 |
+| Iteration-040 | 2026-02-26 | v0.39.0 | Subscription 类型定义 |
+| Iteration-041 | 2026-02-26 | v0.40.0 | Search 文件搜索 |
+| Iteration-042 | 2026-02-26 | v0.41.0 | Explain 指标解释 |
+| Iteration-043 | 2026-02-26 | v0.42.0 | Sanitize 输入净化 |
+| Iteration-044 | 2026-02-26 | v0.43.0 | Badge 徽章生成 |
+| Iteration-045 | 2026-02-26 | v0.44.0 | 集成注册表 |
+| Iteration-046 | 2026-02-26 | v0.45.0 | Summary 综合命令 |
+| Iteration-047 | 2026-02-26 | v0.46.0 | History 火花图 |
+| Iteration-048 | 2026-02-26 | v0.47.0 | Validators 验证工具 |
+| Iteration-049 | 2026-02-26 | v0.48.0 | Export Config YAML 导出 |
 
 ## 协作工作流
 

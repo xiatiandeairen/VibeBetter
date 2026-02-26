@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.16.0] — 2026-02-26
+
+### Highlights
+- **Enhanced Health Check** — Production-grade `/health` with database + Redis checks
+- Returns `healthy` (200) or `degraded` (503) based on dependency status
+- Per-check breakdown for monitoring integration
+
+### Changed
+- `/health` endpoint now checks PostgreSQL (Prisma) and Redis (ioredis)
+- v0.16.0 release archive (4 standard files)
+
+---
+
 ## [v0.15.0] — 2026-02-26
 
 ### Highlights

@@ -3,6 +3,7 @@ import { cors } from 'hono/cors';
 import { logger as honoLogger } from 'hono/logger';
 import { serve } from '@hono/node-server';
 import type { ApiResponse } from '@vibebetter/shared';
+import { prisma } from '@vibebetter/db';
 import { env } from './config/env.js';
 import { logger } from './utils/logger.js';
 import { onError } from './middleware/error-handler.js';
@@ -35,12 +36,28 @@ app.use('*', honoLogger());
 
 app.onError(onError);
 
-app.get('/health', (c) => {
-  return c.json<ApiResponse<{ status: string; timestamp: string }>>({
+app.get('/health', async (c) => {
+  const checks: Record<string, boolean> = {};
+
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    checks.database = true;
+  } catch { checks.database = false; }
+
+  try {
+    const IORedis = (await import('ioredis')).default;
+    const redis = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', { connectTimeout: 2000 });
+    await redis.ping();
+    await redis.quit();
+    checks.redis = true;
+  } catch { checks.redis = false; }
+
+  const healthy = Object.values(checks).every(v => v);
+  return c.json({
     success: true,
-    data: { status: 'ok', timestamp: new Date().toISOString() },
+    data: { status: healthy ? 'healthy' : 'degraded', timestamp: new Date().toISOString(), checks },
     error: null,
-  });
+  }, healthy ? 200 : 503);
 });
 
 app.route('/api/v1/webhooks', webhooks);

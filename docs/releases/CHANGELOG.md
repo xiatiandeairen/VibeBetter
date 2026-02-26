@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.13.0] — 2026-02-26
+
+### Highlights
+- **`vibe fix`** — Actionable fix suggestions for high-risk files
+- Generates specific recommendations based on file metrics
+- 5 suggestion types: split modules, reduce complexity, stabilize interfaces, assign ownership, review AI code
+- Priority-colored output (high/medium/low)
+
+### Added
+- `packages/cli/src/commands/fix.ts` — Fix suggestions command
+- v0.13.0 release archive (4 standard files)
+
+### Changed
+- CLI commands: 10 → 11
+- CLI version bumped to 0.13.0
+
+---
+
 ## [v0.12.0] — 2026-02-26
 
 ### Highlights

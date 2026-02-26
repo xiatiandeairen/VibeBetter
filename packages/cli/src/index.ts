@@ -18,12 +18,15 @@ import { healthCommand } from './commands/health.js';
 import { changelogCommand } from './commands/changelog.js';
 import { reviewCommand } from './commands/review.js';
 import { ciCommand } from './commands/ci.js';
+import { watchCommand } from './commands/watch.js';
+import { configCommand } from './commands/config-cmd.js';
+import { hookCommand } from './commands/hook.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.33.0');
+  .version('0.38.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -43,5 +46,8 @@ program.addCommand(healthCommand);
 program.addCommand(changelogCommand);
 program.addCommand(reviewCommand);
 program.addCommand(ciCommand);
+program.addCommand(watchCommand);
+program.addCommand(configCommand);
+program.addCommand(hookCommand);
 
 program.parse();

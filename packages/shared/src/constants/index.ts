@@ -30,3 +30,5 @@ export const COLLECTION_INTERVALS = {
 
 export { INDUSTRY_BENCHMARKS, getBenchmarkLevel } from './benchmarks';
 export { BRANDING } from './branding';
+export { PRICING_TIERS } from './pricing';
+export type { PricingTier } from './pricing';

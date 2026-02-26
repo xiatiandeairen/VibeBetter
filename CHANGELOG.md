@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v0.68.0] — 2026-02-26
+- `vibe jira` command — format risk report for Jira ticket creation
+
+## [v0.67.0] — 2026-02-26
+- `apps/server/src/utils/pagination.ts` — reusable cursor-based pagination helpers
+
+## [v0.66.0] — 2026-02-26
+- `vibe why` command — explain why a file is risky with detailed breakdown
+
+## [v0.65.0] — 2026-02-26
+- `vibe top` command — live-updating top files by risk (like unix `top`)
+
+## [v0.64.0] — 2026-02-26
+- `packages/shared/src/types/organization.ts` — Organization, Team, Membership, Role interfaces
+
+## [v0.63.0] — 2026-02-26
+- `vibe git-stats` command — local git statistics (commits/day, authors, file churn)
+
+## [v0.62.0] — 2026-02-26
+- `apps/server/src/middleware/cors-config.ts` — centralized CORS configuration with env-based origins
+
+## [v0.61.0] — 2026-02-26
+- `vibe what-if` command — simulate weight changes and show PSRI impact
+
+## [v0.60.0] — 2026-02-26
+- `vibe hotspots` command — dedicated hotspot analysis with drill-down
+
+## [v0.59.0] — 2026-02-26
+- `packages/shared/src/types/audit.ts` — AuditLog, AuditAction interfaces for compliance
+
+## [v0.58.0] — 2026-02-26
+- `vibe slack-report` command — format report for Slack webhook posting
+
+## [v0.57.0] — 2026-02-26
+- `apps/server/src/utils/crypto.ts` — helper functions for hashing, token generation, HMAC verification
+
+## [v0.56.0] — 2026-02-26
+- `vibe onboard` command — interactive CLI onboarding wizard
+
+## [v0.55.0] — 2026-02-26
+- `vibe compare-tools` command — compare effectiveness across AI tools
+
+## [v0.54.0] — 2026-02-26
+- `packages/shared/src/constants/feature-flags.ts` — FeatureFlag type + default flags
+
+## [v0.53.0] — 2026-02-26
+- `vibe deploy-check` command — pre-deployment risk assessment
+
+## [v0.52.0] — 2026-02-26
+- `apps/server/src/utils/rate-limit-store.ts` — Redis-backed rate limit store
+
+## [v0.51.0] — 2026-02-26
+- `vibe help-me` command — interactive troubleshooting guide based on current metrics
+
+## [v0.50.0] — 2026-02-26
+- `vibe trends` command — show metric trend arrows over last 5 snapshots
+
+## [v0.49.0] — 2026-02-26
+- `packages/shared/src/types/billing.ts` — BillingEvent, Invoice, PaymentMethod interfaces
+
 ## [v0.48.0] — 2026-02-26
 - `vibe export-config` command — export current CLI configuration as YAML
 

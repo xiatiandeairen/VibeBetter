@@ -96,6 +96,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.46.0 | Phase 44    | ✅ 完成    | History 命令: 指标历史火花图                                        |
 | v0.47.0 | Phase 45    | ✅ 完成    | Validators: 通用验证工具函数                                        |
 | v0.48.0 | Phase 46    | ✅ 完成    | Export Config: YAML 配置导出                                        |
+| v0.49.0 | Phase 47    | ✅ 完成    | Billing Types: 计费事件/发票/支付方式                                |
+| v0.50.0 | Phase 48    | ✅ 完成    | Trends: 指标趋势箭头                                                |
+| v0.51.0 | Phase 49    | ✅ 完成    | Help Me: 交互式故障排除                                              |
+| v0.52.0 | Phase 50    | ✅ 完成    | Redis Rate Limit Store                                              |
+| v0.53.0 | Phase 51    | ✅ 完成    | Deploy Check: 部署前风险评估                                         |
+| v0.54.0 | Phase 52    | ✅ 完成    | Feature Flags: 功能开关类型                                          |
+| v0.55.0 | Phase 53    | ✅ 完成    | Compare Tools: AI 工具对比                                           |
+| v0.56.0 | Phase 54    | ✅ 完成    | Onboard: CLI 引导向导                                                |
+| v0.57.0 | Phase 55    | ✅ 完成    | Crypto: 哈希/令牌/HMAC 工具                                         |
+| v0.58.0 | Phase 56    | ✅ 完成    | Slack Report: Slack Webhook 报告                                     |
+| v0.59.0 | Phase 57    | ✅ 完成    | Audit Types: 审计日志接口                                            |
+| v0.60.0 | Phase 58    | ✅ 完成    | Hotspots: 热点深度分析                                               |
+| v0.61.0 | Phase 59    | ✅ 完成    | What-If: PSRI 权重模拟                                               |
+| v0.62.0 | Phase 60    | ✅ 完成    | CORS Config: 集中 CORS 配置                                         |
+| v0.63.0 | Phase 61    | ✅ 完成    | Git Stats: 本地 Git 统计                                            |
+| v0.64.0 | Phase 62    | ✅ 完成    | Organization Types: 多租户类型                                       |
+| v0.65.0 | Phase 63    | ✅ 完成    | Top: 实时风险排行                                                    |
+| v0.66.0 | Phase 64    | ✅ 完成    | Why: 风险原因解释                                                    |
+| v0.67.0 | Phase 65    | ✅ 完成    | Pagination: 游标分页工具                                             |
+| v0.68.0 | Phase 66    | ✅ 完成    | Jira: 风险报告 Jira 集成                                            |
 
 ## 当前综合评分
 
@@ -176,6 +196,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-047 | 2026-02-26 | v0.46.0 | History 火花图 |
 | Iteration-048 | 2026-02-26 | v0.47.0 | Validators 验证工具 |
 | Iteration-049 | 2026-02-26 | v0.48.0 | Export Config YAML 导出 |
+| Iteration-050 | 2026-02-26 | v0.49.0 | Billing Types 计费接口 |
+| Iteration-051 | 2026-02-26 | v0.50.0 | Trends 指标趋势箭头 |
+| Iteration-052 | 2026-02-26 | v0.51.0 | Help Me 交互式故障排除 |
+| Iteration-053 | 2026-02-26 | v0.52.0 | Redis Rate Limit Store |
+| Iteration-054 | 2026-02-26 | v0.53.0 | Deploy Check 部署前风险评估 |
+| Iteration-055 | 2026-02-26 | v0.54.0 | Feature Flags 功能开关 |
+| Iteration-056 | 2026-02-26 | v0.55.0 | Compare Tools AI 工具对比 |
+| Iteration-057 | 2026-02-26 | v0.56.0 | Onboard CLI 引导向导 |
+| Iteration-058 | 2026-02-26 | v0.57.0 | Crypto 哈希/令牌/HMAC |
+| Iteration-059 | 2026-02-26 | v0.58.0 | Slack Report Webhook 报告 |
+| Iteration-060 | 2026-02-26 | v0.59.0 | Audit Types 审计日志 |
+| Iteration-061 | 2026-02-26 | v0.60.0 | Hotspots 热点深度分析 |
+| Iteration-062 | 2026-02-26 | v0.61.0 | What-If PSRI 权重模拟 |
+| Iteration-063 | 2026-02-26 | v0.62.0 | CORS Config 集中配置 |
+| Iteration-064 | 2026-02-26 | v0.63.0 | Git Stats 本地统计 |
+| Iteration-065 | 2026-02-26 | v0.64.0 | Organization Types 多租户 |
+| Iteration-066 | 2026-02-26 | v0.65.0 | Top 实时风险排行 |
+| Iteration-067 | 2026-02-26 | v0.66.0 | Why 风险原因解释 |
+| Iteration-068 | 2026-02-26 | v0.67.0 | Pagination 游标分页 |
+| Iteration-069 | 2026-02-26 | v0.68.0 | Jira 风险报告集成 |
 
 ## 协作工作流
 

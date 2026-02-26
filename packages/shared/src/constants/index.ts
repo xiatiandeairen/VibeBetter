@@ -34,3 +34,5 @@ export { PRICING_TIERS } from './pricing';
 export type { PricingTier } from './pricing';
 export { INTEGRATIONS, getIntegration, getIntegrationsByCategory } from './integrations';
 export type { Integration } from './integrations';
+export { FEATURE_FLAGS, getDefaultFlags, isFeatureEnabled, getFlagsByCategory } from './feature-flags';
+export type { FeatureFlag, FeatureFlagKey } from './feature-flags';

@@ -27,12 +27,24 @@ import { badgeCommand } from './commands/badge.js';
 import { summaryCommand } from './commands/summary.js';
 import { historyCommand } from './commands/history.js';
 import { exportConfigCommand } from './commands/export-config.js';
+import { trendsCommand } from './commands/trends.js';
+import { helpMeCommand } from './commands/help-me.js';
+import { deployCheckCommand } from './commands/deploy-check.js';
+import { compareToolsCommand } from './commands/compare-tools.js';
+import { onboardCommand } from './commands/onboard.js';
+import { slackReportCommand } from './commands/slack-report.js';
+import { hotspotsCommand } from './commands/hotspots.js';
+import { whatIfCommand } from './commands/what-if.js';
+import { gitStatsCommand } from './commands/git-stats.js';
+import { topCommand } from './commands/top.js';
+import { whyCommand } from './commands/why.js';
+import { jiraCommand } from './commands/jira.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('0.48.0');
+  .version('0.68.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -61,5 +73,17 @@ program.addCommand(badgeCommand);
 program.addCommand(summaryCommand);
 program.addCommand(historyCommand);
 program.addCommand(exportConfigCommand);
+program.addCommand(trendsCommand);
+program.addCommand(helpMeCommand);
+program.addCommand(deployCheckCommand);
+program.addCommand(compareToolsCommand);
+program.addCommand(onboardCommand);
+program.addCommand(slackReportCommand);
+program.addCommand(hotspotsCommand);
+program.addCommand(whatIfCommand);
+program.addCommand(gitStatsCommand);
+program.addCommand(topCommand);
+program.addCommand(whyCommand);
+program.addCommand(jiraCommand);
 
 program.parse();

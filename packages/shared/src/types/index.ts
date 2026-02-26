@@ -87,3 +87,6 @@ export * from './dashboard';
 export * from './insight';
 export * from './rules';
 export * from './subscription';
+export * from './billing';
+export * from './audit';
+export * from './organization';

@@ -102,14 +102,14 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 详见 `docs/workflow/README.md`。
 
-## 下一步计划（v0.6.0）
+## 下一步计划（v0.7.0）
 
 详见 [`docs/roadmap/current.md`](docs/roadmap/current.md)。
 
-**版本主题：从工具到产品** — 让真实用户 5 分钟内获得第一个洞察。
+**版本主题：质量即产品力** — 从「功能可用」提升到「工程可信赖」。
 
 核心方向：
-1. **首次体验** — Onboarding 引导流程 + 项目导入向导 + 首次洞察报告
-2. **开发者体验** — OpenAPI 文档 + API Key 认证 + Webhook 配置 UI
-3. **可靠性** — Prisma migrate + Sentry + E2E 测试 + Redis 缓存
-4. **产品分化基础** — 插件化 Dashboard + Insight 模板引擎 + VS Code 扩展骨架
+1. **测试体系** — 后端单元测试补全 + API 契约测试 + 前端组件测试 + 覆盖率度量（目标 120+ 测试, ≥70% 覆盖率）
+2. **代码重构** — 项目权限中间件（消除 25+ 处重复）+ metrics.ts 拆分 + 前端大文件组件化
+3. **CI 规范** — 覆盖率门禁 + Pre-commit Hook + Conventional Commits + PR 模板
+4. **AI Coding 规范** — AI 代码质量检查清单 + 质量度量 Dashboard + 变更影响分析

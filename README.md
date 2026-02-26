@@ -269,7 +269,8 @@ If you ran the seed script:
 - [x] **v0.2.0** — Decisions + AI Insights + Health Assessment + Service layer
 - [x] **v0.3.0** — Settings + Radar chart + Toast + Skeleton + Performance
 - [x] **v0.4.0** — Webhook + OAuth + Drill-down + Compare + Security + 45 tests
-- [ ] **v0.5.0** — Organization-level + Product differentiation + IDE plugin
+- [x] **v0.5.0** — AI Attribution + Organization + Benchmarks + CI + Docs restructure
+- [ ] **v0.6.0** — Onboarding + OpenAPI + E2E testing + Sentry + Product differentiation
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

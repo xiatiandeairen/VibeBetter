@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.5.0] — 2026-02-26
+
+### Highlights
+- **AI Attribution Analysis** — AI vs Human code quality comparison (complexity, stability, rollback rate)
+- **Organization Dashboard** — Multi-project health comparison table
+- **Developer Effectiveness** — Per-developer AI usage ranking
+- **Industry Benchmarks** — Excellent/Good/Average/Poor labels on all metrics
+- **Failed PR Attribution** — Major revision / rollback / high review breakdown
+- **GitHub Actions CI** — Automated lint + test + build pipeline
+- **Documentation restructure** — Numbered version archives with standardized format
+
+### Added
+- Attribution page (`/dashboard/attribution`) with AI vs Human comparison
+- Organization page (`/dashboard/org`) with sortable project comparison
+- Developers page (`/dashboard/developers`) with AI usage ranking
+- Industry benchmark badges on Dashboard metric cards
+- `AttributionService` backend (AI attribution + failed PR analysis)
+- 3 new API endpoints (attribution, failed-prs, developers)
+- `benchmarks.ts` shared constants with `getBenchmarkLevel()`
+- GitHub Actions CI workflow (`.github/workflows/ci.yml`)
+- Documentation restructure: `docs/releases/vX.Y.Z/` format
+
+### Changed
+- Documentation directory: `product/` `releases/` `roadmap/` `process/`
+- Removed redundant files (plan.md, analysis.md, workflow iterations)
+- Risk/decision tracking moved to GitHub Issues
+
+---
+
 ## [v0.4.0] — 2026-02-26
 
 ### Highlights

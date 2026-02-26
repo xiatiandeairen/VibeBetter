@@ -2,23 +2,18 @@ import { Hono } from 'hono';
 import type { ApiResponse } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
+import { requireProject } from '../../middleware/require-project.js';
 import { enqueueCollectionJob } from '../../jobs/scheduler.js';
 
 const collectors = new Hono();
 
 collectors.use('*', authMiddleware);
 
-collectors.post('/projects/:id/collect', async (c) => {
+collectors.post('/projects/:id/collect', requireProject(), async (c) => {
   try {
-    const projectId = c.req.param('id');
-    const { userId } = c.get('user');
+    const project = c.get('project');
 
-    const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-    if (!project) {
-      return c.json<ApiResponse>({ success: false, data: null, error: 'Project not found' }, 404);
-    }
-
-    const job = await enqueueCollectionJob(projectId);
+    const job = await enqueueCollectionJob(project.id);
     return c.json<ApiResponse<{ jobId: string }>>(
       { success: true, data: { jobId: job.id ?? 'unknown' }, error: null },
       202,
@@ -29,18 +24,12 @@ collectors.post('/projects/:id/collect', async (c) => {
   }
 });
 
-collectors.get('/projects/:id/jobs', async (c) => {
+collectors.get('/projects/:id/jobs', requireProject(), async (c) => {
   try {
-    const projectId = c.req.param('id');
-    const { userId } = c.get('user');
-
-    const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-    if (!project) {
-      return c.json<ApiResponse>({ success: false, data: null, error: 'Project not found' }, 404);
-    }
+    const project = c.get('project');
 
     const jobs = await prisma.collectionJob.findMany({
-      where: { projectId },
+      where: { projectId: project.id },
       orderBy: { createdAt: 'desc' },
       take: 50,
     });

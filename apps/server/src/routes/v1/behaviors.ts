@@ -3,20 +3,16 @@ import { UserBehaviorSchema, AiBehaviorSchema } from '@vibebetter/shared';
 import type { ApiResponse, UserBehaviorStats, AiBehaviorStats } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
+import { requireProject } from '../../middleware/require-project.js';
 import { AppError } from '../../middleware/error-handler.js';
 
 const behaviors = new Hono();
 
 behaviors.use('*', authMiddleware);
 
-behaviors.post('/projects/:id/user-behaviors', async (c) => {
-  const projectId = c.req.param('id');
+behaviors.post('/projects/:id/user-behaviors', requireProject(), async (c) => {
+  const project = c.get('project');
   const { userId } = c.get('user');
-
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
 
   const body = await c.req.json();
   const parsed = UserBehaviorSchema.safeParse(body);
@@ -26,7 +22,7 @@ behaviors.post('/projects/:id/user-behaviors', async (c) => {
 
   const behavior = await prisma.userBehavior.create({
     data: {
-      projectId,
+      projectId: project.id,
       userId,
       eventType: parsed.data.eventType,
       filePath: parsed.data.filePath,
@@ -38,14 +34,8 @@ behaviors.post('/projects/:id/user-behaviors', async (c) => {
   return c.json<ApiResponse<typeof behavior>>({ success: true, data: behavior, error: null }, 201);
 });
 
-behaviors.post('/projects/:id/ai-behaviors', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
-
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
+behaviors.post('/projects/:id/ai-behaviors', requireProject(), async (c) => {
+  const project = c.get('project');
 
   const body = await c.req.json();
   const parsed = AiBehaviorSchema.safeParse(body);
@@ -55,7 +45,7 @@ behaviors.post('/projects/:id/ai-behaviors', async (c) => {
 
   const behavior = await prisma.aiBehavior.create({
     data: {
-      projectId,
+      projectId: project.id,
       tool: parsed.data.tool,
       action: parsed.data.action,
       filePath: parsed.data.filePath,
@@ -71,17 +61,11 @@ behaviors.post('/projects/:id/ai-behaviors', async (c) => {
   return c.json<ApiResponse<typeof behavior>>({ success: true, data: behavior, error: null }, 201);
 });
 
-behaviors.get('/projects/:id/user-behaviors/stats', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
-
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
+behaviors.get('/projects/:id/user-behaviors/stats', requireProject(), async (c) => {
+  const project = c.get('project');
 
   const allBehaviors = await prisma.userBehavior.findMany({
-    where: { projectId },
+    where: { projectId: project.id },
     select: { eventType: true, filePath: true, sessionDuration: true },
   });
 
@@ -109,17 +93,11 @@ behaviors.get('/projects/:id/user-behaviors/stats', async (c) => {
   return c.json<ApiResponse<UserBehaviorStats>>({ success: true, data: stats, error: null });
 });
 
-behaviors.get('/projects/:id/ai-behaviors/stats', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
-
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
+behaviors.get('/projects/:id/ai-behaviors/stats', requireProject(), async (c) => {
+  const project = c.get('project');
 
   const allBehaviors = await prisma.aiBehavior.findMany({
-    where: { projectId },
+    where: { projectId: project.id },
     select: {
       tool: true,
       generationCount: true,

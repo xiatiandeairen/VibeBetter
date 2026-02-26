@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import type { ApiResponse, DecisionItem } from '@vibebetter/shared';
-import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
+import { requireProject } from '../../middleware/require-project.js';
 import { AppError } from '../../middleware/error-handler.js';
 import { decisionService } from '../../services/decision.service.js';
 
@@ -9,16 +9,10 @@ const decisions = new Hono();
 
 decisions.use('*', authMiddleware);
 
-decisions.get('/projects/:id/decisions', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
+decisions.get('/projects/:id/decisions', requireProject(), async (c) => {
+  const project = c.get('project');
 
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
-
-  const list = await decisionService.listDecisions(projectId);
+  const list = await decisionService.listDecisions(project.id);
   const data: DecisionItem[] = list.map((d) => ({
     id: d.id,
     level: d.level,
@@ -33,16 +27,10 @@ decisions.get('/projects/:id/decisions', async (c) => {
   return c.json<ApiResponse<DecisionItem[]>>({ success: true, data, error: null });
 });
 
-decisions.post('/projects/:id/decisions/generate', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
+decisions.post('/projects/:id/decisions/generate', requireProject(), async (c) => {
+  const project = c.get('project');
 
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
-
-  const generated = await decisionService.generateDecisions(projectId);
+  const generated = await decisionService.generateDecisions(project.id);
   const data: DecisionItem[] = generated.map((d) => ({
     id: d.id,
     level: d.level,

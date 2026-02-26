@@ -3,22 +3,17 @@ import { WeightConfigSchema, PSRI_DEFAULT_WEIGHTS } from '@vibebetter/shared';
 import type { ApiResponse, WeightConfigData } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
+import { requireProject } from '../../middleware/require-project.js';
 import { AppError } from '../../middleware/error-handler.js';
 
 const weights = new Hono();
 
 weights.use('*', authMiddleware);
 
-weights.get('/projects/:id/weights', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
+weights.get('/projects/:id/weights', requireProject(), async (c) => {
+  const project = c.get('project');
 
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
-
-  const config = await prisma.weightConfig.findUnique({ where: { projectId } });
+  const config = await prisma.weightConfig.findUnique({ where: { projectId: project.id } });
 
   const data: WeightConfigData = config
     ? {
@@ -41,14 +36,8 @@ weights.get('/projects/:id/weights', async (c) => {
   return c.json<ApiResponse<WeightConfigData>>({ success: true, data, error: null });
 });
 
-weights.put('/projects/:id/weights', async (c) => {
-  const projectId = c.req.param('id');
-  const { userId } = c.get('user');
-
-  const project = await prisma.project.findFirst({ where: { id: projectId, ownerId: userId } });
-  if (!project) {
-    throw AppError.notFound('Project not found');
-  }
+weights.put('/projects/:id/weights', requireProject(), async (c) => {
+  const project = c.get('project');
 
   const body = await c.req.json();
   const parsed = WeightConfigSchema.safeParse(body);
@@ -57,8 +46,8 @@ weights.put('/projects/:id/weights', async (c) => {
   }
 
   const config = await prisma.weightConfig.upsert({
-    where: { projectId },
-    create: { projectId, ...parsed.data },
+    where: { projectId: project.id },
+    create: { projectId: project.id, ...parsed.data },
     update: parsed.data,
   });
 

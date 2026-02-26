@@ -103,14 +103,15 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 详见 `docs/workflow/README.md`。
 
-## 下一步计划（v0.7.0）
+## 下一步计划（v0.8.0）
 
 详见 [`docs/roadmap/current.md`](docs/roadmap/current.md)。
 
-**版本主题：质量即产品力** — 从「功能可用」提升到「工程可信赖」。
+**版本主题：从「看板」到「行动」** — CLI 工具嵌入 AI Coding 工作流，让洞察驱动行为。
 
-核心方向：
-1. **测试体系** — 后端单元测试补全 + API 契约测试 + 前端组件测试 + 覆盖率度量（目标 120+ 测试, ≥70% 覆盖率）
-2. **代码重构** — 项目权限中间件（消除 25+ 处重复）+ metrics.ts 拆分 + 前端大文件组件化
-3. **CI 规范** — 覆盖率门禁 + Pre-commit Hook + Conventional Commits + PR 模板
-4. **AI Coding 规范** — AI 代码质量检查清单 + 质量度量 Dashboard + 变更影响分析
+核心命令：
+- `vibe check` — 提交前风险检查（核心场景）
+- `vibe decisions` — 终端查看/接受/拒绝决策建议
+- `vibe report` — 生成 Markdown 健康报告
+- `vibe sync` — 触发采集 + 计算
+- `vibe insights` — AI 成果率 + 工具使用摘要

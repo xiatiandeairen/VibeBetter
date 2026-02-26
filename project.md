@@ -236,6 +236,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v1.86.0 | Phase 184   | ✅ 完成    | Cheatsheet: CLI 速查表                                              |
 | v1.87.0 | Phase 185   | ✅ 完成    | Data Cleanup: 自动数据清理                                          |
 | v1.88.0 | Phase 186   | ✅ 完成    | ArgoCD: ArgoCD 应用清单生成                                         |
+| v1.89.0 | Phase 187   | ✅ 完成    | Onboarding Flow: 引导流程类型                                       |
+| v1.90.0 | Phase 188   | ✅ 完成    | Graph: 依赖图 DOT 生成                                              |
+| v1.91.0 | Phase 189   | ✅ 完成    | Calm: 仅显示可操作项                                                |
+| v1.92.0 | Phase 190   | ✅ 完成    | Telemetry: 使用分析遥测                                             |
+| v1.93.0 | Phase 191   | ✅ 完成    | Vercel: Vercel 部署配置                                             |
+| v1.94.0 | Phase 192   | ✅ 完成    | Support: 工单/知识库类型                                            |
+| v1.95.0 | Phase 193   | ✅ 完成    | Matrix: 风险矩阵可视化                                             |
+| v1.96.0 | Phase 194   | ✅ 完成    | Autofix: 自动修复建议                                               |
+| v1.97.0 | Phase 195   | ✅ 完成    | API Versioning: 版本协商中间件                                      |
+| v1.98.0 | Phase 196   | ✅ 完成    | Helm: Helm Chart 值生成                                             |
+| v1.99.0 | Phase 197   | ✅ 完成    | Changelog Config: 变更日志配置类型                                  |
+| v2.0.0  | Phase 198   | ✅ 完成    | Studio: CLI 打开 Web 仪表盘                                        |
+| v2.1.0  | Phase 199   | ✅ 完成    | Ask: 自然语言指标查询                                               |
+| v2.2.0  | Phase 200   | ✅ 完成    | Database Monitor: 数据库查询监控                                    |
+| v2.3.0  | Phase 201   | ✅ 完成    | Compose: Docker Compose 全栈生成                                    |
+| v2.4.0  | Phase 202   | ✅ 完成    | Marketplace Plugin: 插件市场类型                                    |
+| v2.5.0  | Phase 203   | ✅ 完成    | Dashboard URL: 仪表盘直链                                          |
+| v2.6.0  | Phase 204   | ✅ 完成    | Offline: 离线缓存指标                                               |
+| v2.7.0  | Phase 205   | ✅ 完成    | Security Headers: 安全响应头中间件                                  |
+| v2.8.0  | Phase 206   | ✅ 完成    | Ansible: Ansible Playbook 生成                                      |
 
 ## 当前综合评分
 

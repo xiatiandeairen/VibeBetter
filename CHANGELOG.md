@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v2.8.0] — 2026-02-26
+- `vibe ansible` command — generate Ansible playbook for VibeBetter deployment
+
+## [v2.7.0] — 2026-02-26
+- `apps/server/src/utils/security-headers.ts` — middleware adding security headers (X-Content-Type-Options, X-Frame-Options, etc.)
+
+## [v2.6.0] — 2026-02-26
+- `vibe offline` command — cache latest metrics locally for offline access
+
+## [v2.5.0] — 2026-02-26
+- `vibe dashboard-url` command — output direct URL to specific dashboard page
+
+## [v2.4.0] — 2026-02-26
+- `packages/shared/src/types/marketplace-plugin.ts` — PluginStore, PluginReview, PluginInstall interfaces
+
+## [v2.3.0] — 2026-02-26
+- `vibe compose` command — generate docker-compose.yml for full VibeBetter stack
+
+## [v2.2.0] — 2026-02-26
+- `apps/server/src/utils/database-monitor.ts` — monitor DB query count, slow queries, connection pool stats
+
+## [v2.1.0] — 2026-02-26
+- `vibe ask` command — natural language query interface for metrics
+
+## [v2.0.0] — 2026-02-26
+- **MAJOR**: `vibe studio` command — open web dashboard from CLI with auto-login token
+
+## [v1.99.0] — 2026-02-26
+- `packages/shared/src/types/changelog-config.ts` — ChangelogFormat, ReleaseNote, SemanticVersion interfaces
+
+## [v1.98.0] — 2026-02-26
+- `vibe helm` command — generate Helm chart values for VibeBetter deployment
+
+## [v1.97.0] — 2026-02-26
+- `apps/server/src/utils/api-versioning.ts` — API version negotiation middleware
+
+## [v1.96.0] — 2026-02-26
+- `vibe autofix` command — suggest automated fixes (add tests, split files)
+
+## [v1.95.0] — 2026-02-26
+- `vibe matrix` command — risk matrix visualization (complexity vs frequency) in terminal
+
+## [v1.94.0] — 2026-02-26
+- `packages/shared/src/types/support.ts` — SupportTicket, SupportPriority, KnowledgeBase interfaces
+
+## [v1.93.0] — 2026-02-26
+- `vibe vercel` command — generate Vercel deployment config
+
+## [v1.92.0] — 2026-02-26
+- `apps/server/src/utils/telemetry.ts` — basic telemetry collection for usage analytics (opt-out)
+
+## [v1.91.0] — 2026-02-26
+- `vibe calm` command — show only actionable items, suppress noise
+
+## [v1.90.0] — 2026-02-26
+- `vibe graph` command — generate dependency graph as DOT format
+
+## [v1.89.0] — 2026-02-26
+- `packages/shared/src/types/onboarding-flow.ts` — OnboardingStep, OnboardingProgress, OnboardingTemplate interfaces
+
 ## [v1.88.0] — 2026-02-26
 - `vibe argocd` command — generate ArgoCD application manifest
 

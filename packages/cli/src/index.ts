@@ -103,12 +103,24 @@ import { backstageCommand } from './commands/backstage.js';
 import { velocityCommand } from './commands/velocity.js';
 import { cheatsheetCommand } from './commands/cheatsheet.js';
 import { argocdCommand } from './commands/argocd.js';
+import { graphCommand } from './commands/graph.js';
+import { calmCommand } from './commands/calm.js';
+import { vercelCommand } from './commands/vercel.js';
+import { matrixCommand } from './commands/matrix.js';
+import { autofixCommand } from './commands/autofix.js';
+import { helmCommand } from './commands/helm.js';
+import { studioCommand } from './commands/studio.js';
+import { askCommand } from './commands/ask.js';
+import { composeCommand } from './commands/compose.js';
+import { dashboardUrlCommand } from './commands/dashboard-url.js';
+import { offlineCommand } from './commands/offline.js';
+import { ansibleCommand } from './commands/ansible.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('1.88.0');
+  .version('2.8.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -213,5 +225,17 @@ program.addCommand(backstageCommand);
 program.addCommand(velocityCommand);
 program.addCommand(cheatsheetCommand);
 program.addCommand(argocdCommand);
+program.addCommand(graphCommand);
+program.addCommand(calmCommand);
+program.addCommand(vercelCommand);
+program.addCommand(matrixCommand);
+program.addCommand(autofixCommand);
+program.addCommand(helmCommand);
+program.addCommand(studioCommand);
+program.addCommand(askCommand);
+program.addCommand(composeCommand);
+program.addCommand(dashboardUrlCommand);
+program.addCommand(offlineCommand);
+program.addCommand(ansibleCommand);
 
 program.parse();

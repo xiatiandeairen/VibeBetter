@@ -98,3 +98,7 @@ export * from './partner';
 export * from './license';
 export * from './entitlements';
 export * from './invoice';
+export * from './onboarding-flow';
+export * from './support';
+export * from './changelog-config';
+export * from './marketplace-plugin';

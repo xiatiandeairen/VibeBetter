@@ -4,6 +4,7 @@ import type { ApiResponse, MetricResult } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
 import { authMiddleware } from '../../middleware/auth.js';
 import { metricsService } from '../../services/metrics.service.js';
+import { attributionService } from '../../services/attribution.service.js';
 import { logger } from '../../utils/logger.js';
 
 const metrics = new Hono();
@@ -242,6 +243,109 @@ metrics.get('/projects/:id/export', async (c) => {
     return c.json({ success: true, data: snapshots, error: null });
   } catch (err) {
     logger.error({ err }, 'Export error');
+    return c.json<ApiResponse>(
+      { success: false, data: null, error: 'Internal server error' },
+      500,
+    );
+  }
+});
+
+metrics.get('/projects/:id/attribution', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({
+      where: { id: projectId, ownerId: userId },
+    });
+    if (!project) {
+      return c.json(
+        { success: false, data: null, error: 'Not found' },
+        404,
+      );
+    }
+    const data = await attributionService.getAiAttribution(projectId);
+    return c.json({ success: true, data, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Attribution error');
+    return c.json<ApiResponse>(
+      { success: false, data: null, error: 'Internal server error' },
+      500,
+    );
+  }
+});
+
+metrics.get('/projects/:id/failed-prs', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({
+      where: { id: projectId, ownerId: userId },
+    });
+    if (!project) {
+      return c.json(
+        { success: false, data: null, error: 'Not found' },
+        404,
+      );
+    }
+    const data = await attributionService.getFailedPrAttribution(projectId);
+    return c.json({ success: true, data, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Failed PRs error');
+    return c.json<ApiResponse>(
+      { success: false, data: null, error: 'Internal server error' },
+      500,
+    );
+  }
+});
+
+metrics.get('/projects/:id/developers', async (c) => {
+  try {
+    const projectId = c.req.param('id');
+    const { userId } = c.get('user');
+    const project = await prisma.project.findFirst({
+      where: { id: projectId, ownerId: userId },
+    });
+    if (!project) {
+      return c.json(
+        { success: false, data: null, error: 'Not found' },
+        404,
+      );
+    }
+
+    const prs = await prisma.pullRequest.findMany({ where: { projectId } });
+    const devMap = new Map<
+      string,
+      { total: number; ai: number; merged: number; rollback: number }
+    >();
+
+    for (const pr of prs) {
+      const dev = devMap.get(pr.authorLogin) || {
+        total: 0,
+        ai: 0,
+        merged: 0,
+        rollback: 0,
+      };
+      dev.total++;
+      if (pr.aiUsed) dev.ai++;
+      if (pr.mergedAt) dev.merged++;
+      if (pr.rollbackFlag) dev.rollback++;
+      devMap.set(pr.authorLogin, dev);
+    }
+
+    const developers = Array.from(devMap.entries())
+      .map(([login, stats]) => ({
+        login,
+        totalPrs: stats.total,
+        aiPrs: stats.ai,
+        aiUsageRate: stats.total > 0 ? stats.ai / stats.total : 0,
+        mergeRate: stats.total > 0 ? stats.merged / stats.total : 0,
+        rollbackRate: stats.total > 0 ? stats.rollback / stats.total : 0,
+      }))
+      .sort((a, b) => b.totalPrs - a.totalPrs);
+
+    return c.json({ success: true, data: developers, error: null });
+  } catch (err) {
+    logger.error({ err }, 'Developers error');
     return c.json<ApiResponse>(
       { success: false, data: null, error: 'Internal server error' },
       500,

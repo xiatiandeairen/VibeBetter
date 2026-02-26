@@ -27,3 +27,5 @@ export const COLLECTION_INTERVALS = {
   DAILY: 24 * 60 * 60 * 1000,
   HOURLY: 60 * 60 * 1000,
 } as const;
+
+export { INDUSTRY_BENCHMARKS, getBenchmarkLevel } from './benchmarks';

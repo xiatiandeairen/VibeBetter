@@ -325,6 +325,32 @@ export const api = {
     }>(`/api/v1/metrics/projects/${projectId}/prs`);
   },
 
+  getAttribution(projectId: string) {
+    return apiFetch<{ success: boolean; data: Record<string, unknown> }>(
+      `/api/v1/metrics/projects/${projectId}/attribution`,
+    );
+  },
+
+  getFailedPrs(projectId: string) {
+    return apiFetch<{ success: boolean; data: Record<string, unknown> }>(
+      `/api/v1/metrics/projects/${projectId}/failed-prs`,
+    );
+  },
+
+  getDevelopers(projectId: string) {
+    return apiFetch<{
+      success: boolean;
+      data: Array<{
+        login: string;
+        totalPrs: number;
+        aiPrs: number;
+        aiUsageRate: number;
+        mergeRate: number;
+        rollbackRate: number;
+      }>;
+    }>(`/api/v1/metrics/projects/${projectId}/developers`);
+  },
+
   getDimensionFiles(projectId: string, dimension: string) {
     return apiFetch<TopFilesResponse>(
       `/api/v1/metrics/projects/${projectId}/files/top?limit=20&sort=${dimension}`,

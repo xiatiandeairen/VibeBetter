@@ -263,12 +263,13 @@ If you ran the seed script:
 
 ## Roadmap
 
-- [x] **MVP**: Core data collection + AI metrics + PSRI + Dashboard
-- [x] **Phase 1**: Decision recommendations + Weight configuration + AI Insights + Toast notifications
-- [ ] **Phase 2**: ML prediction + Real-time PR risk assessment + LLM requirement analysis
-- [ ] **Phase 3**: Organization-level analytics + IDE plugin + Scale to 1M+ files
+- [x] **v0.1.0** — MVP: Data collection + AI metrics + PSRI + Dashboard
+- [x] **v0.2.0** — Decisions + AI Insights + Health Assessment + Service layer
+- [x] **v0.3.0** — Settings + Radar chart + Toast + Skeleton + Performance
+- [ ] **v0.4.0** — OAuth SSO + Webhook + Drill-down + Risk propagation + Security
+- [ ] **v0.5.0** — Organization-level + Product differentiation + IDE plugin
 
-See [`docs/plan.md`](docs/plan.md) for detailed milestone breakdowns.
+See [`docs/roadmap-v0.4.md`](docs/roadmap-v0.4.md) for v0.4 details and [`docs/changelog/CHANGELOG.md`](docs/changelog/CHANGELOG.md) for release history.
 
 ---
 

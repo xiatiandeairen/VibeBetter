@@ -46,12 +46,13 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 ## 产品状态
 
-| 阶段      | 状态             | 说明                                    |
-| --------- | ---------------- | --------------------------------------- |
-| MVP       | ✅ Late MVP      | 采集→计算→可视化链路通                  |
-| Phase 1   | 🔄 进行中 (~70%) | PSRI 6 维 + TDI + 决策引擎后端已完成    |
-| Phase 2   | ⏳ 计划中        | ML 预测 + 实时 PR 风险 + IDE 插件       |
-| Phase 3   | ⏳ 计划中        | 组织级 + 百万级 + 生态扩展              |
+| 版本   | 阶段         | 状态      | 说明                                                    |
+| ------ | ------------ | --------- | ------------------------------------------------------- |
+| v0.1.0 | MVP          | ✅ 完成    | 采集→计算→可视化链路通                                  |
+| v0.2.0 | Phase 1a     | ✅ 完成    | PSRI 6 维 + TDI + 决策引擎 + AI 行为分析               |
+| v0.3.0 | Phase 1b     | ✅ 完成    | Settings + 雷达图 + Toast + 骨架屏 + 决策正向规则       |
+| v0.4.0 | Phase 2      | ⏳ 计划中  | OAuth + Webhook + 下钻 + 风险传播 + 安全加固            |
+| v0.5.0 | Phase 3      | ⏳ 计划中  | 组织级 + 产品分化 + IDE 插件                            |
 
 ## 当前综合评分
 
@@ -97,10 +98,14 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 详见 `docs/workflow/README.md`。
 
-## 下一步计划
+## 下一步计划（v0.4.0）
 
-1. 前端接入决策建议、权重配置、行为分析面板
-2. OAuth SSO 登录（GitHub）
-3. Webhook 实时 PR 风险评估
-4. API 集成测试 + 安全加固
-5. graphology 风险传播指数
+详见 [`docs/roadmap-v0.4.md`](docs/roadmap-v0.4.md)。
+
+核心方向：
+1. GitHub OAuth SSO — 一键登录
+2. Webhook 实时 PR 风险评估
+3. 指标下钻（PSRI → 子维度 → 文件级）
+4. 风险传播图（graphology 依赖分析）
+5. 安全加固（Cookie + Refresh Token + Rate Limiting）
+6. 测试覆盖（API 集成测试 + 前端 E2E）

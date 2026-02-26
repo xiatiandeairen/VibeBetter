@@ -100,11 +100,14 @@ Next.js 15 ── Hono API ── PostgreSQL
 
 详见 `docs/workflow/README.md`。
 
-## 下一步计划（v0.5.0）
+## 下一步计划（v0.6.0）
 
 详见 [`docs/roadmap/current.md`](docs/roadmap/current.md)。
 
-核心方向（三个视角驱动）：
-1. **用户痛点** — AI 归因分析（哪些技术债是 AI 引入的）、行业基准线、失败 PR 归因
-2. **专家视角** — GitHub Check 回写（PR 页面即时风险评分）、组织级 Dashboard、开发者效能排行
-3. **成熟化** — GitHub Actions CI/CD、Prisma 版本化迁移、E2E 测试、Sentry 错误追踪
+**版本主题：从工具到产品** — 让真实用户 5 分钟内获得第一个洞察。
+
+核心方向：
+1. **首次体验** — Onboarding 引导流程 + 项目导入向导 + 首次洞察报告
+2. **开发者体验** — OpenAPI 文档 + API Key 认证 + Webhook 配置 UI
+3. **可靠性** — Prisma migrate + Sentry + E2E 测试 + Redis 缓存
+4. **产品分化基础** — 插件化 Dashboard + Insight 模板引擎 + VS Code 扩展骨架

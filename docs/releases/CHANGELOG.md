@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.24.0] — 2026-02-26
+
+### Highlights
+- **Graceful Shutdown** — Server handles SIGTERM/SIGINT for clean exit
+- Closes BullMQ worker and queue connections before process exit
+- 10-second force-exit timeout as safety net
+
+### Changed
+- `apps/server/src/index.ts` — Added `gracefulShutdown()` with signal handlers
+- v0.24.0 release archive (4 standard files)
+
+---
+
 ## [v0.23.0] — 2026-02-26
 
 ### Highlights

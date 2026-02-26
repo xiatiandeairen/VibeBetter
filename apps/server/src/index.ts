@@ -78,4 +78,21 @@ serve({ fetch: app.fetch, port: env.PORT }, (info) => {
   logger.info(`VibeBetter server running on http://localhost:${info.port}`);
 });
 
+function gracefulShutdown(signal: string) {
+  logger.info({ signal }, 'Received shutdown signal, cleaning up...');
+  import('./jobs/scheduler.js').then(({ collectionWorker, collectionQueue }) => {
+    Promise.all([
+      collectionWorker.close(),
+      collectionQueue.close(),
+    ]).then(() => {
+      logger.info('Cleanup complete, exiting');
+      process.exit(0);
+    });
+  });
+  setTimeout(() => process.exit(1), 10000);
+}
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
 export default app;

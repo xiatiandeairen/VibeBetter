@@ -288,6 +288,7 @@ If you ran the seed script:
 - [x] **v0.21.0** — PR risk summary: `vibe pr --markdown` for branch risk analysis
 - [x] **v0.22.0** — Transparent rate limit headers (X-RateLimit-Limit/Remaining/Reset)
 - [x] **v0.23.0** — Snapshot diff comparison: `vibe diff` for metric trend tracking
+- [x] **v0.24.0** — Graceful shutdown: SIGTERM/SIGINT handling with BullMQ cleanup
 
 See [`docs/roadmap/current.md`](docs/roadmap/current.md) for next version details and [`docs/releases/CHANGELOG.md`](docs/releases/CHANGELOG.md) for release history.
 

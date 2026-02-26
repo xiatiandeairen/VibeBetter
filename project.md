@@ -71,6 +71,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.21.0 | Phase 19    | ✅ 完成    | PR 风险摘要: vibe pr --markdown                              |
 | v0.22.0 | Phase 20    | ✅ 完成    | 透明速率限制头: X-RateLimit-*                                 |
 | v0.23.0 | Phase 21    | ✅ 完成    | 快照对比: vibe diff                                           |
+| v0.24.0 | Phase 22    | ✅ 完成    | 优雅关闭: SIGTERM/SIGINT 处理                                  |
 
 ## 当前综合评分
 
@@ -126,6 +127,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-022 | 2026-02-26 | v0.21.0 | PR 风险摘要 (vibe pr) |
 | Iteration-023 | 2026-02-26 | v0.22.0 | 透明速率限制头 (X-RateLimit-*) |
 | Iteration-024 | 2026-02-26 | v0.23.0 | 快照对比 (vibe diff) |
+| Iteration-025 | 2026-02-26 | v0.24.0 | 优雅关闭 (SIGTERM/SIGINT) |
 
 ## 协作工作流
 

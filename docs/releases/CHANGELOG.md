@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.23.0] — 2026-02-26
+
+### Highlights
+- **Snapshot Diff** — `vibe diff` compares metrics between snapshots
+- Shows delta, direction arrows (↑↓→), and percentage change
+- Inverted display for risk metrics (PSRI/TDI: lower is better)
+
+### Added
+- `packages/cli/src/commands/diff.ts` — Snapshot comparison command
+- v0.23.0 release archive (4 standard files)
+
+### Changed
+- CLI commands: 12 → 13
+- CLI version bumped to 0.23.0
+
+---
+
 ## [v0.22.0] — 2026-02-26
 
 ### Highlights

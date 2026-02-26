@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-import { logger as honoLogger } from 'hono/logger';
+import { requestLogger } from './middleware/request-logger.js';
 import { serve } from '@hono/node-server';
 import type { ApiResponse } from '@vibebetter/shared';
 import { prisma } from '@vibebetter/db';
@@ -33,7 +33,7 @@ app.use(
     credentials: true,
   }),
 );
-app.use('*', honoLogger());
+app.use('*', requestLogger);
 
 app.onError(onError);
 

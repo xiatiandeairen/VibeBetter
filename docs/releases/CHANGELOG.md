@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.20.0] — 2026-02-26
+
+### Highlights
+- **Structured Request Logging** — Custom pino-based request logger replaces Hono logger
+- JSON structured output: method, path, status, duration, userAgent
+- Duration tracking for performance monitoring
+
+### Added
+- `apps/server/src/middleware/request-logger.ts` — Structured request logger
+- v0.20.0 release archive (4 standard files)
+
+### Changed
+- Replaced `hono/logger` with custom `requestLogger` middleware
+- Backend middleware count: 5 → 6
+
+---
+
 ## [v0.19.0] — 2026-02-26
 
 ### Highlights

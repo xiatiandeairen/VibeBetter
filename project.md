@@ -67,6 +67,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.17.0 | Phase 15    | ✅ 完成    | CLI 上下文提示: showTip() 3 个命令                         |
 | v0.18.0 | Phase 16    | ✅ 完成    | 可配置品牌: 白标环境变量                                    |
 | v0.19.0 | Phase 17    | ✅ 完成    | 指标告警: AlertConfig 模型 + CRUD API                       |
+| v0.20.0 | Phase 18    | ✅ 完成    | 结构化日志: 自定义请求日志中间件                             |
 
 ## 当前综合评分
 
@@ -118,6 +119,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-018 | 2026-02-26 | v0.17.0 | CLI 上下文提示 (showTip) |
 | Iteration-019 | 2026-02-26 | v0.18.0 | 可配置品牌常量 (BRANDING) |
 | Iteration-020 | 2026-02-26 | v0.19.0 | 指标告警配置 API |
+| Iteration-021 | 2026-02-26 | v0.20.0 | 结构化请求日志中间件 |
 
 ## 协作工作流
 

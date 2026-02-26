@@ -1,24 +1,44 @@
 import type { VibeConfig } from './config.js';
 
 export class ApiClient {
+  private static MAX_RETRIES = 3;
+  private static RETRY_DELAYS = [1000, 2000, 4000];
+
   constructor(private config: VibeConfig) {}
 
   private async request<T>(path: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.config.apiUrl}${path}`;
-    const res = await fetch(url, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': this.config.apiKey,
-        ...options.headers,
-      },
-    });
-    if (!res.ok) {
-      const body = await res.json().catch(() => ({ error: res.statusText }));
-      throw new Error((body as Record<string, string>).error || `API error: ${res.status}`);
+    let lastError: Error | null = null;
+
+    for (let attempt = 0; attempt <= ApiClient.MAX_RETRIES; attempt++) {
+      try {
+        const res = await fetch(url, {
+          ...options,
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': this.config.apiKey,
+            ...options.headers,
+          },
+        });
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({ error: res.statusText }));
+          throw new Error((body as Record<string, string>).error || `API error: ${res.status}`);
+        }
+        const json = await res.json();
+        return (json as { data: T }).data;
+      } catch (err) {
+        lastError = err instanceof Error ? err : new Error(String(err));
+        const isNetworkError = lastError.message.includes('fetch') ||
+          lastError.message.includes('ECONNREFUSED') ||
+          lastError.message.includes('ETIMEDOUT') ||
+          lastError.message.includes('network');
+        if (!isNetworkError || attempt >= ApiClient.MAX_RETRIES) break;
+        const delay = ApiClient.RETRY_DELAYS[attempt] ?? 4000;
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
     }
-    const json = await res.json();
-    return (json as { data: T }).data;
+
+    throw lastError ?? new Error('Request failed');
   }
 
   async getOverview() {

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v0.12.0] — 2026-02-26
+
+### Highlights
+- **Error Recovery** — CLI retries network errors with exponential backoff (3 retries)
+- **ErrorBoundary** — Reusable React error boundary component
+- Improved resilience for production deployments
+
+### Added
+- `apps/web/src/lib/error-boundary.tsx` — React ErrorBoundary with retry button
+- v0.12.0 release archive (4 standard files)
+
+### Changed
+- CLI `ApiClient.request()` now retries on network errors (ECONNREFUSED, ETIMEDOUT, fetch failures)
+- Retry delays: 1s → 2s → 4s (exponential backoff)
+
+---
+
 ## [v0.11.0] — 2026-02-26
 
 ### Highlights

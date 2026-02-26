@@ -59,6 +59,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v0.9.0 | Phase 7      | ✅ 完成    | 本地离线分析: vibe analyze (无需后端)                     |
 | v0.10.0 | Phase 8     | ✅ 完成    | 团队对比视图: 跨项目 AI ROI 比较                          |
 | v0.11.0 | Phase 9     | ✅ 完成    | 周报摘要: DigestService + vibe digest                    |
+| v0.12.0 | Phase 10    | ✅ 完成    | 错误恢复: CLI 重试 + ErrorBoundary                       |
 
 ## 当前综合评分
 
@@ -102,6 +103,7 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-010 | 2026-02-26 | v0.9.0 | 本地离线分析: vibe analyze 命令 |
 | Iteration-011 | 2026-02-26 | v0.10.0 | 团队对比视图 + JSON 导出 |
 | Iteration-012 | 2026-02-26 | v0.11.0 | DigestService + vibe digest + 周报端点 |
+| Iteration-013 | 2026-02-26 | v0.12.0 | CLI 重试逻辑 + React ErrorBoundary |
 
 ## 协作工作流
 

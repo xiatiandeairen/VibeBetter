@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from '@/lib/api';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/toast';
 
 const STATUS_CONFIG: Record<string, { cls: string; dot: string }> = {
   PENDING: {
@@ -26,6 +27,7 @@ const STATUS_CONFIG: Record<string, { cls: string; dot: string }> = {
 
 export default function CollectionPage() {
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
   const [projectId, setProjectId] = useState('');
 
   const { data: projectsData } = useQuery({
@@ -52,6 +54,10 @@ export default function CollectionPage() {
     mutationFn: () => api.triggerCollection(projectId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['collection-jobs', projectId] });
+      addToast('Data collection triggered successfully', 'success');
+    },
+    onError: (err) => {
+      addToast(err instanceof Error ? err.message : 'Collection failed', 'error');
     },
   });
 
@@ -59,6 +65,10 @@ export default function CollectionPage() {
     mutationFn: () => api.triggerCompute(projectId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['collection-jobs', projectId] });
+      addToast('Metric computation completed', 'success');
+    },
+    onError: (err) => {
+      addToast(err instanceof Error ? err.message : 'Computation failed', 'error');
     },
   });
 
@@ -145,8 +155,12 @@ export default function CollectionPage() {
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
               </div>
             ) : jobs.length === 0 ? (
-              <div className="px-5 py-12 text-center text-[13px] text-zinc-600">
-                No collection jobs yet
+              <div className="flex flex-col items-center justify-center px-5 py-12">
+                <svg className="mb-3 h-10 w-10 text-zinc-700" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                </svg>
+                <p className="text-sm font-medium text-zinc-400">No collection jobs yet</p>
+                <p className="mt-1 text-xs text-zinc-600">Click &quot;Trigger Collection&quot; to start gathering data</p>
               </div>
             ) : (
               <div className="overflow-x-auto">

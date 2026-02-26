@@ -6,6 +6,7 @@ import { authMiddleware } from '../../middleware/auth.js';
 import { metricsService } from '../../services/metrics.service.js';
 import { attributionService } from '../../services/attribution.service.js';
 import { logger } from '../../utils/logger.js';
+import { getCached, invalidateCache } from '../../utils/cache.js';
 
 const metrics = new Hono();
 
@@ -21,46 +22,48 @@ metrics.get('/projects/:id/overview', async (c) => {
       return c.json<ApiResponse>({ success: false, data: null, error: 'Project not found' }, 404);
     }
 
-    const latest = await prisma.metricSnapshot.findFirst({
-      where: { projectId },
-      orderBy: { snapshotDate: 'desc' },
-    });
+    const result = await getCached<MetricResult>(
+      `metrics:overview:${projectId}`,
+      300,
+      async () => {
+        const latest = await prisma.metricSnapshot.findFirst({
+          where: { projectId },
+          orderBy: { snapshotDate: 'desc' },
+        });
 
-    if (!latest) {
-      return c.json<ApiResponse<MetricResult>>({
-        success: true,
-        data: {
-          aiSuccessRate: null,
-          aiStableRate: null,
-          totalPrs: 0,
-          aiPrs: 0,
-          psriScore: null,
-          psriStructural: null,
-          psriChange: null,
-          psriDefect: null,
-          avgComplexity: null,
-          tdiScore: null,
-          totalFiles: 0,
-          hotspotFiles: 0,
-        },
-        error: null,
-      });
-    }
+        if (!latest) {
+          return {
+            aiSuccessRate: null,
+            aiStableRate: null,
+            totalPrs: 0,
+            aiPrs: 0,
+            psriScore: null,
+            psriStructural: null,
+            psriChange: null,
+            psriDefect: null,
+            avgComplexity: null,
+            tdiScore: null,
+            totalFiles: 0,
+            hotspotFiles: 0,
+          };
+        }
 
-    const result: MetricResult = {
-      aiSuccessRate: latest.aiSuccessRate,
-      aiStableRate: latest.aiStableRate,
-      totalPrs: latest.totalPrs,
-      aiPrs: latest.aiPrs,
-      psriScore: latest.psriScore,
-      psriStructural: latest.psriStructural,
-      psriChange: latest.psriChange,
-      psriDefect: latest.psriDefect,
-      avgComplexity: latest.avgComplexity,
-      tdiScore: latest.tdiScore,
-      totalFiles: latest.totalFiles,
-      hotspotFiles: latest.hotspotFiles,
-    };
+        return {
+          aiSuccessRate: latest.aiSuccessRate,
+          aiStableRate: latest.aiStableRate,
+          totalPrs: latest.totalPrs,
+          aiPrs: latest.aiPrs,
+          psriScore: latest.psriScore,
+          psriStructural: latest.psriStructural,
+          psriChange: latest.psriChange,
+          psriDefect: latest.psriDefect,
+          avgComplexity: latest.avgComplexity,
+          tdiScore: latest.tdiScore,
+          totalFiles: latest.totalFiles,
+          hotspotFiles: latest.hotspotFiles,
+        };
+      },
+    );
 
     return c.json<ApiResponse<MetricResult>>({ success: true, data: result, error: null });
   } catch (err) {
@@ -166,6 +169,7 @@ metrics.post('/projects/:id/compute', async (c) => {
     }
 
     const result = await metricsService.computeAndSaveSnapshot(projectId);
+    await invalidateCache(`metrics:*:${projectId}`);
     return c.json<ApiResponse<MetricResult>>({ success: true, data: result, error: null }, 201);
   } catch (err) {
     logger.error({ err }, 'Compute metrics error');

@@ -8,8 +8,9 @@
     "test": "turbo test",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "db:migrate": "pnpm --filter @vibebetter/db db:migrate",
     "db:push": "pnpm --filter @vibebetter/db db:push",
+    "db:migrate:deploy": "pnpm --filter @vibebetter/db db:migrate:deploy",
+    "db:migrate:create": "pnpm --filter @vibebetter/db db:migrate:create",
     "db:seed": "pnpm --filter @vibebetter/db db:seed",
     "db:studio": "pnpm --filter @vibebetter/db db:studio"
   },

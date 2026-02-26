@@ -82,3 +82,6 @@ export interface AiBehaviorStats {
   avgEditDistance: number;
   toolUsage: Record<string, number>;
 }
+
+export * from './dashboard';
+export * from './insight';

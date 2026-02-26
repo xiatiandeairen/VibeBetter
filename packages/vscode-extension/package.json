@@ -1,0 +1,29 @@
+{
+  "name": "vibebetter-vscode",
+  "displayName": "VibeBetter",
+  "description": "AI Coding behavior tracking for VibeBetter",
+  "version": "0.1.0",
+  "publisher": "vibebetter",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "VibeBetter",
+      "properties": {
+        "vibebetter.apiUrl": { "type": "string", "default": "http://localhost:3001", "description": "VibeBetter API URL" },
+        "vibebetter.apiKey": { "type": "string", "default": "", "description": "API Key for authentication" },
+        "vibebetter.projectId": { "type": "string", "default": "", "description": "Project ID to track" }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -watch"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.7.3"
+  }
+}

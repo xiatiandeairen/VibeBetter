@@ -75,12 +75,20 @@ import { bitbucketCommand } from './commands/bitbucket.js';
 import { contributorsCommand } from './commands/contributors.js';
 import { preferencesCommand } from './commands/preferences.js';
 import { azureCommand } from './commands/azure.js';
+import { doctorCommand } from './commands/doctor.js';
+import { notebookCommand } from './commands/notebook.js';
+import { feedbackCommand } from './commands/feedback.js';
+import { sonarqubeCommand } from './commands/sonarqube.js';
+import { shortcutsCommand } from './commands/shortcuts.js';
+import { datadogCommand } from './commands/datadog.js';
+import { resetCommand } from './commands/reset.js';
+import { prometheusCommand } from './commands/prometheus.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('1.28.0');
+  .version('1.48.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -157,5 +165,13 @@ program.addCommand(bitbucketCommand);
 program.addCommand(contributorsCommand);
 program.addCommand(preferencesCommand);
 program.addCommand(azureCommand);
+program.addCommand(doctorCommand);
+program.addCommand(notebookCommand);
+program.addCommand(feedbackCommand);
+program.addCommand(sonarqubeCommand);
+program.addCommand(shortcutsCommand);
+program.addCommand(datadogCommand);
+program.addCommand(resetCommand);
+program.addCommand(prometheusCommand);
 
 program.parse();

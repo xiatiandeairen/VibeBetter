@@ -176,6 +176,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | v1.26.0 | Phase 124   | ✅ 完成    | Preferences: 用户偏好管理                                            |
 | v1.27.0 | Phase 125   | ✅ 完成    | Cache Strategy: 缓存键构建器                                         |
 | v1.28.0 | Phase 126   | ✅ 完成    | Azure: Azure DevOps 集成                                             |
+| v1.29.0 | Phase 127   | ✅ 完成    | Access Control: ABAC 权限模型                                        |
+| v1.30.0 | Phase 128   | ✅ 完成    | Changelog Dashboard: 变更历史页面                                    |
+| v1.31.0 | Phase 129   | ✅ 完成    | Doctor: 环境诊断命令                                                 |
+| v1.32.0 | Phase 130   | ✅ 完成    | Event Bus: 进程内事件总线                                            |
+| v1.33.0 | Phase 131   | ✅ 完成    | Notebook: Jupyter 风格导出                                           |
+| v1.34.0 | Phase 132   | ✅ 完成    | Usage Tracking: 用量追踪类型                                        |
+| v1.35.0 | Phase 133   | ✅ 完成    | Timeline Dashboard: 指标历史时间线                                   |
+| v1.36.0 | Phase 134   | ✅ 完成    | Feedback: CLI 反馈提交                                               |
+| v1.37.0 | Phase 135   | ✅ 完成    | JSON Schema: API 请求验证                                            |
+| v1.38.0 | Phase 136   | ✅ 完成    | SonarQube: 指标格式化集成                                            |
+| v1.39.0 | Phase 137   | ✅ 完成    | White Label: 白标配置类型                                            |
+| v1.40.0 | Phase 138   | ✅ 完成    | Goals Dashboard: 指标目标追踪                                        |
+| v1.41.0 | Phase 139   | ✅ 完成    | Shortcuts: 命令快捷方式列表                                          |
+| v1.42.0 | Phase 140   | ✅ 完成    | Concurrency: 信号量/互斥锁                                          |
+| v1.43.0 | Phase 141   | ✅ 完成    | Datadog: 自定义指标集成                                              |
+| v1.44.0 | Phase 142   | ✅ 完成    | Compliance: 合规框架类型                                             |
+| v1.45.0 | Phase 143   | ✅ 完成    | Digest Dashboard: 周报摘要页面                                       |
+| v1.46.0 | Phase 144   | ✅ 完成    | Reset: CLI 配置/缓存重置                                             |
+| v1.47.0 | Phase 145   | ✅ 完成    | Compression: 响应压缩中间件                                          |
+| v1.48.0 | Phase 146   | ✅ 完成    | Prometheus: 指标 Prometheus 格式                                     |
 
 ## 当前综合评分
 
@@ -336,6 +356,26 @@ Next.js 15 ── Hono API ── PostgreSQL
 | Iteration-127 | 2026-02-26 | v1.26.0 | Preferences 用户偏好 |
 | Iteration-128 | 2026-02-26 | v1.27.0 | Cache Strategy 缓存策略 |
 | Iteration-129 | 2026-02-26 | v1.28.0 | Azure DevOps 集成 |
+| Iteration-130 | 2026-02-26 | v1.29.0 | Access Control ABAC |
+| Iteration-131 | 2026-02-26 | v1.30.0 | Changelog Dashboard |
+| Iteration-132 | 2026-02-26 | v1.31.0 | Doctor 环境诊断 |
+| Iteration-133 | 2026-02-26 | v1.32.0 | Event Bus 事件总线 |
+| Iteration-134 | 2026-02-26 | v1.33.0 | Notebook 导出 |
+| Iteration-135 | 2026-02-26 | v1.34.0 | Usage Tracking 用量 |
+| Iteration-136 | 2026-02-26 | v1.35.0 | Timeline Dashboard |
+| Iteration-137 | 2026-02-26 | v1.36.0 | Feedback 反馈 |
+| Iteration-138 | 2026-02-26 | v1.37.0 | JSON Schema 验证 |
+| Iteration-139 | 2026-02-26 | v1.38.0 | SonarQube 集成 |
+| Iteration-140 | 2026-02-26 | v1.39.0 | White Label 白标 |
+| Iteration-141 | 2026-02-26 | v1.40.0 | Goals Dashboard |
+| Iteration-142 | 2026-02-26 | v1.41.0 | Shortcuts 快捷方式 |
+| Iteration-143 | 2026-02-26 | v1.42.0 | Concurrency 并发控制 |
+| Iteration-144 | 2026-02-26 | v1.43.0 | Datadog 集成 |
+| Iteration-145 | 2026-02-26 | v1.44.0 | Compliance 合规 |
+| Iteration-146 | 2026-02-26 | v1.45.0 | Digest Dashboard |
+| Iteration-147 | 2026-02-26 | v1.46.0 | Reset 重置 |
+| Iteration-148 | 2026-02-26 | v1.47.0 | Compression 压缩 |
+| Iteration-149 | 2026-02-26 | v1.48.0 | Prometheus 指标 |
 
 ## 协作工作流
 

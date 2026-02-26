@@ -2,6 +2,66 @@
 
 All notable changes to VibeBetter are documented here.
 
+## [v1.48.0] — 2026-02-26
+- `vibe prometheus` command — expose metrics in Prometheus format
+
+## [v1.47.0] — 2026-02-26
+- `apps/server/src/utils/compression.ts` — response compression middleware for large payloads
+
+## [v1.46.0] — 2026-02-26
+- `vibe reset` command — reset CLI config and clear cache
+
+## [v1.45.0] — 2026-02-26
+- `/dashboard/digest` page showing weekly digest summary
+
+## [v1.44.0] — 2026-02-26
+- `packages/shared/src/types/compliance.ts` — ComplianceFramework, ComplianceCheck, ComplianceReport interfaces (SOC2, ISO27001)
+
+## [v1.43.0] — 2026-02-26
+- `vibe datadog` command — format metrics for Datadog custom metrics API
+
+## [v1.42.0] — 2026-02-26
+- `apps/server/src/utils/concurrency.ts` — semaphore/mutex for limiting concurrent collection jobs
+
+## [v1.41.0] — 2026-02-26
+- `vibe shortcuts` command — show all available command shortcuts and aliases
+
+## [v1.40.0] — 2026-02-26
+- `/dashboard/goals` page for setting and tracking metric goals
+
+## [v1.39.0] — 2026-02-26
+- `packages/shared/src/types/white-label.ts` — ThemeConfig, BrandAssets, CustomDomain interfaces
+
+## [v1.38.0] — 2026-02-26
+- `vibe sonarqube` command — format metrics compatible with SonarQube
+
+## [v1.37.0] — 2026-02-26
+- `apps/server/src/utils/json-schema.ts` — JSON Schema validation utility for API request bodies
+
+## [v1.36.0] — 2026-02-26
+- `vibe feedback` command — submit feedback from CLI to improve recommendations
+
+## [v1.35.0] — 2026-02-26
+- `/dashboard/timeline` page showing metric history timeline
+
+## [v1.34.0] — 2026-02-26
+- `packages/shared/src/types/usage-tracking.ts` — UsageEvent, UsageReport, QuotaAlert interfaces
+
+## [v1.33.0] — 2026-02-26
+- `vibe notebook` command — export analysis as Jupyter-style markdown notebook
+
+## [v1.32.0] — 2026-02-26
+- `apps/server/src/utils/event-bus.ts` — simple in-process event emitter for decoupled service communication
+
+## [v1.31.0] — 2026-02-26
+- `vibe doctor` command — diagnose common setup issues
+
+## [v1.30.0] — 2026-02-26
+- `/dashboard/changelog` page showing project change history
+
+## [v1.29.0] — 2026-02-26
+- `packages/shared/src/types/access-control.ts` — Permission, AccessPolicy, ResourceScope interfaces for ABAC
+
 ## [v1.28.0] — 2026-02-26
 - `vibe azure` command — format output for Azure DevOps integration
 

@@ -4,11 +4,12 @@
 
 ### Overview
 
-VibeBetter (AEIP) is a pnpm monorepo with three main packages:
+VibeBetter (AEIP) is a pnpm monorepo with these packages:
 - `apps/web` — Next.js 14+ frontend (port 3000)
 - `apps/server` — Hono + Node.js backend API (port 3001)
 - `packages/shared` — shared TypeScript types, Zod schemas, constants
 - `packages/db` — Prisma schema and database client
+- `packages/cli` — CLI tool (`vibe` command) for terminal-based AI coding insights; standalone TypeScript package, no Docker/DB needed; lint with `pnpm --filter @vibebetter/cli lint`, test with `pnpm --filter @vibebetter/cli test`
 
 ### Prerequisites
 

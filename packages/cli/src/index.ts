@@ -157,12 +157,32 @@ import { securityScanCommand } from './commands/security-scan.js';
 import { onboardDevCommand } from './commands/onboard-dev.js';
 import { architectureCheckCommand } from './commands/architecture-check.js';
 import { performanceBudgetCliCommand } from './commands/performance-budget-cli.js';
+import { dependencyGraphCommand } from './commands/dependency-graph.js';
+import { moduleRiskCommand } from './commands/module-risk.js';
+import { teamVelocityCommand } from './commands/team-velocity.js';
+import { codeChurnCommand } from './commands/code-churn.js';
+import { commitQualityCommand } from './commands/commit-quality.js';
+import { reviewEfficiencyCommand } from './commands/review-efficiency.js';
+import { aiAccuracyCommand } from './commands/ai-accuracy.js';
+import { skillMatrixCommand } from './commands/skill-matrix.js';
+import { incidentRiskCommand } from './commands/incident-risk.js';
+import { capacityPlanCommand } from './commands/capacity-plan.js';
+import { governanceCommand } from './commands/governance.js';
+import { techDebtRoiCommand } from './commands/tech-debt-roi.js';
+import { aiSafetyCommand } from './commands/ai-safety.js';
+import { migrationPlanCommand } from './commands/migration-plan.js';
+import { busFactorCommand } from './commands/bus-factor.js';
+import { qualityGateCommand } from './commands/quality-gate.js';
+import { changelogGenCommand } from './commands/changelog-gen.js';
+import { deprecationCommand } from './commands/deprecation.js';
+import { cognitiveLoadCommand } from './commands/cognitive-load.js';
+import { sustainabilityCommand } from './commands/sustainability.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('2.68.0');
+  .version('3.8.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -321,5 +341,25 @@ program.addCommand(securityScanCommand);
 program.addCommand(onboardDevCommand);
 program.addCommand(architectureCheckCommand);
 program.addCommand(performanceBudgetCliCommand);
+program.addCommand(dependencyGraphCommand);
+program.addCommand(moduleRiskCommand);
+program.addCommand(teamVelocityCommand);
+program.addCommand(codeChurnCommand);
+program.addCommand(commitQualityCommand);
+program.addCommand(reviewEfficiencyCommand);
+program.addCommand(aiAccuracyCommand);
+program.addCommand(skillMatrixCommand);
+program.addCommand(incidentRiskCommand);
+program.addCommand(capacityPlanCommand);
+program.addCommand(governanceCommand);
+program.addCommand(techDebtRoiCommand);
+program.addCommand(aiSafetyCommand);
+program.addCommand(migrationPlanCommand);
+program.addCommand(busFactorCommand);
+program.addCommand(qualityGateCommand);
+program.addCommand(changelogGenCommand);
+program.addCommand(deprecationCommand);
+program.addCommand(cognitiveLoadCommand);
+program.addCommand(sustainabilityCommand);
 
 program.parse();

@@ -137,12 +137,32 @@ import { roadmapCommand } from './commands/roadmap.js';
 import { discordCommand } from './commands/discord.js';
 import { smartReviewCommand } from './commands/smart-review.js';
 import { wellbeingCommand } from './commands/wellbeing.js';
+import { teamHealthCommand } from './commands/team-health.js';
+import { aiRoiCommand } from './commands/ai-roi.js';
+import { pairSuggestCommand } from './commands/pair-suggest.js';
+import { techRadarCommand } from './commands/tech-radar.js';
+import { codeOwnersCommand } from './commands/code-owners.js';
+import { burndownCommand } from './commands/burndown.js';
+import { adoptionCommand } from './commands/adoption.js';
+import { mentorCommand } from './commands/mentor.js';
+import { complexityTrendCommand } from './commands/complexity-trend.js';
+import { releaseRiskCommand } from './commands/release-risk.js';
+import { knowledgeMapCommand } from './commands/knowledge-map.js';
+import { sprintReviewCommand } from './commands/sprint-review.js';
+import { debtBudgetCommand } from './commands/debt-budget.js';
+import { refactorPlanCommand } from './commands/refactor-plan.js';
+import { testCoverageMapCommand } from './commands/test-coverage-map.js';
+import { apiHealthCommand } from './commands/api-health.js';
+import { securityScanCommand } from './commands/security-scan.js';
+import { onboardDevCommand } from './commands/onboard-dev.js';
+import { architectureCheckCommand } from './commands/architecture-check.js';
+import { performanceBudgetCliCommand } from './commands/performance-budget-cli.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('2.28.0');
+  .version('2.68.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -281,5 +301,25 @@ program.addCommand(roadmapCommand);
 program.addCommand(discordCommand);
 program.addCommand(smartReviewCommand);
 program.addCommand(wellbeingCommand);
+program.addCommand(teamHealthCommand);
+program.addCommand(aiRoiCommand);
+program.addCommand(pairSuggestCommand);
+program.addCommand(techRadarCommand);
+program.addCommand(codeOwnersCommand);
+program.addCommand(burndownCommand);
+program.addCommand(adoptionCommand);
+program.addCommand(mentorCommand);
+program.addCommand(complexityTrendCommand);
+program.addCommand(releaseRiskCommand);
+program.addCommand(knowledgeMapCommand);
+program.addCommand(sprintReviewCommand);
+program.addCommand(debtBudgetCommand);
+program.addCommand(refactorPlanCommand);
+program.addCommand(testCoverageMapCommand);
+program.addCommand(apiHealthCommand);
+program.addCommand(securityScanCommand);
+program.addCommand(onboardDevCommand);
+program.addCommand(architectureCheckCommand);
+program.addCommand(performanceBudgetCliCommand);
 
 program.parse();

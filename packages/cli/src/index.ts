@@ -197,12 +197,32 @@ import { stakeholderReportCommand } from './commands/stakeholder-report.js';
 import { integrationTestSuggestCommand } from './commands/integration-test-suggest.js';
 import { apiContractCommand } from './commands/api-contract.js';
 import { workflowOptimizeCommand } from './commands/workflow-optimize.js';
+import { dependencyAuditCommand } from './commands/dependency-audit.js';
+import { testPriorityCommand } from './commands/test-priority.js';
+import { aiEditorStatsCommand } from './commands/ai-editor-stats.js';
+import { commitFrequencyCommand } from './commands/commit-frequency.js';
+import { releaseNotesGenCommand } from './commands/release-notes-gen.js';
+import { branchHealthCommand } from './commands/branch-health.js';
+import { codeFreshnessCommand } from './commands/code-freshness.js';
+import { documentationCheckCommand } from './commands/documentation-check.js';
+import { effortEstimateCommand } from './commands/effort-estimate.js';
+import { wasteDetectorCommand } from './commands/waste-detector.js';
+import { couplingAnalysisCommand } from './commands/coupling-analysis.js';
+import { abstractionCheckCommand } from './commands/abstraction-check.js';
+import { apiUsageStatsCommand } from './commands/api-usage-stats.js';
+import { environmentCheckCommand } from './commands/environment-check.js';
+import { licenseCheckCommand } from './commands/license-check.js';
+import { sizeAnalysisCommand } from './commands/size-analysis.js';
+import { namingCheckCommand } from './commands/naming-check.js';
+import { todoScanCommand } from './commands/todo-scan.js';
+import { deadCodeCommand } from './commands/dead-code.js';
+import { typeCoverageCommand } from './commands/type-coverage.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('3.48.0');
+  .version('3.88.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -401,5 +421,25 @@ program.addCommand(stakeholderReportCommand);
 program.addCommand(integrationTestSuggestCommand);
 program.addCommand(apiContractCommand);
 program.addCommand(workflowOptimizeCommand);
+program.addCommand(dependencyAuditCommand);
+program.addCommand(testPriorityCommand);
+program.addCommand(aiEditorStatsCommand);
+program.addCommand(commitFrequencyCommand);
+program.addCommand(releaseNotesGenCommand);
+program.addCommand(branchHealthCommand);
+program.addCommand(codeFreshnessCommand);
+program.addCommand(documentationCheckCommand);
+program.addCommand(effortEstimateCommand);
+program.addCommand(wasteDetectorCommand);
+program.addCommand(couplingAnalysisCommand);
+program.addCommand(abstractionCheckCommand);
+program.addCommand(apiUsageStatsCommand);
+program.addCommand(environmentCheckCommand);
+program.addCommand(licenseCheckCommand);
+program.addCommand(sizeAnalysisCommand);
+program.addCommand(namingCheckCommand);
+program.addCommand(todoScanCommand);
+program.addCommand(deadCodeCommand);
+program.addCommand(typeCoverageCommand);
 
 program.parse();

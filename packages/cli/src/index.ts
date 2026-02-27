@@ -177,12 +177,32 @@ import { changelogGenCommand } from './commands/changelog-gen.js';
 import { deprecationCommand } from './commands/deprecation.js';
 import { cognitiveLoadCommand } from './commands/cognitive-load.js';
 import { sustainabilityCommand } from './commands/sustainability.js';
+import { dailyDigestCliCommand } from './commands/daily-digest-cli.js';
+import { riskHeatmapCommand } from './commands/risk-heatmap.js';
+import { aiPatternsCommand } from './commands/ai-patterns.js';
+import { teamSyncCommand } from './commands/team-sync.js';
+import { okrTrackerCommand } from './commands/okr-tracker.js';
+import { bottleneckCommand } from './commands/bottleneck.js';
+import { milestoneCommand } from './commands/milestone.js';
+import { riskAlertCommand } from './commands/risk-alert.js';
+import { complianceReportCommand } from './commands/compliance-report.js';
+import { aiBenchmarkCompareCommand } from './commands/ai-benchmark-compare.js';
+import { evolutionCommand } from './commands/evolution.js';
+import { teamRetrospectiveCommand } from './commands/team-retrospective.js';
+import { codeReviewGuideCommand } from './commands/code-review-guide.js';
+import { predictionCommand } from './commands/prediction.js';
+import { rootCauseCommand } from './commands/root-cause.js';
+import { resourceOptimizeCommand } from './commands/resource-optimize.js';
+import { stakeholderReportCommand } from './commands/stakeholder-report.js';
+import { integrationTestSuggestCommand } from './commands/integration-test-suggest.js';
+import { apiContractCommand } from './commands/api-contract.js';
+import { workflowOptimizeCommand } from './commands/workflow-optimize.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('3.8.0');
+  .version('3.48.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -361,5 +381,25 @@ program.addCommand(changelogGenCommand);
 program.addCommand(deprecationCommand);
 program.addCommand(cognitiveLoadCommand);
 program.addCommand(sustainabilityCommand);
+program.addCommand(dailyDigestCliCommand);
+program.addCommand(riskHeatmapCommand);
+program.addCommand(aiPatternsCommand);
+program.addCommand(teamSyncCommand);
+program.addCommand(okrTrackerCommand);
+program.addCommand(bottleneckCommand);
+program.addCommand(milestoneCommand);
+program.addCommand(riskAlertCommand);
+program.addCommand(complianceReportCommand);
+program.addCommand(aiBenchmarkCompareCommand);
+program.addCommand(evolutionCommand);
+program.addCommand(teamRetrospectiveCommand);
+program.addCommand(codeReviewGuideCommand);
+program.addCommand(predictionCommand);
+program.addCommand(rootCauseCommand);
+program.addCommand(resourceOptimizeCommand);
+program.addCommand(stakeholderReportCommand);
+program.addCommand(integrationTestSuggestCommand);
+program.addCommand(apiContractCommand);
+program.addCommand(workflowOptimizeCommand);
 
 program.parse();

@@ -1,0 +1,26 @@
+# VibeBetter Project Rules
+# These rules are checked by `vibe guard` and included in `vibe prompt` output
+
+file:
+  max_lines: 200
+  max_complexity: 15
+  naming: kebab-case
+
+code:
+  no_any: true
+  error_handling: AppError
+  require_tests: true
+  no_console_log: true
+
+architecture:
+  layers:
+    - routes
+    - services
+    - collectors
+    - utils
+  direction: top-down
+
+conventions:
+  commit_format: "<type>(<scope>): <subject>"
+  branch_format: "feat|fix|refactor/<description>"
+  test_pattern: "*.test.ts"

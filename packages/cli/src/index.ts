@@ -1,27 +1,27 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { initCommand } from './commands/init.js';
-import { contextCommand } from './commands/context.js';
+import { rulesCommand } from './commands/rules.js';
+import { scanCommand } from './commands/scan.js';
+import { planCommand } from './commands/plan.js';
 import { promptCommand } from './commands/prompt.js';
 import { guardCommand } from './commands/guard.js';
-import { rulesCommand } from './commands/rules.js';
-import { flowCommand } from './commands/flow-workflow.js';
-import { boundaryCommand } from './commands/boundary.js';
-import { qualityCommand } from './commands/quality-check.js';
+import { reviewCommand } from './commands/review-check.js';
+import { commitCommand } from './commands/commit-check.js';
 
 const program = new Command();
 program
   .name('vibe')
-  .description('VibeBetter — AI Coding Workflow Companion')
-  .version('5.0.0');
+  .description('VibeBetter — AI Coding Companion (6 commands)')
+  .version('6.0.0');
 
 program.addCommand(initCommand);
-program.addCommand(contextCommand);
+program.addCommand(rulesCommand);
+program.addCommand(scanCommand);
+program.addCommand(planCommand);
 program.addCommand(promptCommand);
 program.addCommand(guardCommand);
-program.addCommand(rulesCommand);
-program.addCommand(flowCommand);
-program.addCommand(boundaryCommand);
-program.addCommand(qualityCommand);
+program.addCommand(reviewCommand);
+program.addCommand(commitCommand);
 
 program.parse();

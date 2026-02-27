@@ -5,73 +5,66 @@ import { readFileSync, existsSync } from 'fs';
 import { header, success, warn, error } from '../utils/display.js';
 
 export const guardCommand = new Command('guard')
-  .description('Pre-commit quality guard — check AI code against project rules')
-  .option('--strict', 'Fail on any warning')
+  .description('Pre-commit gate — quality + boundary + rules compliance')
+  .option('--strict', 'Exit code 1 on any issue')
   .action(async (opts: { strict?: boolean }) => {
-    header('Quality Guard');
+    header('Guard');
     const git = simpleGit();
     const status = await git.status();
-    const files = [...status.staged, ...status.modified].filter(f => f.endsWith('.ts') || f.endsWith('.tsx'));
+    const files = [...new Set([...status.staged, ...status.modified])].filter(
+      (f) => (f.endsWith('.ts') || f.endsWith('.tsx')) && existsSync(f),
+    );
 
     if (files.length === 0) {
-      success('No TypeScript files to check');
+      success('No files to check');
       return;
     }
 
     console.log(`  Checking ${pc.bold(String(files.length))} file(s)...\n`);
 
     let totalIssues = 0;
-    let filesWithIssues = 0;
 
     for (const file of files) {
-      if (!existsSync(file)) continue;
       const content = readFileSync(file, 'utf-8');
       const lines = content.split('\n');
       const issues: string[] = [];
 
-      // Check file length
-      if (lines.length > 200) {
-        issues.push(`File too long: ${lines.length} lines (max 200)`);
-      }
+      // === Quality Checks ===
+      if (lines.length > 200) issues.push(`${lines.length} lines (max 200)`);
 
-      // Check for `any` type
-      const anyCount = (content.match(/:\s*any\b|as\s+any\b/g) || []).length;
-      if (anyCount > 0) {
-        issues.push(`Found ${anyCount} 'any' type usage(s)`);
-      }
+      const anyMatch = content.match(/:\s*any\b|as\s+any\b/g);
+      if (anyMatch) issues.push(`${anyMatch.length}× any type`);
 
-      // Check for console.log
-      const consoleCount = (content.match(/console\.(log|debug|info)\(/g) || []).length;
-      if (consoleCount > 0) {
-        issues.push(`Found ${consoleCount} console.log statement(s)`);
-      }
+      const consoleMatch = content.match(/console\.(log|debug|info)\(/g);
+      if (consoleMatch) issues.push(`${consoleMatch.length}× console.log`);
 
-      // Check for raw throw strings
-      if (content.includes("throw '") || content.includes('throw "') || content.includes('throw `')) {
-        issues.push('Raw string throw — use AppError instead');
-      }
+      if (/throw\s+['"`]/.test(content)) issues.push('Raw string throw — use AppError');
 
-      // Check for missing return types on exported functions
-      const exportedFns = content.match(/export\s+(async\s+)?function\s+\w+\([^)]*\)\s*{/g) || [];
-      for (const fn of exportedFns) {
-        if (!fn.includes(':') || fn.includes(': {')) {
-          issues.push(`Missing return type on: ${fn.slice(0, 50)}...`);
+      if (/catch\s*\([^)]*\)\s*\{\s*\}/.test(content)) issues.push('Empty catch block');
+
+      const todoMatch = content.match(/\/\/\s*(TODO|FIXME|HACK)/gi);
+      if (todoMatch) issues.push(`${todoMatch.length}× TODO/FIXME`);
+
+      // === Boundary Checks ===
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i]!;
+        if (
+          line.includes('await ') &&
+          !lines.slice(Math.max(0, i - 5), i).some((l) => l.includes('try'))
+        ) {
+          const fnCtx = lines.slice(Math.max(0, i - 10), i).some((l) => l.includes('async'));
+          if (
+            fnCtx &&
+            !lines.slice(i, Math.min(lines.length, i + 5)).some((l) => l.includes('catch'))
+          ) {
+            issues.push(`L${i + 1}: unguarded await`);
+            break;
+          }
         }
       }
 
-      // Check for empty catch blocks
-      if (content.match(/catch\s*\([^)]*\)\s*{\s*}/)) {
-        issues.push('Empty catch block — handle or log the error');
-      }
-
-      // Check for TODO/FIXME
-      const todoCount = (content.match(/\/\/\s*(TODO|FIXME|HACK|XXX)/gi) || []).length;
-      if (todoCount > 0) {
-        issues.push(`${todoCount} TODO/FIXME comment(s) — resolve before commit`);
-      }
-
+      // === Output ===
       if (issues.length > 0) {
-        filesWithIssues++;
         totalIssues += issues.length;
         console.log(`  ${pc.red('✗')} ${pc.white(file)}`);
         for (const issue of issues) {
@@ -84,11 +77,12 @@ export const guardCommand = new Command('guard')
 
     console.log();
     if (totalIssues === 0) {
-      success(`All ${files.length} files passed quality guard`);
+      success('All checks passed — safe to commit');
+      console.log(pc.dim('  Next: `vibe commit` to generate commit message'));
     } else {
-      warn(`${totalIssues} issue(s) in ${filesWithIssues} file(s)`);
+      warn(`${totalIssues} issue(s) found`);
       if (opts.strict) {
-        error('Strict mode: blocking commit');
+        error('Strict mode: commit blocked');
         process.exit(1);
       }
     }

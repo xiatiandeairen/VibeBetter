@@ -1,6 +1,6 @@
 {
   "name": "@vibebetter/cli",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "VibeBetter CLI — AI Coding Insight in your terminal",
   "bin": { "vibe": "./dist/index.js" },
   "scripts": {

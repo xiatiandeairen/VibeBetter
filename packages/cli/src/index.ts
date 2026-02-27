@@ -217,12 +217,32 @@ import { namingCheckCommand } from './commands/naming-check.js';
 import { todoScanCommand } from './commands/todo-scan.js';
 import { deadCodeCommand } from './commands/dead-code.js';
 import { typeCoverageCommand } from './commands/type-coverage.js';
+import { impactAnalysisCommand } from './commands/impact-analysis.js';
+import { regressionCheckCommand } from './commands/regression-check.js';
+import { optimizationSuggestCommand } from './commands/optimization-suggest.js';
+import { documentationGenCommand } from './commands/documentation-gen.js';
+import { apiDiffCommand } from './commands/api-diff.js';
+import { schemaCheckCommand } from './commands/schema-check.js';
+import { envValidateCommand } from './commands/env-validate.js';
+import { secretRotateCommand } from './commands/secret-rotate.js';
+import { backupCheckCommand } from './commands/backup-check.js';
+import { upgradeGuideCommand } from './commands/upgrade-guide.js';
+import { compatibilityCheckCommand } from './commands/compatibility-check.js';
+import { projectSummaryCommand } from './commands/project-summary.js';
+import { teamReportCommand } from './commands/team-report.js';
+import { aiSummaryCommand } from './commands/ai-summary.js';
+import { weeklyPlanCommand } from './commands/weekly-plan.js';
+import { riskMitigationCommand } from './commands/risk-mitigation.js';
+import { qualityScoreCommand } from './commands/quality-score.js';
+import { growthMetricsCommand } from './commands/growth-metrics.js';
+import { platformStatusCommand } from './commands/platform-status.js';
+import { finalReportCommand } from './commands/final-report.js';
 
 const program = new Command();
 program
   .name('vibe')
   .description('VibeBetter CLI — AI Coding Insight in your terminal')
-  .version('3.88.0');
+  .version('4.28.0');
 
 program.addCommand(initCommand);
 program.addCommand(statusCommand);
@@ -441,5 +461,25 @@ program.addCommand(namingCheckCommand);
 program.addCommand(todoScanCommand);
 program.addCommand(deadCodeCommand);
 program.addCommand(typeCoverageCommand);
+program.addCommand(impactAnalysisCommand);
+program.addCommand(regressionCheckCommand);
+program.addCommand(optimizationSuggestCommand);
+program.addCommand(documentationGenCommand);
+program.addCommand(apiDiffCommand);
+program.addCommand(schemaCheckCommand);
+program.addCommand(envValidateCommand);
+program.addCommand(secretRotateCommand);
+program.addCommand(backupCheckCommand);
+program.addCommand(upgradeGuideCommand);
+program.addCommand(compatibilityCheckCommand);
+program.addCommand(projectSummaryCommand);
+program.addCommand(teamReportCommand);
+program.addCommand(aiSummaryCommand);
+program.addCommand(weeklyPlanCommand);
+program.addCommand(riskMitigationCommand);
+program.addCommand(qualityScoreCommand);
+program.addCommand(growthMetricsCommand);
+program.addCommand(platformStatusCommand);
+program.addCommand(finalReportCommand);
 
 program.parse();
